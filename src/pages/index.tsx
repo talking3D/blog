@@ -17,7 +17,7 @@ type DataProps = {
 // markup
 const IndexPage = ({ data: { allMdx } }: PageProps<DataProps>) => {
   return (
-    <div>
+    <div className='text-3xl bg-slate-400 font-extrabold'>
       <ul>
         {  
           allMdx.nodes.map(node => (

@@ -19,7 +19,7 @@ const SyntaxHighlighter = (props) => {
          <pre className={ className } style={ { ...style, padding: '20px' } }>
            { tokens.map((line, i) => (
              <div key={ i } { ...getLineProps({ line, key: i })}>
-               { lineNumbers && <span className='line-number'>{ i + 1 }</span> }
+               { lineNumbers && <span className='pr-3'>{ i + 1 }</span> }
                { line.map((token, key) => (
                  <span key={ key } { ...getTokenProps({ token, key })} />
                )) }
