@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
-import SyntaxHighlighter from '../components/SyntaxHighlighter';
+import SyntaxHighlighter from '../components/addons/SyntaxHighlighter';
 
 const components = {
   pre: SyntaxHighlighter,

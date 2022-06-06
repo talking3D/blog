@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, graphql, PageProps } from 'gatsby';
+import NavBar from '../components/layout/nav';
 
 type DataProps = {
   allMdx: {
@@ -17,15 +18,18 @@ type DataProps = {
 // markup
 const IndexPage = ({ data: { allMdx } }: PageProps<DataProps>) => {
   return (
+    <>
+    <NavBar />
     <div className='text-3xl bg-slate-400 font-extrabold'>
       <ul>
         {  
-          allMdx.nodes.map(node => (
-              <li><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
+          allMdx.nodes.map((node, id) => (
+              <li key={id}><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
           ))
         }
       </ul>
     </div>
+    </>
   );
 }
 
