@@ -8,7 +8,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
   return(
-    <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5 border-2 border-red-300'>
+    <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5'>
       <div className={!visible ? 'sm:flex-none' : 'hidden'} >
       {/* <div className='sm:flex-none'> */}
         <div className='hidden sm:block mr-10 w-29 lg:w-42'>
