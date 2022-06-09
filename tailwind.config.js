@@ -14,11 +14,17 @@ module.exports = {
         'thiner': '0.5px',
       },
       spacing: {
+        '19': '4.75rem',
         '22.5': '5.625rem',
+        '29': '7.25rem',
+        '42': '10.5rem'
       },
       fontFamily: {
         'sans': ['Montserrat', defaultTheme.fontFamily.sans],
       },
+      screens: {
+        'mini': '459px',
+      }
     },
   },
   plugins: [],

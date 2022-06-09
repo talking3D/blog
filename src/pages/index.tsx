@@ -18,18 +18,18 @@ type DataProps = {
 // markup
 const IndexPage = ({ data: { allMdx } }: PageProps<DataProps>) => {
   return (
-    <>
-    <NavBar />
-    <div className='text-3xl bg-slate-400 font-extrabold'>
-      <ul>
-        {  
-          allMdx.nodes.map((node, id) => (
-              <li key={id}><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
-          ))
-        }
-      </ul>
+    <div className='block mx-auto w-screen max-w-screen-xl'>
+      <NavBar />
+      <div className='text-3xl bg-slate-400 font-extrabold'>
+        <ul>
+          {  
+            allMdx.nodes.map((node, id) => (
+                <li key={id}><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
-    </>
   );
 }
 
