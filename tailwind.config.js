@@ -1,12 +1,30 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
-      spacing: {
-        '22.5': '5.625rem',
+      colors: {
+       'even-darker': '#231F20',
+       'cube-like': '#8CC63F',
       },
+      borderWidth: {
+        'thiner': '0.5px',
+      },
+      spacing: {
+        '19': '4.75rem',
+        '22.5': '5.625rem',
+        '29': '7.25rem',
+        '42': '10.5rem'
+      },
+      fontFamily: {
+        'sans': ['Montserrat', defaultTheme.fontFamily.sans],
+      },
+      screens: {
+        'mini': '459px',
+      }
     },
   },
   plugins: [],
