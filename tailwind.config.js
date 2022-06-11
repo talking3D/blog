@@ -21,6 +21,7 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Montserrat', defaultTheme.fontFamily.sans],
+        'roboto': ['Roboto', 'sans-serif'],
       },
       screens: {
         'mini': '459px',

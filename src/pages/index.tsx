@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link, graphql, PageProps } from 'gatsby';
 import NavBar from '../components/layout/nav';
+import Main from '../components/layout/main';
 
 type DataProps = {
   allMdx: {
@@ -20,15 +21,7 @@ const IndexPage = ({ data: { allMdx } }: PageProps<DataProps>) => {
   return (
     <div className='block mx-auto w-screen max-w-screen-xl'>
       <NavBar />
-      <div className='text-3xl bg-slate-400 font-extrabold'>
-        <ul>
-          {  
-            allMdx.nodes.map((node, id) => (
-                <li key={id}><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
-            ))
-          }
-        </ul>
-      </div>
+      <Main />
     </div>
   );
 }
@@ -40,7 +33,7 @@ export const query = graphql`
     allMdx {
       nodes {
         frontmatter {
-          data(formatString: "MMMM D, YYYY")
+          date(formatString: "MMMM D, YYYY")
           title
         }
         id
