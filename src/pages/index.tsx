@@ -19,7 +19,9 @@ export default IndexPage;
 export const query = graphql`
   query {
     allMdx {
+      totalCount
       nodes {
+        id
         frontmatter {
           title
         }
