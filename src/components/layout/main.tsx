@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Tile from './tile';
+import { ImageDataLike } from 'gatsby-plugin-image';
 
 const Main = ({ data } : DataProps) => {
   return (
@@ -19,6 +20,8 @@ const Main = ({ data } : DataProps) => {
                 index={i}
                 title={node.frontmatter.title}
                 count={data.allMdx.totalCount}
+                hero_image={node.frontmatter.hero_image}
+                hero_color={node.frontmatter.hero_color}
               />
             ))
           }
@@ -30,6 +33,27 @@ const Main = ({ data } : DataProps) => {
 
 export default Main;
 
+export type ImageSharp = {
+  hildImageSharp: {
+    gatsbyImageData: {
+      layout: string
+      placeholder: {
+        fallback: string
+      }
+      images: {
+        fallback: {
+          src: string
+          srcSet: string
+          sizes: string
+        },
+        sources: []
+      }
+      width: number
+      height: number
+  }
+}
+}
+
 export interface DataProps {
   data: {
     allMdx: {
@@ -38,8 +62,13 @@ export interface DataProps {
         id: string
         frontmatter: {
           title: string
-        }
-      } []
-  }
+          date: Date
+          tags: string[]
+          reading_time: string
+          hero_color: string
+          hero_image: ImageDataLike
+      }
+  } []
+}
 }
 }
