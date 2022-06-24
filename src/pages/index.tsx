@@ -1,51 +1,40 @@
 import * as React from "react"
 import { Link, graphql, PageProps } from 'gatsby';
 import NavBar from '../components/layout/nav';
+import Main, { DataProps as DataProps} from '../components/layout/main';
 
-type DataProps = {
-  allMdx: {
-    nodes: {
-      frontmatter: {
-        data: {formatString: string}
-        title: string
-      }
-      id: string
-      slug: string
-    }[]
-  }
-}
 
 // markup
-const IndexPage = ({ data: { allMdx } }: PageProps<DataProps>) => {
+const IndexPage = ({ data }: DataProps) => {
   return (
-    <div className='block mx-auto w-screen max-w-screen-xl'>
+    <div className='block mx-auto w-screen max-w-screen-xl pb-4'>
       <NavBar />
-      <div className='text-3xl bg-slate-400 font-extrabold'>
-        <ul>
-          {  
-            allMdx.nodes.map((node, id) => (
-                <li key={id}><Link to={ `${node.slug}` }>{node.frontmatter.title}</Link></li>
-            ))
-          }
-        </ul>
-      </div>
+      <Main data={data}/>
     </div>
   );
 }
 
-export default IndexPage
+export default IndexPage;
 
 export const query = graphql`
   query {
     allMdx {
+      totalCount
       nodes {
-        frontmatter {
-          data(formatString: "MMMM D, YYYY")
-          title
-        }
         id
-        slug
+        frontmatter {
+          title
+          date
+          tags
+          reading_time
+          hero_color
+          hero_image {
+            childImageSharp {
+              gatsbyImageData(width: 235, height: 400, placeholder: DOMINANT_COLOR, formats: JPG, transformOptions: {cropFocus: ATTENTION, fit: COVER})
+            }
+          }
+        }
       }
     }
   }
-`
+  `

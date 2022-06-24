@@ -17,14 +17,24 @@ module.exports = {
         '19': '4.75rem',
         '22.5': '5.625rem',
         '29': '7.25rem',
-        '42': '10.5rem'
+        '42': '10.5rem',
+        '62': '15.5rem',
+        '77': '19.25rem',
+        '100': '25rem',
+        '158': '39.5rem',
       },
       fontFamily: {
         'sans': ['Montserrat', defaultTheme.fontFamily.sans],
+        'roboto': ['Roboto', 'sans-serif'],
       },
       screens: {
         'mini': '459px',
-      }
+      },
+      maxWidth: {
+        'tall': '308px',
+        'medium': '390px',
+        'long': '632px',
+      },
     },
   },
   plugins: [],
