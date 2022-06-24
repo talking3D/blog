@@ -22,6 +22,8 @@ const Main = ({ data } : DataProps) => {
                 count={data.allMdx.totalCount}
                 hero_image={node.frontmatter.hero_image}
                 hero_color={node.frontmatter.hero_color}
+                tags={node.frontmatter.tags}
+                reading_time={node.frontmatter.reading_time}
               />
             ))
           }
