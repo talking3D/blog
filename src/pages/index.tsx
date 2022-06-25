@@ -1,16 +1,12 @@
 import * as React from "react"
 import { Link, graphql, PageProps } from 'gatsby';
-import NavBar from '../components/layout/nav';
-import Main, { DataProps as DataProps} from '../components/layout/main';
+import Main, { DataProps } from '../components/layout/main';
 
 
 // markup
 const IndexPage = ({ data }: DataProps) => {
   return (
-    <div className='block mx-auto w-screen max-w-screen-xl pb-4'>
-      <NavBar />
-      <Main data={data}/>
-    </div>
+      <Main data={data} />
   );
 }
 
