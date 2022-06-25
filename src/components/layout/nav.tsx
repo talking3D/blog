@@ -4,19 +4,21 @@ import { LogoVertical, LogoHorizontal } from '../common/logo';
 import SearchBar from '../common/search';
 import { BsFilterCircle, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
   return(
     <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5'>
       <div className={!visible ? 'sm:flex-none' : 'hidden'} >
-      {/* <div className='sm:flex-none'> */}
-        <div className='hidden sm:block mr-10 w-29 lg:w-42'>
-          <LogoHorizontal />
-        </div>
-        <div className='block sm:hidden mr-10 w-19'>
-          <LogoVertical />
-        </div>
+        <Link to='/'>
+          <div className='hidden sm:block mr-10 w-29 lg:w-42'>
+            <LogoHorizontal />
+          </div>
+          <div className='block sm:hidden mr-10 w-19'>
+            <LogoVertical />
+          </div>
+        </Link>
       </div>
       <div className='flex flex-[2_1] flex-nowrap justify-center items-center mr-8 lg:mx-auto'>
         <div>

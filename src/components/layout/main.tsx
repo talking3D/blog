@@ -64,6 +64,7 @@ export interface DataProps {
       totalCount: number
       nodes: {
         id: string
+        slug: string
         frontmatter: {
           title: string
           date: Date
