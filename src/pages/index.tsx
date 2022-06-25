@@ -14,13 +14,14 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allMdx {
+    allMdx ( sort: {fields: frontmatter___date, order: DESC}) {
       totalCount
       nodes {
         id
+        slug
         frontmatter {
           title
-          date
+          date(formatString: "DD-MM-YYYY")
           tags
           reading_time
           hero_color

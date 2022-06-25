@@ -19,6 +19,8 @@ const Main = ({ data } : DataProps) => {
                 key={node.id}
                 index={i}
                 title={node.frontmatter.title}
+                slug={node.slug}
+                date={node.frontmatter.date}
                 count={data.allMdx.totalCount}
                 hero_image={node.frontmatter.hero_image}
                 hero_color={node.frontmatter.hero_color}

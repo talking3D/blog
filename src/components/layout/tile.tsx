@@ -68,6 +68,8 @@ interface TileProps {
   index: number,
   count: number,
   title: string,
+  slug: string,
+  date: Date,
   hero_image: ImageDataLike,
   hero_color: string,
   tags: string[],
