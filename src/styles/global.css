@@ -7,5 +7,9 @@
 @layer base {
   .heading-span-letter {
     @apply text-4xl text-cube-like;
-  }
+  };
+  /* To overcome image overflow problem in Safari */
+  .image-overflow {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  };
 }
