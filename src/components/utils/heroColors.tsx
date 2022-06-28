@@ -68,4 +68,12 @@ const tileHeroColors = {
   },
 };
 
+export const getHeroColor = (color: string) => {
+  if (color in tileHeroColors) {
+    return tileHeroColors[color as keyof typeof tileHeroColors]
+  }
+
+  return tileHeroColors['default']
+}
+
 export default tileHeroColors;

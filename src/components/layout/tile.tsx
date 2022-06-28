@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { BsCalendar3, BsClockFill } from 'react-icons/bs';
 import { Link } from 'gatsby';
+import { getHeroColor } from '../utils/heroColors';
 
 
 import tileHeroColors  from '../utils/heroColors';
@@ -21,14 +22,6 @@ function getStyle<S, K extends keyof S>(obj: S, key: K): S[K] | '' {
     return obj[key]
   }
   return ''
-}
-
-const getHeroColor = (color: string) => {
-  if (color in tileHeroColors) {
-    return tileHeroColors[color as keyof typeof tileHeroColors]
-  }
-
-  return tileHeroColors['default']
 }
 
 const layoutResolver = (index: number, length: number) => {
