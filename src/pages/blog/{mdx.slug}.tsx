@@ -69,18 +69,21 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         <div className='self-end font-roboto text-slate-500'>
           Published on {mdx.frontmatter.date}
         </div>
-        <div className='flex flex-col lg:w-200 self-end'>
-          <MDXProvider components={ components }>
-            <header className='mt-7'>
-              <h1 className='font-bold text-3xl'>{ mdx.frontmatter.title }</h1>
-              <h2 className='mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500'>{mdx.frontmatter.sub_title}</h2>
-            </header>
-            <main className='text-xl font-thin leading-a-little-bit-looser'>
-              <MDXRenderer>
-                { mdx.body }
-              </MDXRenderer>
-              </main>
-          </MDXProvider>
+        <div className='flex flex-nowrap justify-between w-full border-4 border-cyan-200'>
+          <div className='flex border-2 border-cyan-400'>aaaaaaaa aaaa</div>
+          <div className='flex flex-col lg:w-200 justify-self-end  border-2 border-cyan-800'>
+            <MDXProvider components={ components }>
+              <header className='mt-7'>
+                <h1 className='font-bold text-3xl'>{ mdx.frontmatter.title }</h1>
+                <h2 className='mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500'>{mdx.frontmatter.sub_title}</h2>
+              </header>
+              <main className='text-xl font-thin leading-a-little-bit-looser'>
+                <MDXRenderer>
+                  { mdx.body }
+                </MDXRenderer>
+                </main>
+            </MDXProvider>
+          </div>
         </div>
       </div>
     </div>
