@@ -6,6 +6,8 @@ import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { getHeroColor } from '../../components/utils/heroColors';
 import { BsClockFill } from 'react-icons/bs';
+import PostImage from '../../components/common/image';
+
 
 // Use shortcodes
 const components = {
@@ -13,6 +15,7 @@ const components = {
   h3: (props: React.FC) => <h3 { ...props } className='mt-2 mb-1 text-2xl font-normal' />,
   h4: (props: React.FC) => <h4 { ...props } className='mt-2 mb-1 text-xl font-normal' />,
   h6: (props: React.FC) => <div { ...props } className='mt-1 mb-4 text-lg font-normal' />,
+  img: (props: any) => <PostImage {...props} />,
 }
 
 type DataProps = {
@@ -35,7 +38,7 @@ type DataProps = {
 }
 
 const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
-  const image = getImage(mdx.frontmatter.hero_image)
+  const image = getImage(mdx.frontmatter.hero_image);
   return (
     <div className='flex flex-col mt-2 px-2 xl:px-0 relative'>
       <div className='flex absolute -z-10 h-77'>

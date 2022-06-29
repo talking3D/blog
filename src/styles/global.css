@@ -13,3 +13,9 @@
     -webkit-mask-image: -webkit-radial-gradient(white, black);
   };
 }
+
+@layer components {
+  .inline-image {
+    @apply flex relative left-0 border-2 border-red-500 w-full pb-2/3 ;
+  };
+}
