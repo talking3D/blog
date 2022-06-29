@@ -24,6 +24,7 @@ module.exports = {
         '100': '25rem',
         '158': '39.5rem',
         '200': '50rem',
+        '2/3': '66.6666%'
       },
       fontFamily: {
         'sans': ['Montserrat', defaultTheme.fontFamily.sans],
