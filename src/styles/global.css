@@ -16,6 +16,9 @@
 
 @layer components {
   .inline-image {
-    @apply flex relative left-0 border-2 border-red-500 w-full pb-2/3 ;
+    @apply w-full col-start-1 col-span-3 border-2 border-pink-300;
+  };
+  .post-paragraph {
+    @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full border-4 border-red-500;
   };
 }

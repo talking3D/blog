@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { GatsbyImage, getImage, IGatsbyImageData, ImageDataLike } from 'gatsby-plugin-image';
 
 interface PostImageProps {
   src: string
@@ -8,34 +7,36 @@ interface PostImageProps {
 
 const PostImage = (props: any) => {
   // Replace gatsby-remark-images inline span wrapper with block level div element
+  // Also removes additional span element that wrapper
   // This is temportary ;) workaround for handling mdx markup inline images for my blog design requirements
   React.useEffect(() => {
     if (window !== undefined) {
-      // const parentSpanElement = document.querySelector('span.gatsby-resp-image-wrapper');
-      // const bgSpanElement = document.querySelector('span.gatsby-resp-image-background-image');
-      // const imgElement = document.querySelector('img.gatsby-resp-image-image');
+      const paragraphElement = document.querySelector('span.gatsby-resp-image-wrapper')?.parentElement
+      const paragraphElementNextSibling = paragraphElement?.nextSibling //means next <p> element
+      const paragraphParent = paragraphElement?.parentElement
 
-      // const parentP = parentSpanElement?.parentNode;
-      // parentP?.removeChild(parentSpanElement!);
-      // const newDiv = document.createElement('div');
-      // newDiv.classList.add('inline-image')
-      // newDiv.appendChild(bgSpanElement!);
-      // newDiv.appendChild(imgElement!);
-      // parentP?.parentNode?.insertBefore(newDiv, parentP.nextSibling);
 
-      // // Add next paragraph as description text to this image
-      // const descrParagraph = newDiv.nextSibling;
-      // newDiv.appendChild(descrParagraph!);
+      // If paragraph tag has already got div parent ten replace css class from post paragraph to image
+      if(paragraphParent!.tagName === 'DIV') {
+        paragraphParent!.classList.replace('post-paragraph', 'inline-image');
+        paragraphParent?.appendChild(paragraphElementNextSibling!);
 
-      // const parentP = document.querySelector('span.gatsby-resp-image-wrapper')?.parentElement;
-      // !!parentP && parentP.classList.add('inline-image');
+      // Otherwise add DIV parent and and attach image style to i
+      } else {
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('inline-image');
+        paragraphParent?.replaceChild(wrapperDiv, paragraphElement!);
+        wrapperDiv.appendChild(paragraphElement!);
+        wrapperDiv.appendChild(paragraphElementNextSibling!)
+      }
     }
   }, []);
 
+  const newProps ={ ...props }
 
 
   return (
-      <img {...props } />
+      <img {...newProps } />
   );
 };
 

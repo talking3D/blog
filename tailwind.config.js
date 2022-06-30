@@ -40,7 +40,7 @@ module.exports = {
       },
       lineHeight: {
         'a-little-bit-looser': '1.875rem'
-      }
+      },
     },
   },
   plugins: [],
