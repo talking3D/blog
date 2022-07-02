@@ -16,9 +16,9 @@
 
 @layer components {
   .inline-image {
-    @apply w-full col-start-1 col-span-3 border-2 border-pink-300;
+    @apply grid lg:grid-cols-2 col-span-3 w-full py-4 pl-4 pr-4 my-4 bg-gradient-to-b from-white to-slate-100 md:bg-gradient-to-r lg:from-white lg:to-slate-100 rounded-b-xl md:rounded-r-xl;
   };
   .post-paragraph {
-    @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full border-4 border-red-500;
+    @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full;
   };
 }
