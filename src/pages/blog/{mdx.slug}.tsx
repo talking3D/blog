@@ -15,7 +15,7 @@ const components = {
   h3: (props: React.FC) => <h3 { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-2 mb-1 text-2xl font-normal' />,
   h4: (props: React.FC) => <h4 { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-2 mb-1 text-xl font-normal' />,
   h6: (props: React.FC) => <div { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-1 mb-4 text-lg font-normal' />,
-  img: (props: any) => <PostImage {...props} />,
+  img: (props: React.FC) => <PostImage {...props} />,
 }
 
 type DataProps = {
@@ -54,8 +54,8 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   React.useEffect(() => {
     if (window !== undefined) {
-      const PNodes = document.querySelectorAll('p');
-      Array.from(PNodes, node => addParentDiv(node))
+      const pNodes = document.querySelectorAll('p');
+      Array.from(pNodes, node => addParentDiv(node))
     }
   }, [])
   
