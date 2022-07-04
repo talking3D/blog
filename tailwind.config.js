@@ -37,6 +37,7 @@ module.exports = {
         'tall': '308px',
         'medium': '390px',
         'long': '632px',
+        'code-descr': 'calc(100%-200px)', 
       },
       lineHeight: {
         'a-little-bit-looser': '1.875rem'

@@ -11,7 +11,7 @@ import PostImage from '../../components/common/image';
 
 // Use shortcodes
 const components = {
-  pre: SyntaxHighlighter,
+  pre: (props: React.FC) => <SyntaxHighlighter {...props } />,
   h3: (props: React.FC) => <h3 { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-2 mb-1 text-2xl font-normal' />,
   h4: (props: React.FC) => <h4 { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-2 mb-1 text-xl font-normal' />,
   h6: (props: React.FC) => <div { ...props } className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-1 mb-4 text-lg font-normal' />,
