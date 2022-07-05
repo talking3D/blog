@@ -23,7 +23,7 @@ const SyntaxHighlighter = (props: any) => {
       ];
       if (!!parentPre) {
         parentPre.id = parentPreId
-        const siblingParagraph: any = !!parentPre!.nextSibling ? parentPre!.nextSibling : parentPre!.parentElement?.nextElementSibling;
+        const siblingParagraph: Element | null | undefined = !!parentPre!.nextElementSibling ? parentPre!.nextElementSibling : parentPre!.parentElement?.nextElementSibling;
         const wrapperDiv =parentPre.parentElement;
         codeParagraphClasses.length && codeParagraphClasses.map((cls) => siblingParagraph!.classList.add(cls)) ;
         wrapperDiv!.appendChild(siblingParagraph!);
@@ -45,17 +45,17 @@ const SyntaxHighlighter = (props: any) => {
       theme={ theme }
      >
        {({className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className='grid grid-cols-1 md:grid-cols-3 col-span-3 mt-4 mb-2 pr-4 md:pr-8 pl-4 bg-gradient-to-b from-white to-stone-400 md:bg-gradient-to-r lg:from-white lg:to-stone-400 rounded-b-xl md:rounded-r-xl'>
-         <pre className={ `${className} ${preStylingClass}` } style={ { ...style, padding: '20px', paddingRight: '8%'} }>
-           { tokens.map((line, i) => (
-             <div key={ i } { ...getLineProps({ line, key: i })}>
-               { lineNumbers && <span className='pr-3 text-right text-neutral-500'>{ i + 1 }</span> }
-               { line.map((token, key) => (
-                 <span key={ key } { ...getTokenProps({ token, key })} />
-               )) }
-             </div>
-           ))}
-         </pre>
+        <div className='grid grid-cols-1 md:grid-cols-3 col-span-3 mt-4 mb-2 pr-4 md:pr-8 pl-4 bg-gradient-to-b from-white to-stone-100 md:bg-gradient-to-r lg:from-white lg:to-stone-100 rounded-b-xl md:rounded-r-xl'>
+          <pre className={ `${className} ${preStylingClass}` } style={ { ...style, padding: '20px', paddingRight: '8%'} }>
+            { tokens.map((line, i) => (
+              <div key={ i } { ...getLineProps({ line, key: i })}>
+                { lineNumbers && <span className='pr-3 text-right text-neutral-500'>{ i + 1 }</span> }
+                { line.map((token, key) => (
+                  <span key={ key } { ...getTokenProps({ token, key })} />
+                )) }
+              </div>
+            ))}
+          </pre>
         </div>
        )}
     </Highlight>
