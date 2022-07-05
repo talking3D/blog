@@ -15,9 +15,14 @@
 }
 
 @layer components {
-  .inline-image {
+  .from-inline-image {
     @apply grid lg:grid-cols-2 col-span-3 w-full py-4 pl-4 pr-4 my-4 bg-gradient-to-b from-white to-stone-100 md:bg-gradient-to-r lg:from-white lg:to-stone-100 rounded-b-xl md:rounded-r-xl;
   };
+
+  .from-inline-image-no-caption {
+    @apply grid col-span-3 lg:col-start-2 lg:col-span-2 my-4 py-4 px-4 bg-gradient-to-r from-stone-100 via-white to-stone-100 rounded-xl md:bg-gradient-to-r md:from-white md:to-stone-100 md:rounded-r-xl   lg:bg-gradient-to-r lg:from-stone-100 lg:via-white lg:to-stone-100 lg:rounded-xl;
+  };
+
   .post-paragraph {
     @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full;
   };

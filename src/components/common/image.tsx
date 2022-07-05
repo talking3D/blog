@@ -31,27 +31,38 @@ const PostImage = (props: any) => {
       const spanRespImgWrapper = document.querySelector('span.gatsby-resp-image-wrapper');
 
       const imgRes = document.querySelector(`#img_${elementId}`);
-      const imageParent = imgRes?.parentElement;
-      console.log((imageParent?.parentElement));
       const parentParagraphElement = spanRespImgWrapper!.parentElement;
-      // console.log(parentParagraphElement);
-      const paragraphElementNextSibling: any = parentParagraphElement?.nextSibling; //means next <p> element
-      paragraphElementNextSibling.classList.add('pt-4', 'md:pl-4','md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
-
+      const paragraphElementNextSibling: any = parentParagraphElement?.nextSibling;
       const paragraphParent = parentParagraphElement?.parentElement
-
+      
       // If paragraph tag has already got div parent then replace css paragraph class with image class
       if(paragraphParent!.tagName === 'DIV') {
-        paragraphParent!.classList.replace('post-paragraph', 'inline-image');
-        paragraphParent?.appendChild(paragraphElementNextSibling!);
+        const newFigureWrapper = document.createElement('figure');
+        newFigureWrapper.className = 'from-inline-image';
+        paragraphParent?.parentElement?.replaceChild(newFigureWrapper, paragraphParent);
+        newFigureWrapper.appendChild(paragraphParent!)
+        
+        // paragraphParent!.classList.replace('post-paragraph', 'from-inline-image');
+        if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
+          paragraphElementNextSibling.classList.add('pt-4', 'md:pl-4','md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
+          paragraphParent?.appendChild(paragraphElementNextSibling!);
+        } else {
+          newFigureWrapper.className='from-inline-image-no-caption';
+        }
+        
 
       // Otherwise add DIV parent and and attach image style to it
       } else {
-        const wrapperDiv = document.createElement('div');
-        wrapperDiv.classList.add('inline-image');
-        paragraphParent?.replaceChild(wrapperDiv, parentParagraphElement!);
-        wrapperDiv.appendChild(parentParagraphElement!);
-        wrapperDiv.appendChild(paragraphElementNextSibling!)
+        const wrapperFigure = document.createElement('figure');
+        wrapperFigure.classList.add('from-inline-image');
+        paragraphParent?.replaceChild(wrapperFigure, parentParagraphElement!);
+        wrapperFigure.appendChild(parentParagraphElement!);
+        if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
+          paragraphElementNextSibling.classList.add('pt-4', 'md:pl-4','md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
+          wrapperFigure.appendChild(paragraphElementNextSibling!)
+        } else {
+          wrapperFigure.className = 'from-inline-image-no-caption';
+        };
       };
       
       const newDivWrapper = document.createElement('div');
@@ -64,7 +75,7 @@ const PostImage = (props: any) => {
 
     }
   }, []);
-
+  
   return (
       <img {...props } />
   );

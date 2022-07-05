@@ -18,7 +18,7 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1280,
+              maxWidth: 640,
               linkImagesToOriginal: false,
               disableBgImage: true,
               // wrapperStyle: 'position: absolute; border: solid 2px blue;'
