@@ -10,6 +10,23 @@ const config: GatsbyConfig = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-remark-images`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 640,
+              linkImagesToOriginal: false,
+              disableBgImage: true,
+              // wrapperStyle: 'position: absolute; border: solid 2px blue;'
+            }
+          }
+        ]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -18,7 +35,7 @@ const config: GatsbyConfig = {
         ignore: [`**/\.*`],
       },
     },
-    `gatsby-plugin-mdx`
+    // `gatsby-plugin-mdx`
   ]
 };
 

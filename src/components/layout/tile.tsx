@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { BsCalendar3, BsClockFill } from 'react-icons/bs';
 import { Link } from 'gatsby';
+import { getHeroColor } from '../utils/heroColors';
 
 
 import tileHeroColors  from '../utils/heroColors';
@@ -21,14 +22,6 @@ function getStyle<S, K extends keyof S>(obj: S, key: K): S[K] | '' {
     return obj[key]
   }
   return ''
-}
-
-const getHeroColor = (color: string) => {
-  if (color in tileHeroColors) {
-    return tileHeroColors[color as keyof typeof tileHeroColors]
-  }
-
-  return tileHeroColors['default']
 }
 
 const layoutResolver = (index: number, length: number) => {
@@ -81,37 +74,37 @@ interface TileProps {
 const Tile = ({index, count, title, slug,  date, hero_color, hero_image, tags, reading_time}: TileProps) => {
   const image = getImage(hero_image)
   return (
-    <div className={`relative col-span-2 max-w-long h-72 ${layoutResolver(index, count)} rounded-2xl overflow-hidden relative shadow-md`}>
-      <div className='w-full h-full image-overflow overflow-hidden rounded-2xl'>
-       <Link to={`/blog/${slug}`}>
-          <div className='flex flex-col justify-between h-full rounded-2xl'>
-            <GatsbyImage image={image!} alt={'altext'} className='absolute -z-50 w-full rounded-2xl'/>
-            <div className='flex flex-col'>
-              <div className={`flex items-center py-1 px-2 self-end max-w-max ${getHeroColor(hero_color).withOpacity} text-white rounded-tr-xl rounded-bl-xl text-sm font-normal`}>
-                <BsCalendar3 size={14} className='mx-1.5'/>
-                  { date }
+    <article className={`relative col-span-2 max-w-long h-72 ${layoutResolver(index, count)} rounded-2xl overflow-hidden relative shadow-md`}>
+          <div className='w-full h-full image-overflow overflow-hidden rounded-2xl'>
+          <Link to={`/blog/${slug}`}>
+              <div className='flex flex-col justify-between h-full rounded-2xl'>
+                <GatsbyImage image={image!} alt={'altext'} className='absolute -z-50 w-full rounded-2xl'/>
+                <div className='flex flex-col'>
+                  <div className={`flex items-center py-1 px-2 self-end max-w-max ${getHeroColor(hero_color).withOpacity} text-white rounded-tr-xl rounded-bl-xl text-sm font-normal`}>
+                    <BsCalendar3 size={14} className='mx-1.5'/>
+                      { date }
+                    </div>
+                    <h2 className='my-4 px-4 font-roboto font-bold text-3xl text-white'>
+                        <span className={`box-decoration-clone leading-snug ${getHeroColor(hero_color).withOpacity} px-2 py-0.5`}>
+                          { title }
+                        </span>
+                    </h2>
                 </div>
-                <h2 className='my-4 px-4 font-roboto font-bold text-3xl text-white'>
-                    <span className={`box-decoration-clone leading-snug ${getHeroColor(hero_color).withOpacity} px-2 py-0.5`}>
-                      { title }
-                    </span>
-                </h2>
-            </div>
-              <div className='flex justify-between mb-2 px-4  w-full'>
-                <ul className='flex flex-wrap justify-start text-white'>
-                  { tags.map((tag, index) => (
-                    <li key={index} className={`px-3 mr-2 mb-1 before:content-["#"] ${getHeroColor(hero_color).solid} font-roboto text-base rounded-xl`}>{tag}</li>
-                  )) }
-                </ul>
-                <div className='flex self-end items-center mb-0.5 text-white'>
-                  <BsClockFill size={17}/>
-                  <span className='ml-2'>{ reading_time }</span>
-                </div>
+                  <div className='flex justify-between mb-2 px-4  w-full'>
+                    <ul className='flex flex-wrap justify-start text-white'>
+                      { tags.map((tag, index) => (
+                        <li key={index} className={`px-3 mr-2 mb-1 before:content-["#"] ${getHeroColor(hero_color).solid} font-roboto text-base rounded-xl`}>{tag}</li>
+                      )) }
+                    </ul>
+                    <div className='flex self-end items-center mb-0.5 text-white'>
+                      <BsClockFill size={17}/>
+                      <span className='ml-2'>{ reading_time }</span>
+                    </div>
+                  </div>
               </div>
+            </Link>
           </div>
-        </Link>
-      </div>
-    </div>
+      </article>
   );
 };
 

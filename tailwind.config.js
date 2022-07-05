@@ -17,11 +17,14 @@ module.exports = {
         '19': '4.75rem',
         '22.5': '5.625rem',
         '29': '7.25rem',
+        '30': '8rem',
         '42': '10.5rem',
         '62': '15.5rem',
         '77': '19.25rem',
         '100': '25rem',
         '158': '39.5rem',
+        '200': '50rem',
+        '2/3': '66.6666%'
       },
       fontFamily: {
         'sans': ['Montserrat', defaultTheme.fontFamily.sans],
@@ -34,7 +37,14 @@ module.exports = {
         'tall': '308px',
         'medium': '390px',
         'long': '632px',
+        'code-descr': 'calc(100%-200px)', 
       },
+      lineHeight: {
+        'a-little-bit-looser': '1.875rem'
+      },
+      flex: {
+        '2': '2',
+      }
     },
   },
   plugins: [],
