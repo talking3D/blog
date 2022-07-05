@@ -21,8 +21,103 @@ Nemo distinctio, velit modi reiciendis sint alias. Autem optio a et reiciendis, 
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quibusdam. Sit ab quos sint quod quisquam magni enim? 
 
-!['alternatywny_tekst'](./test.jpg)
+!['alternatywny_tekst'](./test2.jpg)
 
-to jest opis do tekstu (ale w dokumencie za obrazkiem!)
+<figcaption>Pod pierwszym. Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Possimus ex voluptate cum sit, delectus quaerat suscipit fuga fugit harum consequatur cupiditate illum deserunt distinctio enim quod debitis quasi nemo non placeat eos totam porro qui facere? Obcaecati, tempora.m? </figcaption>
 
+#### Short title of section 2
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Nemo distinctio, velit modi reiciendis sint alias. Autem optio a et reiciendis, inventore fugiat saepe iste incidunt eveniet, consequatur qui dolore repudiandae numquam eius est quas. 
+
+#### It cannot be denied that it is quite long title of section 3
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+
+!['inny tekst alternatywny'](./test1.jpg)    
+
+<figcaption>Pod drugim. Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Possimus ex voluptate cum sit, delectus quaerat suscipit fuga fugit harum consequatur cupiditate illum deserunt distinctio enim quod debitis quasi nemo non placeat eos totam porro qui facere? Obcaecati, tempora.m?</figcaption>
+
+!['inny tekst alternatywny'](./test1.jpg)  
+<figcaption>Indywidualnie! Pod drugim. Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Possimus ex voluptate cum sit, delectus quaerat suscipit fuga fugit harum consequatur cupiditate illum deserunt distinctio enim quod debitis quasi nemo non placeat eos totam porro qui facere? Obcaecati, tempora.m?</figcaption>
+
+**To nie jest opis obrazka!**. Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+
+### A bit longer title of part 2
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Nemo distinctio, velit modi reiciendis sint alias. Autem optio a et reiciendis, inventore fugiat saepe iste incidunt eveniet, consequatur qui dolore repudiandae numquam eius est quas. 
+
+#### Longer than normal title of section 4
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+
+
+```python lineNumbers
+title_corpus = df['title'].map(simple_preprocess)
+
+
+```
+Opis pierwszego fragmentu kodu.Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Possimus ex voluptate cum sit, delectus quaerat suscipit fuga fugit harum consequatur cupiditate illum deserunt distinctio enim quod debitis quasi nemo non placeat eos totam porro qui facere? Obcaecati, tempora.m?
+
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+
+#### Brief title of section 5
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+
+
+```python lineNumbers
+def rem_midhyphen(text):
+    return re.sub(r'(\w+)(-)(\w+)', r'\1\3', text)
+
+def rem_bracketed_comments(text):
+    return re.sub(r'\(.*\)', '',  text)
+
+def rem_end_of_page_mark(text):
+    return re.sub(r'\<.*\>', ' ',  text)
+
+def remove_punctation(text):
+    return ''.join([letter for letter in text if letter not in string.punctuation])
+
+
+def preprocess(text):
+    text = rem_midhyphen(text)
+    text = rem_bracketed_comments(text)
+    text = rem_end_of_page_mark(text)
+    text = remove_punctation(text)
+    
+    return text
+
+posiedzenia['tekst_prep'] = posiedzenia['tekst_prep'].map(lambda x: preprocess(x))
+```
+
+Opis drugiego fragmentu kodu. Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+
+#### A few more words in the title of section 6
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+
+### Looking quite overwhelming tile of part 3
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Nemo distinctio, velit modi reiciendis sint alias. Autem optio a et reiciendis, inventore fugiat saepe iste incidunt eveniet, consequatur qui dolore repudiandae numquam eius est quas. 
+
+#### Closer to the end of blog post title of section 7
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit.  
+
+!['inny tekst alternatywny i to na dodatek nieco dłuższy'](./test3.jpg)
+<figcaption>Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.</figcaption>
+
+Molestiae nobis quod minus soluta saepe maiores quia earum libero laborum, nulla iste deserunt ratione consequatur voluptates sequi dolorem officiis aliquam accusantium vitae beatae debitis dolorum! Aliquam laborum corrupti blanditiis!
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+Voluptatibus nulla temporibus debitis provident enim dolor impedit saepe, harum cumque velit autem culpa sapiente excepturi incidunt ipsum iusto eum quaerat eaque?
+Quas natus, voluptatum id vel provident reprehenderit beatae labore odit vero quasi.
 
