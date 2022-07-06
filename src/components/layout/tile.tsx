@@ -2,10 +2,10 @@ import * as React from 'react';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { BsCalendar3, BsClockFill } from 'react-icons/bs';
 import { Link } from 'gatsby';
-import { getHeroColor } from '../utils/heroColors';
+import { getHeroColor } from '../utils/HeroColors';
 
 
-import tileHeroColors  from '../utils/heroColors';
+import tileHeroColors  from '../utils/HeroColors';
 
 type Style = {
   tall: string 

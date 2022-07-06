@@ -4,10 +4,10 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
-import { getHeroColor } from '../../components/utils/heroColors';
+import { getHeroColor } from '../../components/utils/HeroColors';
 import { BsClockFill } from 'react-icons/bs';
-import PostImage from '../../components/common/image';
-import TableOfContents, { TableOfContentsProps, TableContentsType } from '../../components/common/tableofcontent';
+import PostImage from '../../components/common/Image';
+import TableOfContents, { TableOfContentsProps, TableContentsType } from '../../components/common/TableOfContents';
 
 
 // Use shortcodes

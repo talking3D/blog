@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql} from 'gatsby';
-import Main, { DataProps } from '../components/layout/main';
+import Main, { DataProps } from '../components/layout/Main';
 
 
 // markup
