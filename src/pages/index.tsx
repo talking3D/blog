@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, PageProps } from 'gatsby';
+import { graphql} from 'gatsby';
 import Main, { DataProps } from '../components/layout/main';
 
 

@@ -7,6 +7,7 @@ import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { getHeroColor } from '../../components/utils/heroColors';
 import { BsClockFill } from 'react-icons/bs';
 import PostImage from '../../components/common/image';
+import TableOfContents, { TableOfContentsProps, TableContentsType } from '../../components/common/tableofcontent';
 
 
 // Use shortcodes
@@ -20,6 +21,7 @@ const components = {
 
 type DataProps = {
   mdx: {
+    tableOfContents: TableContentsType
     frontmatter: {
       title: string
       sub_title: string
@@ -62,6 +64,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
   const image = getImage(mdx.frontmatter.hero_image);
   return (
     <div className='flex flex-col mt-2 mx-2 px-2 xl:px-0'>
+      {/* begining of heroimage top section */}
       <div className='relative'>
         <div className='flex absolute w-full -z-10 h-77'>
           <GatsbyImage image={image!} alt={mdx.frontmatter.hero_image_alt} className='min-h-full'/>
@@ -88,14 +91,19 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
           </div>
         </div>
       </div>
+      {/* end of heroimage top section */}
       <div className='flex flex-col relative'>
         <div className='self-end font-roboto text-slate-500'>
           Published on {mdx.frontmatter.date}
         </div>
-        <div className='grid grid-flow-row grid-cols-2 md:grid-cols-3  w-full'>
-          {/* <div className='col-span-1 border-2 border-cyan-400'>Aside navigation box</div> */}
-          {/* <div className='col-span-2 lg:w-200 justify-self-end  border-2 border-cyan-800'> */}
+        {/* begining of blog post main part  */}
+        <div className='grid relative grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
             <MDXProvider components={ components }>
+              <nav className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
+                <div className='overflow-hidden p-4 border max-w-[395px] w-full shadow-md bg-white border-black rounded-xl mr-2'>
+                  <TableOfContents tableOfContents={ mdx.tableOfContents }  />
+                </div>
+              </nav>
               <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
                 <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl'>{ mdx.frontmatter.title }</h1>
                 <h2 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500'>{mdx.frontmatter.sub_title}</h2>
@@ -104,9 +112,8 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                 <MDXRenderer>
                   { mdx.body }
                 </MDXRenderer>
-                </main>
+              </main>
             </MDXProvider>
-          {/* </div> */}
         </div>
       </div>
     </div>
@@ -118,6 +125,7 @@ export default BlogPost;
 export const query = graphql`
   query ($id: String) {
     mdx(id: {eq: $id}) {
+      tableOfContents(maxDepth: 4)
       frontmatter {
         title
         sub_title
