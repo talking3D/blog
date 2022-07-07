@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'gatsby';
 
 export type TableContentsType = {
   items?: {
@@ -27,11 +28,11 @@ const ItemsList = ({tableOfContents}: TableOfContentsProps) => {
   return (
     <ul className='text-sm'>
       { !!tableOfContents.items && tableOfContents.items.map( (part, id) => (
-        <li key={ id } className='font-semibold'>{ part.title }
+        <li key={ id } className='font-semibold'><Link to={ part.url! }>{ part.title }</Link>
           { !!part.items && 
               <ul key={ id } className='mb-4 mt-2 font-normal leading-5 list-outside list-disc pl-4'>
                 { part.items.map( (section, id) => (
-                  <li key={ id } className='mb-2'>{ section.title }</li> ) )
+                  <li key={ id } className='mb-2'><Link to={ section.url }>{ section.title }</Link></li> ) )
                 }
               </ul>}
         </li>
