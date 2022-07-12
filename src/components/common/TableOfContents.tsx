@@ -19,7 +19,7 @@ export interface TableOfContentsProps {
 const NoItems = () => {
   return(
     <div>
-      There is are no items to be indexed in this post!
+      We couldn't find any structure in this post
     </div>
   );
 };
@@ -28,11 +28,11 @@ const ItemsList = ({tableOfContents}: TableOfContentsProps) => {
   return (
     <ul className='text-sm'>
       { !!tableOfContents.items && tableOfContents.items.map( (part, id) => (
-        <li key={ id } className='font-semibold'><Link to={ part.url! }>{ part.title }</Link>
+        <li key={ id } className='font-semibold'><Link to={ part.url! } className='hover:underline'>{ part.title }</Link>
           { !!part.items && 
               <ul key={ id } className='mb-4 mt-2 font-normal leading-5 list-outside list-disc pl-4'>
                 { part.items.map( (section, id) => (
-                  <li key={ id } className='mb-2'><Link to={ section.url }>{ section.title }</Link></li> ) )
+                  <li key={ id } className='mb-2'><Link to={ section.url } className='hover:underline'>{ section.title }</Link></li> ) )
                 }
               </ul>}
         </li>
