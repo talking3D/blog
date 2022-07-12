@@ -7,7 +7,7 @@ import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { getHeroColor } from '../../components/utils/HeroColors';
 import { BsClockFill, BsHouseFill } from 'react-icons/bs';
 import PostImage from '../../components/common/Image';
-import TableOfContents, { TableOfContentsProps, TableContentsType } from '../../components/common/TableOfContents';
+import TableOfContents, { TableContentsType } from '../../components/common/TableOfContents';
 import {Header3, Header4} from '../../components/common/PostHeaders';
 import classNames from 'classnames/dedupe';
 
@@ -55,25 +55,13 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
     wrapperDiv.appendChild(node);
   }
 
+  // Table of contents intersection/visibility manager
   const [contentsVisible, setContentsVisible] = React.useState<boolean>(true);
-
-  // const getHeaders =() => {
-  //   console.log('setting header array');
-  //   setHeadersArray(Array.from(document.querySelectorAll('h3, h4')));
-  //   console.log(document.querySelectorAll('h3, h4'));
-  // };
-
-  // React.useEffect(() => {
-  //   if (window !== undefined) {
-  //     window.addEventListener('load', getHeaders(), false);
-  //     return () => window.removeEventListener('load', getHeaders(), false);
-  //   }
-  // }, [])
+  // const blogPostClick = (e) => console.log(e);
 
   React.useEffect(() => {
     
     if (window !== undefined) {
-      // Table of contents intersection/visibility manager
       const pNodes = document.querySelectorAll('p');
       Array.from(pNodes, node => addParentDiv(node))
 
@@ -107,105 +95,59 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
     }
   });
 
-  let debt = 0;
-  let tip: Element | undefined;
-  let buffer: Element[] = [];
 
-  // Table of contents
+  // Table of contents scroll spy
+  const [activeHeader, setActiveHeader] = React.useState<Element>();
+  const logClicked = (e: React.MouseEvent<Element, MouseEvent>) => {
+    console.log(e);
+  };
+
   React.useEffect(() => {
     if (window !== undefined) {
-      const titleElements = document.querySelectorAll('h3, h4');
+      const titleElements = Array.from(document.querySelectorAll('h3, h4'));
+      const truthTable = Array(titleElements.length).fill(false);
 
-      const getElementPosition = (item: Element, arr = Array.from(titleElements)) => arr.indexOf(item);
-
-      const getEntryDirection = (entry: IntersectionObserverEntry, tip: Element, arr = Array.from(titleElements)) => {
-        if (tip !== undefined && arr !== undefined ) {
-          return getElementPosition(entry.target) - getElementPosition(tip);
+      const setTitleAsActive = (current: Element | undefined, nextElement: Element): Element => {
+        if (!!current) {
+          document.querySelector(`#nav-${current.innerHTML.toLowerCase().replaceAll(' ', '-')}`)?.classList.remove('table-of-contents-active-title');
         }
-        return 0;
+        const newActiveTitle =  titleElements[truthTable.findIndex(item => item === true)]
+        if (!!newActiveTitle) {
+          document.querySelector(`#nav-${newActiveTitle.innerHTML.toLowerCase().replaceAll(' ', '-')}`)?.classList.add('table-of-contents-active-title');
+          setActiveHeader(newActiveTitle);
+        }
+        return newActiveTitle;
       }
 
-      const tipper = () => console.log('tip: ', tip, 'buffer: ', buffer, 'debt: ', debt);
-
-      const markActive = (e: Element) => e.classList.add('bg-yellow-300');
-      const makrNotActive = (e: Element) => e.classList.remove('bg-yellow-300');
-
+      let activeTitle: Element | undefined;
       const callbackFn =  (entries: IntersectionObserverEntry[]) => {
         const [ entry ] = entries;
-        if (entry.isIntersecting) {
-          console.log('element entires area: ', entry.target.innerHTML);
-          if (tip === undefined) {
-            tip = entry.target;
-            markActive(tip);
-            tipper();
-          } else if (debt < 0) {
-            console.log('code: debt < 0, removing element from buffer and adding to tip');
-            makrNotActive(tip);
-            tip = entry.target;
-            markActive(tip);
-            debt++;
-            tipper();
-          } else {
-            // If scrolling up
-            if (getEntryDirection(entry, tip) < 0) {
-              makrNotActive(tip);
-              tip = entry.target;
-              markActive(tip);
-              tipper();
-            } else {
-              console.log('code: adding element to buffer');
-              buffer.unshift(entry.target);
-              tipper();
-            }
-          }
-        } else {
-          console.log('element leaves area: ',  entry.target.innerHTML);
-          if (buffer.length === 0) {
-            if (tip !== undefined && getEntryDirection(entry, tip) === 0) {
-                console.log('code: buffer empty and tip not empty, increasing debt');
-                debt--;
-                tipper();
-              // if (getElementPosition(entry.target) === 0){
-              //   tip = undefined;
-              //   tipper();
-              // } else {
-              //   console.log('code: buffer empty and tip not empty, increasing debt');
-              //   debt--;
-              //   tipper();
-              // }
+        console.log(entry.target.innerHTML);
+        truthTable[ titleElements.indexOf(entry.target) ] = entry.isIntersecting;
 
-            } 
-          } else {
-            console.log('code: replacing tip element with one element from buffer');
-            if (!!tip) {
-              makrNotActive(tip);
-            }
-            tip =  buffer.pop()!;
-            markActive(tip);
-            tipper();
-          }
+        if (truthTable.some(item => item === true) || titleElements.indexOf(entry.target) === 0) {
+          activeTitle = setTitleAsActive(activeTitle, entry.target);
         }
       };
-    
+
+      // Examine intersections against viewport
       const options = {
         root: null,
       };
       
       const observer = new IntersectionObserver(callbackFn, options);
       Array.from(titleElements).map(elem => observer.observe(elem));
-      console.log('tip: ', tip);
-      console.log('buffer: ', buffer);
-      console.log('debt: ', debt);
-
     }
   }, [])
 
   // Table of contents styling: semi-transparent when it overlaps blog post elements (images or code)
   const contentTableClass = classNames(
-    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white border-stone-300 rounded-xl mr-2 hover:opacity-100 transition-opacity duration-300',
+    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white border-stone-300 rounded-xl mr-2 hover:opacity-100 transition-opacity duration-700',
     {'opacity-100': contentsVisible, 'opacity-[.05]': !contentsVisible});
 
   const image = getImage(mdx.frontmatter.hero_image);
+  console.log(activeHeader);
+
   return (
     <div className='flex flex-col mt-2 mx-2 px-2 xl:px-0'>
       {/* begining of heroimage top section */}
@@ -243,14 +185,14 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         {/* begining of blog post main part  */}
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
             <MDXProvider components={ components }>
-              <nav className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
+              <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
                 <div id="table-of-contents" className={contentTableClass}>
                   <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500'>
                     <Link to='/' className='hover:underline'>
                       <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />Go to Home Page
                     </Link>
                   </div>
-                  <TableOfContents tableOfContents={ mdx.tableOfContents }  />
+                  <TableOfContents tableOfContents={ mdx.tableOfContents } onTitleChange={(e) => logClicked(e)} />
                 </div>
               </nav>
               <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
