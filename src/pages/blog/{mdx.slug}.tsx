@@ -98,45 +98,44 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   // Table of contents scroll spy
   const [activeHeader, setActiveHeader] = React.useState<Element>();
-  const logClicked = (e: React.MouseEvent<Element, MouseEvent>) => {
-    console.log(e);
-  };
+
 
   React.useEffect(() => {
     if (window !== undefined) {
       const titleElements = Array.from(document.querySelectorAll('h3, h4'));
-      const truthTable = Array(titleElements.length).fill(false);
-
-      const setTitleAsActive = (current: Element | undefined, nextElement: Element): Element => {
-        if (!!current) {
-          document.querySelector(`#nav-${current.innerHTML.toLowerCase().replaceAll(' ', '-')}`)?.classList.remove('table-of-contents-active-title');
-        }
-        const newActiveTitle =  titleElements[truthTable.findIndex(item => item === true)]
-        if (!!newActiveTitle) {
-          document.querySelector(`#nav-${newActiveTitle.innerHTML.toLowerCase().replaceAll(' ', '-')}`)?.classList.add('table-of-contents-active-title');
-          setActiveHeader(newActiveTitle);
-        }
-        return newActiveTitle;
-      }
-
-      let activeTitle: Element | undefined;
-      const callbackFn =  (entries: IntersectionObserverEntry[]) => {
-        const [ entry ] = entries;
-        console.log(entry.target.innerHTML);
-        truthTable[ titleElements.indexOf(entry.target) ] = entry.isIntersecting;
-
-        if (truthTable.some(item => item === true) || titleElements.indexOf(entry.target) === 0) {
-          activeTitle = setTitleAsActive(activeTitle, entry.target);
-        }
-      };
-
-      // Examine intersections against viewport
-      const options = {
-        root: null,
+      const navLinks = Array.from(document.querySelectorAll('#table-of-contents-items a'));
+      let truthTable: boolean[] = Array(titleElements.length).fill(false);
+      
+      const isVisible = (element: Element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect['top'] >= 0 && rect['bottom'] <= (window.innerHeight || document.documentElement.clientHeight)) {
+          return true;
+        } else {
+          return false;
+        };
       };
       
-      const observer = new IntersectionObserver(callbackFn, options);
-      Array.from(titleElements).map(elem => observer.observe(elem));
+      const updateView = () => {
+        let tempArr: boolean[] = [];
+        titleElements.map((elem, idx) => {
+          tempArr[idx] = isVisible(elem);
+        });
+        if(tempArr.some(item => item === true)) {
+          truthTable = [...tempArr];
+        };
+
+        const className = 'table-of-contents-active-title';
+        navLinks.map((navLink, id) => {
+          if (id === truthTable.findIndex(item => item === true)) {
+            !navLink.classList.contains(className) && navLink.classList.add(className);
+          } else {
+            navLink.classList.contains(className) && navLink.classList.remove(className);
+          }
+        })
+      };
+
+      window.addEventListener('scroll', updateView);
+
     }
   }, [])
 
@@ -146,7 +145,6 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
     {'opacity-100': contentsVisible, 'opacity-[.05]': !contentsVisible});
 
   const image = getImage(mdx.frontmatter.hero_image);
-  console.log(activeHeader);
 
   return (
     <div className='flex flex-col mt-2 mx-2 px-2 xl:px-0'>
@@ -192,7 +190,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                       <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />Go to Home Page
                     </Link>
                   </div>
-                  <TableOfContents tableOfContents={ mdx.tableOfContents } onTitleChange={(e) => logClicked(e)} />
+                  <TableOfContents tableOfContents={ mdx.tableOfContents } />
                 </div>
               </nav>
               <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
