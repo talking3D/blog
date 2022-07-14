@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tile from './tile';
+import Tile from './Tile';
 import { ImageDataLike } from 'gatsby-plugin-image';
 
 const Main = ({ data } : DataProps) => {

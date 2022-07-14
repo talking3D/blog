@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { LogoVertical, LogoHorizontal } from '../common/logo';
-import SearchBar from '../common/search';
+import { LogoVertical, LogoHorizontal } from '../common/Logo';
+import SearchBar from '../common/Search';
 import { BsFilterCircle, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
