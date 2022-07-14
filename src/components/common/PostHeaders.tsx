@@ -10,7 +10,7 @@ export const Header3 = (props: any ) => {
   return(
     <h3 
       id={createElementId(props.children)}
-      className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-2 mb-1 text-2xl font-normal'>
+      className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-6 mb-1 text-2xl font-medium'>
         {props.children}
     </h3>
   );
