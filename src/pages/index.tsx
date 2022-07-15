@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql} from 'gatsby';
-import Main, { DataProps } from '../components/layout/Main';
+import Main, { DataProps } from '../components/layout/main';
 
 
 // markup
@@ -19,6 +19,7 @@ export const query = graphql`
       nodes {
         id
         slug
+        timeToRead
         frontmatter {
           title
           date(formatString: "DD-MM-YYYY")

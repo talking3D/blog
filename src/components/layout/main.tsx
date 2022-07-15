@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tile from './Tile';
+import Tile from './tile';
 import { ImageDataLike } from 'gatsby-plugin-image';
 
 const Main = ({ data } : DataProps) => {
@@ -25,7 +25,7 @@ const Main = ({ data } : DataProps) => {
                 hero_image={node.frontmatter.hero_image}
                 hero_color={node.frontmatter.hero_color}
                 tags={node.frontmatter.tags}
-                reading_time={node.frontmatter.reading_time}
+                reading_time={node.timeToRead}
               />
             ))
           }
@@ -65,11 +65,11 @@ export interface DataProps {
       nodes: {
         id: string
         slug: string
+        timeToRead: number
         frontmatter: {
           title: string
           date: Date
           tags: string[]
-          reading_time: string
           hero_color: string
           hero_image: ImageDataLike
       }

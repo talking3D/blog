@@ -25,13 +25,13 @@ const components = {
 type DataProps = {
   mdx: {
     tableOfContents: TableContentsType
+    timeToRead: number
     frontmatter: {
       title: string
       sub_title: string
       author: string
       date: Date
       tags: string[]
-      reading_time: string
       hero_image_alt: string
       hero_image_credit_text: string
       hero_image_credit_link: string
@@ -170,7 +170,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
             </div>
             <div className='flex self-end items-center ml-2 mb-0.5 text-white'>
               <BsClockFill size={17}/>
-              <span className='ml-2'>{ mdx.frontmatter.reading_time }</span>
+              <span className='ml-2'>{ mdx.timeToRead } min</span>
             </div>
           </div>
         </div>
@@ -215,6 +215,7 @@ export const query = graphql`
   query ($id: String) {
     mdx(id: {eq: $id}) {
       tableOfContents(maxDepth: 4)
+      timeToRead
       frontmatter {
         title
         sub_title
@@ -222,7 +223,6 @@ export const query = graphql`
         date(formatString: "DD-MM-YYYY")
         title
         tags
-        reading_time
         hero_image_alt
         hero_image_credit_text
         hero_image_credit_link

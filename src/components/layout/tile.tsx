@@ -67,7 +67,7 @@ interface TileProps {
   hero_image: ImageDataLike,
   hero_color: string,
   tags: string[],
-  reading_time: string
+  reading_time: number
 }
 
 
@@ -80,7 +80,7 @@ const Tile = ({index, count, title, slug,  date, hero_color, hero_image, tags, r
               <div className='flex flex-col justify-between h-full rounded-2xl'>
                 <GatsbyImage image={image!} alt={'altext'} className='absolute -z-50 w-full rounded-2xl'/>
                 <div className='flex flex-col'>
-                  <div className={`flex items-center py-1 px-2 self-end max-w-max ${getHeroColor(hero_color).withOpacity} text-white rounded-tr-xl rounded-bl-xl text-sm font-normal`}>
+                  <div className={`flex items-center py-1 px-2 self-end ${getHeroColor(hero_color).withOpacity} text-white rounded-tr-xl rounded-bl-xl text-sm font-normal`}>
                     <BsCalendar3 size={14} className='mx-1.5'/>
                       { date }
                     </div>
@@ -91,14 +91,14 @@ const Tile = ({index, count, title, slug,  date, hero_color, hero_image, tags, r
                     </h2>
                 </div>
                   <div className='flex justify-between mb-2 px-4  w-full'>
-                    <ul className='flex flex-wrap justify-start text-white'>
+                    <ul className='flex flex-wrap justify-start text-white '>
                       { tags.map((tag, index) => (
                         <li key={index} className={`px-3 mr-2 mb-1 before:content-["#"] ${getHeroColor(hero_color).solid} font-roboto text-base rounded-xl`}>{tag}</li>
                       )) }
                     </ul>
-                    <div className='flex self-end items-center mb-0.5 text-white'>
+                    <div className='flex flex-nowrap w-min-max self-end items-center mb-0.5 text-white'>
                       <BsClockFill size={17}/>
-                      <span className='ml-2'>{ reading_time }</span>
+                      <span className='ml-2 block min-w-max'>{ reading_time } min</span>
                     </div>
                   </div>
               </div>
