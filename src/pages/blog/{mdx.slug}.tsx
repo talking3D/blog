@@ -66,7 +66,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
       Array.from(pNodes, node => addParentDiv(node))
 
       const codeWrappers = document.querySelectorAll('pre');
-      const imageWrappers = document.querySelectorAll('figure.from-inline-image');
+      const imageWrappers = document.querySelectorAll('img.gatsby-resp-image-image');
       const contentsTbl = document.querySelector('#table-of-contents');
       const contentsRect = contentsTbl?.getBoundingClientRect();
       const onScroll = () => {

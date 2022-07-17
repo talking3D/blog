@@ -16,7 +16,7 @@
 
 @layer components {
   .from-inline-image {
-    @apply grid lg:grid-cols-2 col-span-3 w-full py-4 pl-4 pr-4 my-4 bg-gradient-to-b from-white to-stone-100 md:bg-gradient-to-r lg:from-white lg:to-stone-100 rounded-b-xl md:rounded-r-xl;
+    @apply grid grid-cols-3 lg:grid-cols-2 col-span-3 w-full py-4 pl-4 pr-4 my-4 bg-gradient-to-b from-white to-stone-100 md:bg-gradient-to-r lg:from-white lg:to-stone-100 rounded-b-xl md:rounded-r-xl;
   };
 
   .from-inline-image-no-caption {

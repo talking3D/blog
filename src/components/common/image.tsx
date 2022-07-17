@@ -31,6 +31,7 @@ const PostImage = (props: any) => {
       const spanRespImgWrapper = document.querySelector('span.gatsby-resp-image-wrapper');
 
       const imgRes = document.querySelector(`#img_${elementId}`);
+
       const parentParagraphElement = spanRespImgWrapper!.parentElement;
       const paragraphElementNextSibling: any = parentParagraphElement?.nextSibling;
       const paragraphParent = parentParagraphElement?.parentElement
@@ -42,7 +43,6 @@ const PostImage = (props: any) => {
         paragraphParent?.parentElement?.replaceChild(newFigureWrapper, paragraphParent);
         newFigureWrapper.appendChild(paragraphParent!)
         
-        // paragraphParent!.classList.replace('post-paragraph', 'from-inline-image');
         if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
           paragraphElementNextSibling.classList.add('pt-4', 'md:pl-4','md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
           paragraphParent?.appendChild(paragraphElementNextSibling!);
@@ -58,7 +58,7 @@ const PostImage = (props: any) => {
         paragraphParent?.replaceChild(wrapperFigure, parentParagraphElement!);
         wrapperFigure.appendChild(parentParagraphElement!);
         if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
-          paragraphElementNextSibling.classList.add('pt-4', 'md:pl-4','md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
+          paragraphElementNextSibling.classList.add('col-start-1', 'col-end-4', 'pt-4', 'md:col-start-2', 'md:col-end-4', 'md:-ml-1', 'md:pr-2', 'lg:pl-4','lg:pr-4', 'lg:pt-0', 'w-full', 'text-justify');
           wrapperFigure.appendChild(paragraphElementNextSibling!)
         } else {
           wrapperFigure.className = 'from-inline-image-no-caption';
@@ -66,7 +66,7 @@ const PostImage = (props: any) => {
       };
       
       const newDivWrapper = document.createElement('div');
-      newDivWrapper.classList.add('overflow-hidden','h-auto', 'px-2');
+      newDivWrapper.classList.add('col-start-1', 'col-end-4','lg:col-start-1', 'lg:col-end-2', 'overflow-hidden','h-auto', 'px-2');
   
       newDivWrapper.appendChild(imgRes!);
 
