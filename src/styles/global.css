@@ -36,6 +36,6 @@
     @apply bg-neutral-800/40 transition-colors ease-in-out duration-500;
   }
   .filter-content-visible {
-    @apply opacity-100 top-10;
+    @apply opacity-100 top-2 md:top-10 my-4 md:my-20;
     }
 }

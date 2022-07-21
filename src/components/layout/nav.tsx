@@ -39,7 +39,7 @@ const NavBar = () => {
             <SearchBar handleVisibility={setVisible}/>
           </div>
           <div className='ml-4 sm:ml-8 xl:ml-11'>
-            <BsFilterCircle className='w-7 h-7 md:w-5 md:h-5' onClick={showFilter}/>
+            <BsFilterCircle className='w-7 h-7 md:w-6 md:h-6' onClick={showFilter}/>
           </div>
         </div>
         <div className="hidden md:flex md:flex-nowrap self-center items-end justify-around w-48">

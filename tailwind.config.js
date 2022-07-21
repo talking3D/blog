@@ -60,7 +60,7 @@ module.exports = {
         },
       },
       animation: {
-        bumpup: 'bumpup 500ms linear',
+        bumpup: 'bumpup 200ms linear',
         bumpdown: 'bumpdown 200ms linear',
 
       }

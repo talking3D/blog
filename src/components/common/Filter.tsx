@@ -94,7 +94,7 @@ const Filter = () => {
      onClick={(e) => handleBlendClick(e)}
      >
       <div id='filter-content'
-       className='absolute opacity-0 top-1/2 left-1/4 right-1/4 mr-auto ml-auto max-w-3xl my-40 min-h-min bg-white rounded-lg transition-all ease-linear duration-300'>
+       className='overflow-auto absolute top-1/2 left-0 right-0 mr-auto ml-auto max-w-3xl my-20 min-h-min opacity-0 bg-white rounded-lg transition-all ease-linear duration-300'>
         <div className='flex items-center py-4 h-16 border-b-slate-300 border-b relative'>
           <span className='absolute block w-full text-lg text-center font-semibold -z-1'>Filter</span>
           <div id='xfilter' className='ml-8 w-8 h-8 z-10 relative'>
@@ -106,8 +106,8 @@ const Filter = () => {
             { [...tags.entries()].sort().map(([tag, id]) => {
               const listElementClass = classnames(
                 'rounded-2xl px-4 py-1 my-2 mx-2 text-sm before:content-["#"] inline',
-                {'border border-even-darker transition-colors duration-500 animate-bumpdown': !Object.hasOwn(blogState.tags, id)},
-                {'border border-even-darker bg-even-darker text-white transition-colors duration-500 animate-bumpup': Object.hasOwn(blogState.tags, id)}
+                {'border border-even-darker transition-colors duration-300 animate-bumpdown': !Object.hasOwn(blogState.tags, id)},
+                {'border border-even-darker bg-even-darker text-white transition-colors duration-300 animate-bumpup': Object.hasOwn(blogState.tags, id)}
               )
               return (
               <li 
