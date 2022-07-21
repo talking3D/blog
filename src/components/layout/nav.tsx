@@ -8,6 +8,19 @@ import { Link } from 'gatsby';
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
+
+  const showFilter = () => {
+    const target = document.querySelector('#filter-modal');
+    const filterContent = document.querySelector('#filter-content');
+    target?.classList.toggle('hidden');
+    // target?.classList.toggle('filter-modal-visible');
+    setTimeout(() => {
+      target?.classList.toggle('filter-modal-visible')
+      filterContent?.classList.toggle('filter-content-visible')
+    }, 1)
+
+  };
+
   return(
     <nav>
       <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5'>
@@ -26,7 +39,7 @@ const NavBar = () => {
             <SearchBar handleVisibility={setVisible}/>
           </div>
           <div className='ml-4 sm:ml-8 xl:ml-11'>
-            <BsFilterCircle className='w-7 h-7 md:w-5 md:h-5' />
+            <BsFilterCircle className='w-7 h-7 md:w-5 md:h-5' onClick={showFilter}/>
           </div>
         </div>
         <div className="hidden md:flex md:flex-nowrap self-center items-end justify-around w-48">

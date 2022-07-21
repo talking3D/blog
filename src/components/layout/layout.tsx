@@ -1,5 +1,6 @@
 import * as React from 'react';
-import NavBar from './Nav';
+import NavBar from './nav';
+import Filter from '../common/Filter';
 
 export interface LayoutProps {
   children?: React.FC<React.ReactNode>
@@ -10,6 +11,7 @@ const Layout = ({children}: LayoutProps) => {
     <div className='block mx-auto w-screen max-w-screen-xl pb-4'>
       <NavBar />
       { children }
+      <Filter />
   </div>
   )
 };

@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -23,6 +24,7 @@ module.exports = {
         '77': '19.25rem',
         '100': '25rem',
         '158': '39.5rem',
+        '192': '48rem',
         '200': '50rem',
         '2/3': '66.6666%'
       },
@@ -44,8 +46,25 @@ module.exports = {
       },
       flex: {
         '2': '2',
+      },
+      keyframes: {
+        bumpup: {
+         '0%': { transform: 'scale(1)' },
+         '50%': { transform: 'scale(0.7)' },
+         '100%': { transform: 'scale(1)'},
+        },
+        bumpdown: {
+         '0%': { transform: 'scale(1)' },
+         '50%': { transform: 'scale(0.85)' },
+         '100%': { transform: 'scale(1)'},
+        },
+      },
+      animation: {
+        bumpup: 'bumpup 500ms linear',
+        bumpdown: 'bumpdown 200ms linear',
+
       }
-    },
   },
+},
   plugins: [],
 }
