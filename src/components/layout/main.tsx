@@ -27,8 +27,8 @@ const Main = ({ data } : DataProps) => {
                 tags={node.frontmatter.tags}
                 reading_time={node.timeToRead}
               />
-            ))
-          }
+              ))
+            }
         </div>
       </div>
     </div>
@@ -36,6 +36,19 @@ const Main = ({ data } : DataProps) => {
 };
 
 export default Main;
+
+export type PostNode = {
+  id: string
+  slug: string
+  timeToRead: number
+  frontmatter: {
+    title: string
+    date: Date
+    tags: string[]
+    hero_color: string
+    hero_image: ImageDataLike
+  }
+} 
 
 export type ImageSharp = {
   hildImageSharp: {
@@ -62,18 +75,7 @@ export interface DataProps {
   data: {
     allMdx: {
       totalCount: number
-      nodes: {
-        id: string
-        slug: string
-        timeToRead: number
-        frontmatter: {
-          title: string
-          date: Date
-          tags: string[]
-          hero_color: string
-          hero_image: ImageDataLike
-      }
-  } []
-}
-}
+      nodes: PostNode[]
+    }
+  }
 }

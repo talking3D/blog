@@ -14,11 +14,17 @@ export enum ReducerActionType {
   ADD_TAG,
   REMOVE_TAG,
   CLEAR_FILTER,
+  APPLY_FILTER
 };
 
 
 export type ClearFilterAction = {
   type: ReducerActionType.CLEAR_FILTER
+  payload: boolean
+};
+
+export type ApplyFilterAction = {
+  type: ReducerActionType.APPLY_FILTER
 };
 
 export type AddOrRemoveTag = {
@@ -26,7 +32,7 @@ export type AddOrRemoveTag = {
   payload: Tag
 };
 
-export type ReducerAction = AddOrRemoveTag | ClearFilterAction;
+export type ReducerAction = AddOrRemoveTag | ClearFilterAction | ApplyFilterAction;
 
 
 const defaultState: BlogState = {
@@ -51,7 +57,9 @@ const reducer = (state: BlogState, action: ReducerAction) => {
       const {[key]: _, ...rest} = state.tags;
       return { ...state, tags: rest};
     case ReducerActionType.CLEAR_FILTER:
-        return { ...state, tags: {}};
+        return { ...state, tags: {}, filterOn: false};
+    case ReducerActionType.APPLY_FILTER:
+      return { ...state, filterOn: true}
     default:
       throw new Error();
   }

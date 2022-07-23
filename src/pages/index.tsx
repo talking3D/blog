@@ -1,12 +1,28 @@
 import * as React from "react"
 import { graphql} from 'gatsby';
-import Main, { DataProps } from '../components/layout/main';
+import Main, { DataProps, PostNode } from '../components/layout/main';
+import { BlogStateContext } from '../context/BlogContextProvider';
+
 
 
 // markup
 const IndexPage = ({ data }: DataProps) => {
+  const blogState = React.useContext(BlogStateContext);
+
+  const applyFilter = (node: PostNode, tags: string[]) => {
+    return tags.map(tag => node.frontmatter.tags.includes(tag)).some(check => check === true)
+  }
+
+  const dataFilter = ({data}: DataProps) => {
+    if (blogState.filterOn === true) {
+      const filtered = data.allMdx.nodes.filter((node: PostNode) => applyFilter(node, Object.values(blogState.tags)))
+      return {"allMdx": {"totalCount": filtered.length, "nodes": filtered }}
+    }
+    return data;
+  }
+  
   return (
-      <Main data={data} />
+      <Main data={dataFilter({ data })} />
   );
 }
 
@@ -14,7 +30,9 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allMdx ( sort: {fields: frontmatter___date, order: DESC}) {
+    allMdx (
+       sort: {fields: frontmatter___date, order: DESC}
+       ) {
       totalCount
       nodes {
         id

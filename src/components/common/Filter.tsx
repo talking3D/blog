@@ -125,7 +125,7 @@ const Filter = () => {
           <span className='ml-6 font-medium underline cursor-pointer' onClick={() => dispatch({type: ReducerActionType.CLEAR_FILTER})}>Clear filter</span>
           {
             Object.keys(blogState.tags).length > 0
-              ? <button type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl'>Show { `${countBlogPostByTag(blogState.tags)} ${countBlogPostByTag(blogState.tags) > 1 ? 'posts' : 'post'}` }</button>
+              ? <button type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl' onClick={() => dispatch({type: ReducerActionType.APPLY_FILTER})}>Show { `${countBlogPostByTag(blogState.tags)} ${countBlogPostByTag(blogState.tags) > 1 ? 'posts' : 'post'}` }</button>
               : <button id='show-all' type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl text-white'>Show all posts</button>
           }
         </div>
