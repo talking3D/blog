@@ -2,12 +2,43 @@ import * as React from 'react';
 
 import { LogoVertical, LogoHorizontal } from '../common/Logo';
 import SearchBar from '../common/Search';
-import { BsFilterCircle, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
+import { BsFilterCircle, BsFilterCircleFill, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
+
+
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
+  const blogState = React.useContext(BlogStateContext);
+  const dispatch = React.useContext(BlogDispatchContext);
+  
+  const showFilter = () => {
+    const target = document.querySelector('#filter-modal');
+    const filterContent = document.querySelector('#filter-content');
+    target?.classList.toggle('hidden');
+    // target?.classList.toggle('filter-modal-visible');
+    setTimeout(() => {
+      target?.classList.toggle('filter-modal-visible')
+      filterContent?.classList.toggle('filter-content-visible')
+    }, 1);
+    dispatch({type: ReducerActionType.TOGGLE_FILTER, payload: true})
+  };
+
+  const clearFilter = () => {
+    dispatch({type: ReducerActionType.CLEAR_FILTER});
+    dispatch({type: ReducerActionType.UPDATE_FILTER, payload: {}});
+  };
+
+  React.useEffect(() => {
+    if (window !== undefined) {
+      const filterIcon = document.querySelector('#filter-on')
+      filterIcon?.addEventListener('click', showFilter);
+      return () => filterIcon?.removeEventListener('click', showFilter);
+    }
+  }, [])
+
   return(
     <nav>
       <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5'>
@@ -26,8 +57,20 @@ const NavBar = () => {
             <SearchBar handleVisibility={setVisible}/>
           </div>
           <div className='ml-4 sm:ml-8 xl:ml-11'>
-            <BsFilterCircle className='w-7 h-7 md:w-5 md:h-5' />
+            { blogState.filterOn
+              ? <div id='filter-on' className='relative'>
+                  <BsFilterCircleFill className='w-7 h-7 md:w-6 md:h-6' onClick={showFilter}/>
+                  <span className='absolute -top-1 left-4 w-5 h-5 py-0.5 bg-cube-like rounded-full text-xs text-white align-middle text-center'>
+                    { Object.keys(blogState.tags).length }
+                  </span>
+                </div>
+              : <BsFilterCircle className='w-7 h-7 md:w-6 md:h-6' onClick={showFilter}/>
+            }
           </div>
+          {
+            blogState.filterOn && 
+            <div className='ml-5 font-medium underline cursor-pointer' onClick={clearFilter}>Clear filter</div>
+          }
         </div>
         <div className="hidden md:flex md:flex-nowrap self-center items-end justify-around w-48">
           <div>

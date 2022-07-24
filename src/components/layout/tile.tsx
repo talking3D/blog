@@ -18,7 +18,7 @@ const tile: Style = {
 };
 
 function getStyle<S, K extends keyof S>(obj: S, key: K): S[K] | '' {
-  if( key in Object.keys(obj)) {
+  if((Object.keys(obj) as Array<keyof typeof obj>).includes(key)) {
     return obj[key]
   }
   return ''
@@ -27,10 +27,10 @@ function getStyle<S, K extends keyof S>(obj: S, key: K): S[K] | '' {
 const layoutResolver = (index: number, length: number) => {
   
   const set = 6;
+  // const sets = length > set ? Math.trunc(length / set) :  1;
   const sets = Math.trunc(length / set);
   const rest = length % set;
-
-  if (index < ( set * sets)) {
+  if (index  < ( set * sets )) {
     if (index === 0 || (index + 1) % set === 0 || index % set === 0) {
       return '';
     } else {
@@ -39,23 +39,23 @@ const layoutResolver = (index: number, length: number) => {
   } else if (rest !== 0) {
     switch (rest) {
       case 1:
-      case 2:
-        return '';
-
-      case 3:
-        type K = keyof Style
-        let tail: K[] = ['tall', 'tall', 'large'];
-        return getStyle(tile, tail[length - index - 1]);
-      
-      case 4:
+        case 2:
         return '';
         
-      case 5:
+        case 3:
+          type K = keyof Style
+          let tail: K[] = ['tall', 'tall', 'large'];
+          return getStyle(tile, tail[length - index - 1]);
+        
+        case 4:
+          return '';
+        
+        case 5:
         tail = ['large', 'tall', 'tall'];
         return getStyle(tile, tail[length - index - 1]); 
+      }
     }
-  }
-  return '';
+    return '';
 }
 
 interface TileProps {
