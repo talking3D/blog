@@ -14,6 +14,8 @@ type QueryNode = {
 
 const Filter = () => {
 
+  const [filterTags, setFilterTags] = React.useState<Tag>({})
+
   const dispatch = React.useContext(BlogDispatchContext);
   const blogState = React.useContext(BlogStateContext);
   
@@ -39,11 +41,24 @@ const Filter = () => {
         setTimeout(() => blend?.classList.toggle('hidden'), 500);
         blend?.classList.toggle('filter-modal-visible');
         filterContent?.classList.toggle('filter-content-visible');
+        dispatch({type: ReducerActionType.TOGGLE_FILTER, payload: false})
       }
       xfilter?.addEventListener('click', closeBlend);
       return () => xfilter?.removeEventListener('click', closeBlend);
     }
   }, []);
+
+  const compareFilterState = () => {
+    if (Object.keys(filterTags).length !== Object.keys(blogState.tags).length) return false;
+    if (Object.keys(filterTags).map(key => (Object.keys(blogState.tags).includes(key))).some(elem => elem === false)) return false;
+    return true;
+  }
+  
+  React.useEffect(() => {
+    if (blogState.filterVisible === true && !compareFilterState()) {
+      setFilterTags(blogState.tags);
+    }
+  }, [blogState.filterVisible]);
 
   let tags = new Map();
   query.allMdx.nodes.map((node: QueryNode, idx: number) => {
@@ -57,23 +72,46 @@ const Filter = () => {
     const event = e.target as HTMLElement;
     const blend = document.querySelector('#filter-modal');
     const filterContent = document.querySelector('#filter-content');
-
-    if (!!blend && event.id === 'filter-modal' || event.id === 'show-all') {
+    
+    if (!!blend && event.id === 'filter-modal' || event.id === 'show-all' || event.id === 'apply-filter' || event.id === 'show-all') {
       setTimeout(() => blend?.classList.toggle('hidden'), 500);
       blend?.classList.toggle('filter-modal-visible');
       filterContent?.classList.toggle('filter-content-visible');
+      dispatch({type: ReducerActionType.TOGGLE_FILTER, payload: false})
     }
   }
   // const [selected, setSelected] = React.useState<{[id: string]: string}>({});
 
   const handleTagSelect = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const target = e.target as HTMLLIElement;
-    if (!Object.hasOwn(blogState.tags, target.id)) {
-      dispatch({type: ReducerActionType.ADD_TAG, payload: { [target.id]: target.innerText } })
+    // if (!Object.hasOwn(blogState.tags, target.id)) {
+    //   dispatch({type: ReducerActionType.ADD_TAG, payload: { [target.id]: target.innerText } })
+    // } else {
+    //   dispatch({type: ReducerActionType.REMOVE_TAG, payload: { [target.id]: target.innerText } })
+    // }
+    if (!Object.hasOwn(filterTags, target.id)) {
+      setFilterTags((filter) => ({ ...filter, [target.id]: target.innerText }));
     } else {
-      dispatch({type: ReducerActionType.REMOVE_TAG, payload: { [target.id]: target.innerText } })
+      const {[target.id]: _, ...restOfTags} = filterTags;
+      setFilterTags(restOfTags);
     }
   };
+  console.log('filter-tags: ', filterTags);
+
+  const clearFilter = () => {
+    setFilterTags({});
+  }
+
+  const applyFilter = () => {
+    if (!compareFilterState()) {
+      if (Object.keys(filterTags).length === 0) {
+          dispatch({type: ReducerActionType.CLEAR_FILTER});
+      } else {
+        dispatch({type: ReducerActionType.UPDATE_FILTER, payload: filterTags});
+        dispatch({type: ReducerActionType.APPLY_FILTER});
+      }
+    }
+  }
 
   const countBlogPostByTag = (tags: Tag) => {
     let postId = new Set();
@@ -87,6 +125,17 @@ const Filter = () => {
     })
     return postId.size;
   }
+
+  const filterButtonText = () => {
+    if (Object.keys(filterTags).length === 0) {
+      return 'Show all posts'
+    } else {
+      return `Show ${countBlogPostByTag(filterTags)} ${countBlogPostByTag(filterTags) > 1 ? 'posts' : 'post'}`;
+    }
+  }
+
+  console.log('visiblity: ', blogState.filterVisible);
+
   return (
     <div
      id='filter-modal' 
@@ -106,8 +155,8 @@ const Filter = () => {
             { [...tags.entries()].sort().map(([tag, id]) => {
               const listElementClass = classnames(
                 'rounded-2xl px-4 py-1 my-2 mx-2 text-sm before:content-["#"] inline',
-                {'border border-even-darker transition-colors duration-300 animate-bumpdown': !Object.hasOwn(blogState.tags, id)},
-                {'border border-even-darker bg-even-darker text-white transition-colors duration-300 animate-bumpup': Object.hasOwn(blogState.tags, id)}
+                {'border border-even-darker transition-colors duration-300 animate-bumpdown': !Object.hasOwn(filterTags, id)},
+                {'border border-even-darker bg-even-darker text-white transition-colors duration-300 animate-bumpup': Object.hasOwn(filterTags, id)}
               )
               return (
               <li 
@@ -122,11 +171,11 @@ const Filter = () => {
           </ul>
         </div>
         <div className='flex justify-between items-center h-16 border-t border-t-slate-300'>
-          <span className='ml-6 font-medium underline cursor-pointer' onClick={() => dispatch({type: ReducerActionType.CLEAR_FILTER})}>Clear filter</span>
+          <span className='ml-6 font-medium underline cursor-pointer' onClick={() => clearFilter()}>Clear filter</span>
           {
-            Object.keys(blogState.tags).length > 0
-              ? <button type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl' onClick={() => dispatch({type: ReducerActionType.APPLY_FILTER})}>Show { `${countBlogPostByTag(blogState.tags)} ${countBlogPostByTag(blogState.tags) > 1 ? 'posts' : 'post'}` }</button>
-              : <button id='show-all' type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl text-white'>Show all posts</button>
+            // Object.keys(filterTags).length > 0
+              <button id='apply-filter' type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl' onClick={() => applyFilter()}>{ filterButtonText() }</button>
+              // : <button id='show-all' type='button' className='mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl text-white'>Show all posts</button>
           }
         </div>
       </div>

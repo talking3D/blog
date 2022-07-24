@@ -5,10 +5,15 @@ import SearchBar from '../common/Search';
 import { BsFilterCircle, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
+
+
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
-
+  const blogState = React.useContext(BlogStateContext);
+  const dispatch = React.useContext(BlogDispatchContext);
+  
   const showFilter = () => {
     const target = document.querySelector('#filter-modal');
     const filterContent = document.querySelector('#filter-content');
@@ -17,8 +22,8 @@ const NavBar = () => {
     setTimeout(() => {
       target?.classList.toggle('filter-modal-visible')
       filterContent?.classList.toggle('filter-content-visible')
-    }, 1)
-
+    }, 1);
+    dispatch({type: ReducerActionType.TOGGLE_FILTER, payload: true})
   };
 
   return(
