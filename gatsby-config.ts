@@ -35,6 +35,7 @@ const config: GatsbyConfig = {
         ignore: [`**/\.*`],
       },
     },
+    `gatsby-transformer-json`
     // `gatsby-plugin-mdx`
   ]
 };
