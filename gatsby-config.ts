@@ -35,6 +35,14 @@ const config: GatsbyConfig = {
         ignore: [`**/\.*`],
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/i18n/translations`,
+        name: `translations`
+      }
+    },
+    `gatsby-transformer-json`
     // `gatsby-plugin-mdx`
   ]
 };

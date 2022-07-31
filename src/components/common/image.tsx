@@ -1,11 +1,6 @@
 import * as React from 'react';
 import  { v4 as uuidv4 } from 'uuid';
 
-interface PostImageProps {
-  src: string
-  alt: string
-};
-
 const PostImage = (props: any) => {
   // Replace gatsby-remark-images inline span wrappers with block level div elements
   // This is temportary ;) workaround for handling mdx markup inline images for my blog design requirements

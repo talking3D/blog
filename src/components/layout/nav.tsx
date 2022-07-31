@@ -1,18 +1,28 @@
 import * as React from 'react';
 
 import { LogoVertical, LogoHorizontal } from '../common/Logo';
+import LocaleIcon, {LocaleIconPL, LocaleIconGB, LocaleIconProps } from '../common/LocaleIcon/LocaleIcon';
 import SearchBar from '../common/Search';
 import { BsFilterCircle, BsFilterCircleFill, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
-
+import useLocale from '../hooks/useLocale';
+import { useLocation } from "@reach/router";
+import classNames from 'classnames';
 
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
+  
   const blogState = React.useContext(BlogStateContext);
   const dispatch = React.useContext(BlogDispatchContext);
+  
+  const handleLanguageChange = (lang: 'pl' | 'en') => {
+    if (lang !== blogState.locale) {
+      dispatch({type: ReducerActionType.SET_LOCALE, payload: lang})
+    }
+  };
   
   const showFilter = () => {
     const target = document.querySelector('#filter-modal');
@@ -31,19 +41,59 @@ const NavBar = () => {
     dispatch({type: ReducerActionType.UPDATE_FILTER, payload: {}});
   };
 
+  const isActiveLocalePath = (locale: string) => {
+    const { pathname } = useLocation();
+    const regex = new RegExp(String.raw`^\/${locale}(?:\/|$)`);
+    return regex.test(pathname);
+  }
+
+
   React.useEffect(() => {
     if (window !== undefined) {
-      const filterIcon = document.querySelector('#filter-on')
+      const filterIcon = document.querySelector('#filter-on');
       filterIcon?.addEventListener('click', showFilter);
-      return () => filterIcon?.removeEventListener('click', showFilter);
+      return () => {
+        filterIcon?.removeEventListener('click', showFilter);
+      }
     }
-  }, [])
+  }, []);
+
+  React.useEffect(() => {
+    if (window !== undefined) {
+
+      function clickedOutsideLocaleMenu(e: Event) {
+        const localeMenu = document.querySelector('#locale-menu');
+        const localeNav = document.querySelector('#nav-locale');
+        if (!localeNav?.contains(e.target as HTMLElement)) {
+            if (!localeMenu?.classList.contains('hidden')) {
+              localeMenu?.classList.add('hidden');
+            }
+        }
+      }
+
+      document.addEventListener('click', (e) => clickedOutsideLocaleMenu(e));
+      return () => document.removeEventListener('click', (e) => clickedOutsideLocaleMenu(e));
+    }
+  }, []);
+
+  // Update blog locale state when user changes locale manually by typing URL
+  const activeLocale = isActiveLocalePath('pl') ? 'pl' : 'en';
+  React.useEffect(() => {
+    dispatch({type: ReducerActionType.SET_LOCALE, payload: activeLocale })
+  }, [activeLocale]);
+
+  const handleLocaleClick = () => {
+    const localeMenu = document.querySelector('#locale-menu');
+    localeMenu?.classList.toggle('hidden');
+  }
+  const localeListElementPLClass = classNames('flex flex-nowrap items-baseline px-2', {'bg-stone-200 rounded text-stone-500': blogState.locale === 'pl'})
+  const localeListElementGBClass = classNames('flex flex-nowrap items-baseline px-2', {'bg-stone-200 rounded text-stone-500': blogState.locale === 'en'})
 
   return(
     <nav>
       <div className='flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5'>
         <div className={!visible ? 'sm:flex-none' : 'hidden'} >
-          <Link to='/'>
+          <Link to={ useLocale() }>
             <div className='hidden sm:block mr-10 w-29 lg:w-42'>
               <LogoHorizontal />
             </div>
@@ -59,7 +109,7 @@ const NavBar = () => {
           <div className='ml-4 sm:ml-8 xl:ml-11'>
             { blogState.filterOn
               ? <div id='filter-on' className='relative'>
-                  <BsFilterCircleFill className='w-7 h-7 md:w-6 md:h-6' onClick={showFilter}/>
+                  <BsFilterCircleFill className='w-7 h-7 md:w-6 md:h-6' onClick={showFilter} />
                   <span className='absolute -top-1 left-4 w-5 h-5 py-0.5 bg-cube-like rounded-full text-xs text-white align-middle text-center'>
                     { Object.keys(blogState.tags).length }
                   </span>
@@ -76,11 +126,33 @@ const NavBar = () => {
           <div>
             <BsSun size={20}/>
           </div>
-          <div>
-            <BsGlobe2 size={20}/>
+          <div id='nav-locale' className='relative' onClick={() => handleLocaleClick()} >
+            {/* <BsGlobe2 size={20} /> */}
+            <LocaleIcon locale={blogState.locale} />
+            <div id='locale-menu' className='hidden absolute -left-6 top-7  min-w-min min-h-max px-1 py-2 z-10 bg-white shadow-md text-sm rounded-md border'>
+              <ul className='leading-7'>
+                <li onClick={ () => handleLanguageChange('en') } className={ localeListElementGBClass }>
+                  <div className='w-4 h-3 mr-2 rounded-sm'><LocaleIconGB /></div>
+                  { isActiveLocalePath('pl')  
+                     ? <Link to={ useLocation().pathname.replace(/^\/pl(?:\/|$)/, `/`) } hrefLang='en' className='hover:underline'>
+                    {/* <Link to={ useLocation().pathname } hrefLang='en' > */}
+                      Engilsh
+                    </Link>
+                     : 'English'
+                  }
+                </li>
+                <li onClick={ () => handleLanguageChange('pl') } className={ localeListElementPLClass } >
+                  <div className='w-4 h-3 mr-2'><LocaleIconPL /></div>
+                  {
+                    !isActiveLocalePath('pl') 
+                    ? <Link to={ useLocation().pathname.replace(/^\//, useLocation().pathname === '/' ? '/pl' : '/pl/') } hrefLang='pl' className='hover:underline'>Polski</Link>
+                    : 'Polski'
+                  }</li>
+              </ul>
+            </div>
           </div>
           <div>
-            <BsGithub size={20}/>
+            <BsGithub size={20} />
           </div>
         </div>
         <div className="block md:hidden">

@@ -2,10 +2,8 @@ import * as React from 'react';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
 import { BsCalendar3, BsClockFill } from 'react-icons/bs';
 import { Link } from 'gatsby';
-import { getHeroColor } from '../utils/HeroColors';
+import { getHeroColor } from '../utils/heroColors';
 
-
-import tileHeroColors  from '../utils/HeroColors';
 
 type Style = {
   tall: string 
@@ -63,6 +61,8 @@ interface TileProps {
   count: number,
   title: string,
   slug: string,
+  locale: 'en' | 'pl',
+  isDefault: boolean,
   date: Date,
   hero_image: ImageDataLike,
   hero_color: string,
@@ -71,12 +71,13 @@ interface TileProps {
 }
 
 
-const Tile = ({index, count, title, slug,  date, hero_color, hero_image, tags, reading_time}: TileProps) => {
-  const image = getImage(hero_image)
+const Tile = ({index, count, title, slug, locale, isDefault, date, hero_color, hero_image, tags, reading_time}: TileProps) => {
+  const image = getImage(hero_image);
+  
   return (
     <article className={`relative col-span-2 max-w-long h-72 ${layoutResolver(index, count)} rounded-2xl overflow-hidden relative shadow-md`}>
           <div className='w-full h-full image-overflow overflow-hidden rounded-2xl'>
-          <Link to={`/blog/${slug}`}>
+          <Link to={`${isDefault ? '/' : `/${locale}/` }blog/${slug}`}>
               <div className='flex flex-col justify-between h-full rounded-2xl'>
                 <GatsbyImage image={image!} alt={'altext'} className='absolute -z-50 w-full rounded-2xl'/>
                 <div className='flex flex-col'>

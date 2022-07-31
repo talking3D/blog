@@ -29,8 +29,9 @@ const IndexPage = ({ data }: DataProps) => {
 export default IndexPage;
 
 export const query = graphql`
-  query {
+  query Index ($locale: String) {
     allMdx (
+      filter: { fields: { locale: { eq: $locale } } }
        sort: {fields: frontmatter___date, order: DESC}
        ) {
       totalCount
@@ -38,6 +39,11 @@ export const query = graphql`
         id
         slug
         timeToRead
+        fields {
+          locale
+          isDefault
+          slug
+        }
         frontmatter {
           title
           date(formatString: "DD-MM-YYYY")

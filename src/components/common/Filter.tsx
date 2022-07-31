@@ -3,11 +3,15 @@ import { BsXLg } from 'react-icons/bs';
 import { useStaticQuery, graphql } from 'gatsby';
 import classnames from 'classnames';
 import { BlogStateContext, BlogDispatchContext, ReducerActionType, Tag } from '../../context/BlogContextProvider';
-
+import { navigate } from 'gatsby';
 
 type QueryNode = {
   frontmatter: {
     tags: string[]
+  }
+  fields: {
+    locale: 'en' | 'pl'
+    isDefult: boolean
   }
   id: string
 };
@@ -23,6 +27,10 @@ const Filter = () => {
     query {
       allMdx {
         nodes {
+          fields {
+            locale
+            isDefault
+          }
           frontmatter {
             tags
           }
@@ -60,11 +68,14 @@ const Filter = () => {
     }
   }, [blogState.filterVisible]);
 
+  // Get list of posts tags for active locale (language)
   let tags = new Map();
   query.allMdx.nodes.map((node: QueryNode, idx: number) => {
-    node.frontmatter.tags.map((tag, id) =>  (
-      tags.set(tag, `${idx}.${id}`)
-    ));
+    if (node.fields.locale === blogState.locale) {
+      node.frontmatter.tags.map((tag, id) =>  (
+        tags.set(tag, `${idx}.${id}`)
+      ));
+    }
   });
 
   const handleBlendClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -80,7 +91,6 @@ const Filter = () => {
       dispatch({type: ReducerActionType.TOGGLE_FILTER, payload: false})
     }
   }
-  // const [selected, setSelected] = React.useState<{[id: string]: string}>({});
 
   const handleTagSelect = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const target = e.target as HTMLLIElement;
@@ -109,6 +119,7 @@ const Filter = () => {
       } else {
         dispatch({type: ReducerActionType.UPDATE_FILTER, payload: filterTags});
         dispatch({type: ReducerActionType.APPLY_FILTER});
+        navigate('/');
       }
     }
   }
@@ -117,11 +128,13 @@ const Filter = () => {
     let postId = new Set();
     const tagsArray = Object.values(tags);
     query.allMdx.nodes.map((node: QueryNode) => {
-      tagsArray.map((tag) => {
-        if (node.frontmatter.tags.includes(tag)) {
-          postId.add(node.id)
-        }
-      })
+      if (node.fields.locale === blogState.locale){
+        tagsArray.map((tag) => {
+          if (node.frontmatter.tags.includes(tag)) {
+            postId.add(node.id)
+          }
+        })
+      }
     })
     return postId.size;
   }
@@ -133,8 +146,6 @@ const Filter = () => {
       return `Show ${countBlogPostByTag(filterTags)} ${countBlogPostByTag(filterTags) > 1 ? 'posts' : 'post'}`;
     }
   }
-
-  console.log('visiblity: ', blogState.filterVisible);
 
   return (
     <div
