@@ -19,7 +19,9 @@ const Main = ({ data } : DataProps) => {
                 key={node.id}
                 index={i}
                 title={node.frontmatter.title}
-                slug={node.slug}
+                slug={node.fields.slug}
+                locale={node.fields.locale}
+                isDefault={node.fields.isDefault}
                 date={node.frontmatter.date}
                 count={data.allMdx.totalCount}
                 hero_image={node.frontmatter.hero_image}
@@ -41,6 +43,11 @@ export type PostNode = {
   id: string
   slug: string
   timeToRead: number
+  fields: {
+    locale: 'en' | 'pl'
+    isDefault: boolean
+    slug: string
+  } 
   frontmatter: {
     title: string
     date: Date
