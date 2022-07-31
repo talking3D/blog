@@ -4,12 +4,13 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
-import { getHeroColor } from '../../components/utils/HeroColors';
+import { getHeroColor } from '../../components/utils/heroColors';
 import { BsClockFill, BsHouseFill } from 'react-icons/bs';
 import PostImage from '../../components/common/Image';
 import TableOfContents, { TableContentsType } from '../../components/common/TableOfContents';
 import {Header3, Header4} from '../../components/common/PostHeaders';
 import classNames from 'classnames/dedupe';
+import useLocale from '../../components/hooks/useLocale';
 
 
 // Use shortcodes
@@ -186,7 +187,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
               <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
                 <div id="table-of-contents" className={contentTableClass}>
                   <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500'>
-                    <Link to='/' className='hover:underline'>
+                    <Link to={useLocale()} className='hover:underline'>
                       <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />Go to Home Page
                     </Link>
                   </div>
@@ -212,8 +213,8 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 export default BlogPost;
 
 export const query = graphql`
-  query ($id: String) {
-    mdx(id: {eq: $id}) {
+  query Post ($postId: String) {
+    mdx(id: {eq: $postId}) {
       tableOfContents(maxDepth: 4)
       timeToRead
       frontmatter {
