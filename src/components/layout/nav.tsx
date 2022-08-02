@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { LogoVertical, LogoHorizontal } from '../common/Logo';
-import LocaleIcon, {LocaleIconPL, LocaleIconGB, LocaleIconProps } from '../common/LocaleIcon/LocaleIcon';
+import LocaleIcon, {LocaleIconPL, LocaleIconGB, LocaleIconProps } from '../common/LocaleIcon';
 import SearchBar from '../common/Search';
 import { BsFilterCircle, BsFilterCircleFill, BsSun, BsGlobe2, BsGithub, BsThreeDotsVertical } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
