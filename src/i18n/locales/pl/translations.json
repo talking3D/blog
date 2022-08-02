@@ -1,0 +1,15 @@
+{
+  "main": {
+    "subtitle": "Ogólnie mówiąc, technologicznie zorientowany blog..."
+  },  
+  "search": {
+    "find-on-blog": "Znajdź na blogu..."
+  },
+  "toc": {
+    "cannot-find": "Nie możemy znaleźć żadnych nagłówków w treści tego wpisu"
+  },
+  "post": {
+    "home-page": "Wróć do Strony Głównej",
+    "published": "Opublikowany w dniu"
+  }
+}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { LogoVertical, LogoHorizontal } from '../common/Logo';
 import LocaleIcon, {LocaleIconPL, LocaleIconGB, LocaleIconProps } from '../common/LocaleIcon/LocaleIcon';
@@ -14,6 +15,8 @@ import classNames from 'classnames';
 
 const NavBar = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
+
+  const { i18n } = useTranslation();
   
   const blogState = React.useContext(BlogStateContext);
   const dispatch = React.useContext(BlogDispatchContext);
@@ -21,6 +24,7 @@ const NavBar = () => {
   const handleLanguageChange = (lang: 'pl' | 'en') => {
     if (lang !== blogState.locale) {
       dispatch({type: ReducerActionType.SET_LOCALE, payload: lang})
+      i18n.changeLanguage(lang);
     }
   };
   

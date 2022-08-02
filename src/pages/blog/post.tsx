@@ -11,6 +11,7 @@ import TableOfContents, { TableContentsType } from '../../components/common/Tabl
 import {Header3, Header4} from '../../components/common/PostHeaders';
 import classNames from 'classnames/dedupe';
 import useLocale from '../../components/hooks/useLocale';
+import { t } from 'i18next';
 
 
 // Use shortcodes
@@ -179,7 +180,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
       {/* end of heroimage top section */}
       <div className='flex flex-col relative'>
         <div className='self-end font-roboto text-slate-500'>
-          Published on {mdx.frontmatter.date}
+          {t('post.published')} {mdx.frontmatter.date}
         </div>
         {/* begining of blog post main part  */}
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
@@ -188,7 +189,8 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                 <div id="table-of-contents" className={contentTableClass}>
                   <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500'>
                     <Link to={useLocale()} className='hover:underline'>
-                      <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />Go to Home Page
+                      <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />
+                      {t('post.home-page')}
                     </Link>
                   </div>
                   <TableOfContents tableOfContents={ mdx.tableOfContents } />

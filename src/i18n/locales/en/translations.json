@@ -1,0 +1,15 @@
+{
+  "main": {
+    "subtitle": "Generally speaking, a technically oriented blog..."
+  },
+  "search": {
+    "find-on-blog": "Find on the blog..."
+  },
+  "toc": {
+    "cannot-find": "We couldn't find any structure in this post"
+  },
+  "post": {
+    "home-page": "Go to Home Page",
+    "published": "Published on"
+  }
+}
