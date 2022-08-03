@@ -11,22 +11,16 @@ import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../
 import useLocale from '../hooks/useLocale';
 import { useLocation } from "@reach/router";
 import classNames from 'classnames';
+import { t } from 'i18next';
 
 
 const NavBar = () => {
+  const blogState = React.useContext(BlogStateContext);
+  const dispatch = React.useContext(BlogDispatchContext);
+
   const [visible, setVisible] = React.useState<boolean>(false);
 
   const { i18n } = useTranslation();
-  
-  const blogState = React.useContext(BlogStateContext);
-  const dispatch = React.useContext(BlogDispatchContext);
-  
-  const handleLanguageChange = (lang: 'pl' | 'en') => {
-    if (lang !== blogState.locale) {
-      dispatch({type: ReducerActionType.SET_LOCALE, payload: lang})
-      i18n.changeLanguage(lang);
-    }
-  };
   
   const showFilter = () => {
     const target = document.querySelector('#filter-modal');
@@ -50,7 +44,6 @@ const NavBar = () => {
     const regex = new RegExp(String.raw`^\/${locale}(?:\/|$)`);
     return regex.test(pathname);
   }
-
 
   React.useEffect(() => {
     if (window !== undefined) {
@@ -80,16 +73,28 @@ const NavBar = () => {
     }
   }, []);
 
+  // Update blog locale when user click language switcher
+  const handleLanguageChange = (lang: 'pl' | 'en') => {
+    // if (lang !== blogState.locale) {
+      dispatch({type: ReducerActionType.SET_LOCALE, payload: lang})
+      i18n.changeLanguage(lang);
+    // }
+  };
+
+
   // Update blog locale state when user changes locale manually by typing URL
   const activeLocale = isActiveLocalePath('pl') ? 'pl' : 'en';
   React.useEffect(() => {
-    dispatch({type: ReducerActionType.SET_LOCALE, payload: activeLocale })
+    handleLanguageChange(activeLocale);
+    // dispatch({type: ReducerActionType.SET_LOCALE, payload: activeLocale})
+    // i18n.changeLanguage(activeLocale);
   }, [activeLocale]);
 
   const handleLocaleClick = () => {
     const localeMenu = document.querySelector('#locale-menu');
     localeMenu?.classList.toggle('hidden');
   }
+  
   const localeListElementPLClass = classNames('flex flex-nowrap items-baseline px-2', {'bg-stone-200 rounded text-stone-500': blogState.locale === 'pl'})
   const localeListElementGBClass = classNames('flex flex-nowrap items-baseline px-2', {'bg-stone-200 rounded text-stone-500': blogState.locale === 'en'})
 
@@ -123,7 +128,7 @@ const NavBar = () => {
           </div>
           {
             blogState.filterOn && 
-            <div className='ml-5 font-medium underline cursor-pointer' onClick={clearFilter}>Clear filter</div>
+            <div className='ml-5 font-medium underline cursor-pointer' onClick={clearFilter}>{t('filter.clear_filter')}</div>
           }
         </div>
         <div className="hidden md:flex md:flex-nowrap self-center items-end justify-around w-48">

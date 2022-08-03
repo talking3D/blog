@@ -25,7 +25,7 @@ export interface TableOfContentsProps {
 const NoItems = () => {
   return(
     <div>
-      {t('toc.cannot-find')}
+      {t('toc.cannot_find')}
     </div>
   );
 };

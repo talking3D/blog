@@ -190,7 +190,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                   <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500'>
                     <Link to={useLocale()} className='hover:underline'>
                       <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />
-                      {t('post.home-page')}
+                      {t('post.home_page')}
                     </Link>
                   </div>
                   <TableOfContents tableOfContents={ mdx.tableOfContents } />

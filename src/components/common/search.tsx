@@ -16,7 +16,7 @@ const SearchForm = () => {
         id='find' 
         name='find' 
         type='text' 
-        placeholder={t('search.find-on-blog')}
+        placeholder={t('search.find_on_blog')}
        />
       <button 
         className='w-10 h-10 md:w-8 md:h-8 m-1 text-center align-middle rounded-3xl bg-cube-like text-white' 
