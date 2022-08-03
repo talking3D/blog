@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
+import { t } from 'i18next';
 
 export type TableContentsType = {
   items?: {
@@ -24,7 +25,7 @@ export interface TableOfContentsProps {
 const NoItems = () => {
   return(
     <div>
-      We couldn't find any structure in this post
+      {t('toc.cannot_find')}
     </div>
   );
 };

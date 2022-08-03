@@ -1,0 +1,23 @@
+{
+  "main": {
+    "subtitle": "Generally speaking, a technically oriented blog..."
+  },
+  "search": {
+    "find_on_blog": "Find on the blog..."
+  },
+  "toc": {
+    "cannot_find": "We couldn't find any structure in this post"
+  },
+  "post": {
+    "home_page": "Go to Home Page",
+    "published": "Published on"
+  },
+  "filter": {
+    "filter": "Filter",
+    "clear_filter": "Clear filter",
+    "show": "Show",
+    "keyWithCount_zero": "all posts",
+    "keyWithCount_one": "{{count}} post",
+    "keyWithCount_other": "{{count}} posts"
+  }
+}

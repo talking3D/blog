@@ -100,7 +100,7 @@ const reducer = (state: BlogState, action: ReducerAction) => {
       return { ...state, filterVisible: action.payload };
     case ReducerActionType.SET_LOCALE:
       console.log(action.payload);
-      localStorage.setItem('locale', action.payload)
+      localStorage.setItem('i18nextLng', action.payload)
       return {...state, locale: action.payload}
     default:
       throw new Error('This operation is not available!');
@@ -114,13 +114,12 @@ const BlogContextProvider = ({children}: ContextProps) => {
   React.useEffect(() => {
     if (window !== undefined) {
       if (checkLocalStorageAvailability()) {
-        const lang = localStorage.getItem('locale');
-        console.log('lang: ', lang);
+        const lang = localStorage.getItem('i18nextLng');
         if (!!lang) {
           // setLocale(lang);
           dispatch({type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en'})
         } else {
-          localStorage.setItem('locale', defaultState.locale);
+          localStorage.setItem('i18nextLng', defaultState.locale);
         }
       }
     }

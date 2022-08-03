@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { withTranslation } from 'react-i18next';
+
 import NavBar from './nav';
 import Filter from '../common/Filter';
 
@@ -16,4 +18,4 @@ const Layout = ({children}: LayoutProps) => {
   )
 };
 
-export default Layout;
+export default withTranslation()(Layout);

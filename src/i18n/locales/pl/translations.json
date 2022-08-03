@@ -1,0 +1,26 @@
+{
+  "main": {
+    "subtitle": "Ogólnie mówiąc, technologicznie zorientowany blog..."
+  },  
+  "search": {
+    "find_on_blog": "Znajdź na blogu..."
+  },
+  "toc": {
+    "cannot_find": "Nie możemy znaleźć żadnych nagłówków w treści tego wpisu"
+  },
+  "post": {
+    "home_page": "Wróć do Strony Głównej",
+    "published": "Opublikowany w dniu"
+  },
+  "filter": {
+    "filter": "Filtr",
+    "clear_filter": "Wyczyść filtr",
+    "show": "Pokaż",
+    "keyWithCount_zero": "wszystkie wpisy",
+    "keyWithCount_one": "{{count}} wpis",
+    "keyWithCount_two": "{{count}} wpisy",
+    "keyWithCount_three": "{{count}} wpisy",
+    "keyWithCount_four": "{{count}} wpisy",
+    "keyWithCount_other": "{{count}} wpisów"
+  }
+}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import useScreenSize from '../hooks/useScreenSize';
 import { BiSearch } from 'react-icons/bi';
+import { t } from 'i18next';
 
 const SearchForm = () => {
   const handleSubmit = (e: Event) => {
@@ -10,8 +11,19 @@ const SearchForm = () => {
   return(
     <div className='flex flex-nowrap items-center content-between h-12 md:h-10 border-thiner border-even-darker rounded-3xl '>
     <form className='flex justify-between' action='' method='post' onSubmit={ () => handleSubmit }>
-      <input className='mx-3 sm:mx-5 min-h-full w-36 sm:w-fit focus:outline-none bg-transparent border-none placeholder:text-black text-black' id='find' name='find' type='text' placeholder='Find on the blog...' />
-      <button className='w-10 h-10 md:w-8 md:h-8 m-1 text-center align-middle rounded-3xl bg-cube-like text-white' type='submit'><BiSearch size={20} color={'white'} className='mx-auto'/></button>
+      <input 
+        className='mx-3 sm:mx-5 min-h-full w-36 sm:w-fit focus:outline-none bg-transparent border-none placeholder:text-black text-black' 
+        id='find' 
+        name='find' 
+        type='text' 
+        placeholder={t('search.find_on_blog')}
+       />
+      <button 
+        className='w-10 h-10 md:w-8 md:h-8 m-1 text-center align-middle rounded-3xl bg-cube-like text-white' 
+        type='submit'
+      >
+        <BiSearch size={20} color={'white'} className='mx-auto'/>
+      </button>
     </form>
   </div>
   );
@@ -69,7 +81,6 @@ const SearchBar = ({handleVisibility}: SearchBarProps) => {
     } else if (screenSize.width < screenBreakPoint && searchBarState.expanded && !searchBarState.visible) {
       // If placeholder was clicked then make searchbar visible
       setSearchBarState({visible: true, expanded: true})
-      console.log('3');
     } 
   }
   React.useEffect(() => {
