@@ -4,7 +4,7 @@ import * as React from 'react';
 import { BsGlobe2 } from 'react-icons/bs';
 
 export interface LocaleIconProps {
-  locale: 'en' | 'pl'
+  locale: 'en' | 'pl',
 }
 
 // eslint-disable-next-line react/prop-types
@@ -47,7 +47,7 @@ export const LocaleIconGB = ({ long = false }) => {
 };
 
 const LocaleIcon = ({ locale }: LocaleIconProps) => (
-  <div className="relative">
+  <div className="relative ml-3">
     <div className="absolute -top-2 left-3 w-5 h-5 rounded-full overflow-clip border">
       { locale === 'pl' ? <LocaleIconPL /> : <LocaleIconGB />}
     </div>
