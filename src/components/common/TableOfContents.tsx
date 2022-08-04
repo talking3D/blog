@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { t } from 'i18next';
@@ -13,57 +14,46 @@ export type TableContentsType = {
   }[]
 };
 
-
 export interface ItemListProps {
     tableOfContents: TableContentsType
-  };
+  }
 
 export interface TableOfContentsProps {
   tableOfContents: TableContentsType
 }
 
-const NoItems = () => {
-  return(
-    <div>
-      {t('toc.cannot_find')}
-    </div>
-  );
-};
+const NoItems = () => (
+  <div>
+    {t('toc.cannot_find')}
+  </div>
+);
 
-const listItemId = (text: string) => {
-  return 'nav-' + text.toLowerCase().replaceAll(' ', '-')
-}
+const listItemId = (text: string) => `nav-${text.toLowerCase().replaceAll(' ', '-')}`;
 
+const ItemsList = ({ tableOfContents }: ItemListProps) => (
+  <ul id='table-of-contents-items' className='text-sm'>
+    { !!tableOfContents.items && tableOfContents.items.map((part, partId) => (
+      <li key={partId} className='font-semibold'>
+        <Link to={part.url!} id={listItemId(part.title)} className='hover:underline block px-2'>{ part.title }</Link>
+        { !!part.items
+              && (
+              <ul key={partId} className='mb-4 mt-2 font-normal leading-5 list-outside list-disc pl-4'>
+                { part.items.map((section, sectionId) => (
+                  <li key={sectionId} className='mb-2'><Link to={section.url} id={listItemId(section.title)} className='hover:underline block px-2'>{ section.title }</Link></li>))}
+              </ul>
+              )}
+      </li>
 
-const ItemsList = ({tableOfContents}: ItemListProps) => {
-  return (
-    <ul id='table-of-contents-items' className='text-sm'>
-      { !!tableOfContents.items && tableOfContents.items.map( (part, id) => (
-        <li key={ id } className='font-semibold'><Link to={ part.url! } id={listItemId(part.title)} className='hover:underline block px-2' >{ part.title }</Link>
-          { !!part.items && 
-              <ul key={ id } className='mb-4 mt-2 font-normal leading-5 list-outside list-disc pl-4'>
-                { part.items.map( (section, id) => (
-                  <li key={ id } className='mb-2'><Link to={ section.url } id={listItemId(section.title)} className='hover:underline block px-2' >{ section.title }</Link></li> ) )
-                }
-              </ul>}
-        </li>
+    ))}
+  </ul>
+);
 
-        
-      ))}
-      </ul>
-  )
-}
-
-const TableOfContents = ({tableOfContents}: TableOfContentsProps ) => {
-  return (
-    <div>
-      { !!tableOfContents.items 
-        ? <ItemsList tableOfContents={tableOfContents} />
-        : <NoItems />}
-    </div>
-  )
-};
+const TableOfContents = ({ tableOfContents }: TableOfContentsProps) => (
+  <div>
+    { tableOfContents.items
+      ? <ItemsList tableOfContents={tableOfContents} />
+      : <NoItems />}
+  </div>
+);
 
 export default TableOfContents;
-
-
