@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 
 export interface Tag {
@@ -11,15 +12,14 @@ export interface BlogState {
   locale: 'en' | 'pl',
 }
 
-
+// eslint-disable-next-line no-shadow
 export enum ReducerActionType {
   UPDATE_FILTER,
   CLEAR_FILTER,
   APPLY_FILTER,
   TOGGLE_FILTER,
   SET_LOCALE,
-};
-
+}
 
 export type ClearFilterAction = {
   type: ReducerActionType.CLEAR_FILTER
@@ -45,40 +45,42 @@ export type SetLocaleLanguage = {
   payload: 'pl' | 'en'
 }
 
-export type ReducerAction = UpdateFilterAction | ClearFilterAction | ApplyFilterAction | ToggleFilterVisibilityAction | SetLocaleLanguage;
-
+export type ReducerAction = UpdateFilterAction
+                            | ClearFilterAction
+                            | ApplyFilterAction
+                            | ToggleFilterVisibilityAction
+                            | SetLocaleLanguage;
 
 const checkLocalStorageAvailability = () => {
   let storage;
   try {
-    storage = window['localStorage'];
+    storage = window.localStorage;
     const x = '__storage_test__';
     storage.setItem(x, x);
     storage.removeItem(x);
     return true;
-  }
-  catch (e) {
+  } catch (e) {
     return e instanceof DOMException && (
       // everything except Firefox
-      e.code === 22 ||
+      e.code === 22
       // Firefox
-      e.code === 1014 ||
+      || e.code === 1014
       // test name field too, because code might not be present
       // everything except Firefox
-      e.name === 'QuotaExceededError' ||
+      || e.name === 'QuotaExceededError'
       // Firefox
-      e.name === 'NS_ERROR_DOM_QUOTA_REACHED'
-    ) 
-      // acknowledge QuotaExceededError only if there's something already stored
+      || e.name === 'NS_ERROR_DOM_QUOTA_REACHED'
+    )
+    // acknowledge QuotaExceededError only if there's something already stored
     && (storage && storage.length);
   }
-}
+};
 
 const defaultState: BlogState = {
   tags: {},
   filterOn: false,
   filterVisible: false,
-  locale: 'en'
+  locale: 'en',
 };
 
 interface ContextProps {
@@ -91,23 +93,22 @@ const BlogDispatchContext = React.createContext<React.Dispatch<any>>(() => null)
 const reducer = (state: BlogState, action: ReducerAction) => {
   switch (action.type) {
     case ReducerActionType.UPDATE_FILTER:
-      return { ...state, tags: action.payload};
+      return { ...state, tags: action.payload };
     case ReducerActionType.CLEAR_FILTER:
-        return { ...state, tags: {}, filterOn: false};
+      return { ...state, tags: {}, filterOn: false };
     case ReducerActionType.APPLY_FILTER:
-      return { ...state, filterOn: true};
+      return { ...state, filterOn: true };
     case ReducerActionType.TOGGLE_FILTER:
       return { ...state, filterVisible: action.payload };
     case ReducerActionType.SET_LOCALE:
-      console.log(action.payload);
-      localStorage.setItem('i18nextLng', action.payload)
-      return {...state, locale: action.payload}
+      localStorage.setItem('i18nextLng', action.payload);
+      return { ...state, locale: action.payload };
     default:
       throw new Error('This operation is not available!');
   }
-}
+};
 
-const BlogContextProvider = ({children}: ContextProps) => {
+const BlogContextProvider = ({ children }: ContextProps) => {
   const [state, dispatch] = React.useReducer(reducer, defaultState);
   // const [locale, setLocale] = React.useState<string>();
 
@@ -115,15 +116,15 @@ const BlogContextProvider = ({children}: ContextProps) => {
     if (window !== undefined) {
       if (checkLocalStorageAvailability()) {
         const lang = localStorage.getItem('i18nextLng');
-        if (!!lang) {
+        if (lang) {
           // setLocale(lang);
-          dispatch({type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en'})
+          dispatch({ type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en' });
         } else {
           localStorage.setItem('i18nextLng', defaultState.locale);
         }
       }
     }
-  }, [])
+  }, []);
 
   return (
     <BlogStateContext.Provider value={state}>
@@ -131,7 +132,7 @@ const BlogContextProvider = ({children}: ContextProps) => {
         { children }
       </BlogDispatchContext.Provider>
     </BlogStateContext.Provider>
-  )
+  );
 };
 
 export default BlogContextProvider;

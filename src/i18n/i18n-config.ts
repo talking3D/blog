@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-duplicates */
 import i18next from 'i18next';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -7,7 +9,7 @@ const options = {
   order: ['localStorage', 'path'],
   lookupLocalStorage: 'i18nextLng',
   caches: ['localStorage'],
-}
+};
 
 i18n
   .use(initReactI18next)
@@ -15,12 +17,12 @@ i18n
   .init({
     fallbackLng: 'en',
     resources: {
-      'pl': {
-        translations: require('./locales/pl/translations.json')
+      pl: {
+        translations: require('./locales/pl/translations.json'),
       },
       en: {
-        translations: require('./locales/en/translations.json')
-      }
+        translations: require('./locales/en/translations.json'),
+      },
     },
     ns: ['translations'],
     defaultNS: 'translations',
@@ -29,9 +31,9 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    detection: options
+    detection: options,
   });
 
-  i18next.languages = ['pl', 'en'];
+i18next.languages = ['pl', 'en'];
 
-  export default i18next;
+export default i18next;

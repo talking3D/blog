@@ -1,9 +1,9 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `talking3d`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -22,29 +22,29 @@ const config: GatsbyConfig = {
               linkImagesToOriginal: false,
               disableBgImage: true,
               // wrapperStyle: 'position: absolute; border: solid 2px blue;'
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blog`,
         path: `${__dirname}/src/blog`,
-        ignore: [`**/\.*`],
+        ignore: [`**/.*`],
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/i18n/translations`,
-        name: `translations`
-      }
-    },
-    `gatsby-transformer-json`
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/i18n/translations`,
+    //     name: `translations`
+    //   }
+    // },
+    `gatsby-transformer-json`,
     // `gatsby-plugin-mdx`
-  ]
+  ],
 };
 
 export default config;
