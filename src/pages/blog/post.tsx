@@ -118,12 +118,12 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
           truthTable = [...tempArr];
         }
 
-        const className = 'table-of-contents-active-title';
+        const activeTitleClass = 'table-of-contents-active-title';
         navLinks.map((navLink, id) => {
           if (id === truthTable.findIndex((item) => item === true)) {
-            if (!navLink.classList.contains(className)) navLink.classList.add(className);
+            if (!navLink.classList.contains(activeTitleClass)) navLink.classList.add(activeTitleClass);
           } else {
-            navLink.classList.remove(className);
+            navLink.classList.remove(activeTitleClass);
           }
         });
       };
@@ -134,7 +134,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   // Table of contents styling: semi-transparent when it overlaps blog post elements (images or code)
   const contentTableClass = classNames(
-    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white border-stone-300 rounded-xl mr-2 hover:opacity-100 transition-opacity duration-700',
+    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white dark:bg-even-darker border-stone-300 rounded-xl mr-2 hover:opacity-100 transition-opacity duration-700',
     { 'opacity-100': contentsVisible, 'opacity-[.05]': !contentsVisible },
   );
 
@@ -181,7 +181,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
       </div>
       {/* end of heroimage top section */}
       <div className='flex flex-col relative'>
-        <div className='self-end font-roboto text-slate-500'>
+        <div className='self-end font-roboto text-slate-500 dark:text-zinc-300'>
           {t('post.published')}
           {' '}
           {mdx.frontmatter.date}
@@ -191,7 +191,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
           <MDXProvider components={components}>
             <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
               <div id="table-of-contents" className={contentTableClass}>
-                <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500'>
+                <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500 dark:text-slate-300'>
                   <Link to={useLocale()} className='hover:underline'>
                     <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />
                     {t('post.home_page')}
@@ -201,10 +201,10 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
               </div>
             </nav>
             <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
-              <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl'>{ mdx.frontmatter.title }</h1>
-              <h2 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500'>{mdx.frontmatter.sub_title}</h2>
+              <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl dark:text-white'>{ mdx.frontmatter.title }</h1>
+              <h2 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500 dark:text-slate-300'>{mdx.frontmatter.sub_title}</h2>
             </header>
-            <main className='grid grid-flow-row grid-cols-3 col-start-1 col-span-3 text-xl font-thin leading-a-little-bit-looser'>
+            <main className='grid grid-flow-row grid-cols-3 col-start-1 col-span-3 text-xl dark:text-white font-thin leading-a-little-bit-looser'>
               <MDXRenderer>
                 { mdx.body }
               </MDXRenderer>

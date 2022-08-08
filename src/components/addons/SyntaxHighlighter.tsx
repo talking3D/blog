@@ -51,7 +51,7 @@ const SyntaxHighlighter = (props: any) => {
         // eslint-disable-next-line no-shadow
         className, style, tokens, getLineProps, getTokenProps,
       }) => (
-        <div className="grid grid-cols-1 md:grid-cols-3 col-span-3 mt-4 mb-2 pr-4 md:pr-8 pl-4 bg-gradient-to-b from-white to-stone-100 md:bg-gradient-to-r lg:from-white lg:to-stone-100 rounded-b-xl md:rounded-r-xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 col-span-3 mt-4 mb-2 pr-4 md:pr-8 pl-4 bg-gradient-to-b from-white dark:from-transparent to-stone-100 dark:to-zinc-800 md:bg-gradient-to-r lg:from-white dark:lg:from-transparent lg:to-stone-100 dark:lg:to-zinc-800 rounded-b-xl md:rounded-r-xl">
           <pre className={`${className} ${preStylingClass}`} style={{ ...style, padding: '20px', paddingRight: '8%' }}>
             { tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>

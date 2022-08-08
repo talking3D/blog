@@ -10,6 +10,7 @@ export interface BlogState {
   filterOn: boolean,
   filterVisible: boolean,
   locale: 'en' | 'pl',
+  theme: 'light' | 'dark' | 'system'
 }
 
 // eslint-disable-next-line no-shadow
@@ -19,6 +20,7 @@ export enum ReducerActionType {
   APPLY_FILTER,
   TOGGLE_FILTER,
   SET_LOCALE,
+  TOGGLE_THEME
 }
 
 export type ClearFilterAction = {
@@ -45,11 +47,17 @@ export type SetLocaleLanguage = {
   payload: 'pl' | 'en'
 }
 
+export type ToggleThemeAction = {
+  type: ReducerActionType.TOGGLE_THEME
+  payload: 'light' | 'dark'
+}
+
 export type ReducerAction = UpdateFilterAction
                             | ClearFilterAction
                             | ApplyFilterAction
                             | ToggleFilterVisibilityAction
-                            | SetLocaleLanguage;
+                            | SetLocaleLanguage
+                            | ToggleThemeAction
 
 const checkLocalStorageAvailability = () => {
   let storage;
@@ -76,20 +84,24 @@ const checkLocalStorageAvailability = () => {
   }
 };
 
+// Set up default blog state values
 const defaultState: BlogState = {
   tags: {},
   filterOn: false,
   filterVisible: false,
   locale: 'en',
+  theme: 'light',
 };
 
 interface ContextProps {
   children?: React.FC<React.ReactNode>
 }
 
+// Create contexts
 const BlogStateContext = React.createContext<BlogState>(defaultState);
 const BlogDispatchContext = React.createContext<React.Dispatch<any>>(() => null);
 
+// Create reducer
 const reducer = (state: BlogState, action: ReducerAction) => {
   switch (action.type) {
     case ReducerActionType.UPDATE_FILTER:
@@ -103,6 +115,15 @@ const reducer = (state: BlogState, action: ReducerAction) => {
     case ReducerActionType.SET_LOCALE:
       localStorage.setItem('i18nextLng', action.payload);
       return { ...state, locale: action.payload };
+    case ReducerActionType.TOGGLE_THEME:
+      if (action.payload === 'light') {
+        localStorage.setItem('theme', action.payload);
+      } else if (action.payload === 'dark') {
+        localStorage.setItem('theme', action.payload);
+      } else {
+        localStorage.removeItem('theme');
+      }
+      return { ...state, theme: action.payload };
     default:
       throw new Error('This operation is not available!');
   }
@@ -114,13 +135,26 @@ const BlogContextProvider = ({ children }: ContextProps) => {
 
   React.useEffect(() => {
     if (window !== undefined) {
+      // If localStorage is available (supported)
       if (checkLocalStorageAvailability()) {
+        // Check if lang is set up in localStorage
         const lang = localStorage.getItem('i18nextLng');
         if (lang) {
-          // setLocale(lang);
+          // set up lang value based on localStorage value
           dispatch({ type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en' });
         } else {
+          // Set up default value for lang
           localStorage.setItem('i18nextLng', defaultState.locale);
+        }
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          dispatch({ type: ReducerActionType.TOGGLE_THEME, payload: 'dark' });
+          localStorage.removeItem('theme');
+        } else {
+          document.documentElement.classList.remove('dark');
+          dispatch({ type: ReducerActionType.TOGGLE_THEME, payload: 'light' });
+          localStorage.setItem('theme', 'light');
         }
       }
     }
