@@ -19,5 +19,10 @@
     "keyWithCount_zero": "all posts",
     "keyWithCount_one": "{{count}} post",
     "keyWithCount_other": "{{count}} posts"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }

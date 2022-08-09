@@ -248,7 +248,7 @@ const NavBar = () => {
                     <div className='w-4 h-4 mr-2 self-center'>
                       <BsSun size={16} color={setElementThemeColor({ light: '#000' })} />
                     </div>
-                    <span className={themeToggleClass('base', { active: blogState.theme === 'light' })}>Light</span>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'light' })}>{t('theme.light')}</span>
                   </li>
                   <li
                     className={localeListElementClass('base', { active: blogState.theme === 'dark' })}
@@ -257,7 +257,7 @@ const NavBar = () => {
                     <div className='w-4 h-4 mr-2 self-center'>
                       <BsMoonStars size={16} color={setElementThemeColor({ light: '#000' })} />
                     </div>
-                    <span className={themeToggleClass('base', { active: blogState.theme === 'dark' })}>Dark</span>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'dark' })}>{t('theme.dark')}</span>
                   </li>
                   <li
                     className={localeListElementClass('base', { active: blogState.theme === 'system' })}
@@ -266,7 +266,7 @@ const NavBar = () => {
                     <div className='w-4 h-4 mr-2  self-center'>
                       <BsTv size={16} color={setElementThemeColor({ light: '#000' })} />
                     </div>
-                    <span className={themeToggleClass('base', { active: blogState.theme === 'system' })}>System</span>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'system' })}>{t('theme.system')}</span>
                   </li>
                 </ul>
               </div>

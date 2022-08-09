@@ -22,5 +22,10 @@
     "keyWithCount_three": "{{count}} wpisy",
     "keyWithCount_four": "{{count}} wpisy",
     "keyWithCount_other": "{{count}} wpisów"
+  },
+  "theme": {
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy"
   }
 }
