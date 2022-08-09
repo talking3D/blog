@@ -24,5 +24,11 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "dots_menu": {
+    "language": "Language",
+    "theme": "Theme",
+    "github": "Github",
+    "author": "About the author"
   }
 }
