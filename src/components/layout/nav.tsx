@@ -346,7 +346,7 @@ const NavBar = () => {
             <BsThreeDotsVertical size={28} color={setElementThemeColor({ light: '#000' })} className='mx-auto' />
             <div id='dots-menu' className='hidden absolute top-8 mt-3 px-4 py-2 text-sm dark:text-white bg-white dark:bg-slate-700 right-2 border dark:border-slate-500 rounded-md shadow-md min-w-max z-10'>
               <ul className='leading-7'>
-                <li className='font-medium text-md border-b leading-6 mt-2 mb-1'>{t('dots_menu.theme')}</li>
+                <li className='font-medium text-md border-b dark:border-b-slate-500 leading-6 mt-2 mb-1'>{t('dots_menu.theme')}</li>
                 <ul>
                   <li
                     className={localeListElementClass('base', { active: blogState.theme === 'light' })}
@@ -376,7 +376,7 @@ const NavBar = () => {
                     <span className={themeToggleClass('base', { active: blogState.theme === 'system' })}>{t('theme.system')}</span>
                   </li>
                 </ul>
-                <li className='font-medium text-md border-b leading-6 mt-2 mb-1'>{t('dots_menu.language')}</li>
+                <li className='font-medium text-md border-b dark:border-b-slate-500 leading-6 mt-2 mb-1'>{t('dots_menu.language')}</li>
                 <ul>
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
