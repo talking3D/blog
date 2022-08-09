@@ -64,6 +64,7 @@ const NavBar = () => {
     }
   }, []);
 
+  // Locale menu handler
   React.useEffect(() => {
     if (window !== undefined) {
       function clickedOutsideLocaleMenu(e: Event) {
@@ -87,6 +88,7 @@ const NavBar = () => {
     }
   }, []);
 
+  // Theme menu handler
   React.useEffect(() => {
     if (window !== undefined) {
       function clickedOutsideThemeMenu(e: Event) {
@@ -97,7 +99,7 @@ const NavBar = () => {
           if (!themeMenu?.classList.contains('hidden')) {
             themeMenu?.classList.add('hidden');
           }
-          // To remove menu hover effect while user clicks out off visible theme menu
+          // To remove menu hover effect while user clicks off visible theme menu
           if (themeMenuWrapper?.classList.contains('bg-stone-100')) {
             themeMenuWrapper?.classList.remove('bg-stone-100');
           } else if (themeMenuWrapper?.classList.contains('bg-zinc-800')) {
@@ -160,14 +162,16 @@ const NavBar = () => {
   };
 
   const handleThemeToggleClick = () => {
-    const isDark: boolean = document.documentElement.classList.contains('dark');
-    const menuHoverClass = classNames({ 'bg-stone-100': !isDark, 'bg-zinc-800': isDark });
-    const themeMenuWrapper = document.querySelector('#nav-theme-wrapper');
+    // TO:DO: Persist hover state while user hovers off the visible menu area
+    // const isDark: boolean = document.documentElement.classList.contains('dark');
+    // const toggleStyle = { light: 'bg-stone-100', dark: 'bg-zinc-800' };
+    // const menuHoverClass = classNames({ 'bg-stone-100': !isDark, 'bg-zinc-800': isDark });
+    // const themeMenuWrapper = document.querySelector('#nav-theme-wrapper');
     const themeMenu = document.querySelector('#theme-menu');
     themeMenu?.classList.toggle('hidden');
 
     // To persist hover effect when user hover off yet visible locale menu
-    themeMenuWrapper?.classList.toggle(menuHoverClass);
+    // themeMenuWrapper?.classList.toggle(menuHoverClass);
   };
 
   React.useEffect(() => {
@@ -238,7 +242,10 @@ const NavBar = () => {
         <div className="hidden md:flex md:flex-nowrap self-center items-end justify-around w-48">
           <div id='nav-theme-wrapper' className='w-10 h-10 rounded-full hover:bg-stone-100 dark:hover:bg-zinc-800'>
             <div id='nav-theme' className='relative' onClick={() => handleThemeToggleClick()}>
-              <BsSun size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
+              {blogState.theme === 'light' && <BsSun size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />}
+              {blogState.theme === 'dark' && <BsMoonStars size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />}
+              {blogState.theme === 'system' && <BsTv size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />}
+              {/* <BsSun size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} /> */}
               <div id='theme-menu' className='hidden absolute -left-6 top-9 min-w-min min-h-max px-1 py-2 z-10 bg-white dark:bg-slate-700 shadow-md text-sm rounded-md border dark:border-slate-500'>
                 <ul className='leading-7'>
                   <li
