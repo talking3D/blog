@@ -27,5 +27,11 @@
     "light": "Jasny",
     "dark": "Ciemny",
     "system": "Systemowy"
+  },
+  "dots_menu": {
+    "language": "Język",
+    "theme": "Motyw",
+    "github": "Github",
+    "author": "O autorze"
   }
 }

@@ -112,6 +112,23 @@ const NavBar = () => {
     }
   }, []);
 
+  // Dots menu handler
+  function clickedOutsideDotsMenu(e: Event) {
+    const dotsMenu = document.querySelector('#dots-menu');
+    const dotsMenuNav = document.querySelector('#nav-dots');
+    if (!dotsMenuNav?.contains(e.target as HTMLElement)) {
+      if (!dotsMenu?.classList.contains('hidden')) {
+        dotsMenu?.classList.add('hidden');
+      }
+    }
+  }
+  React.useEffect(() => {
+    if (window !== undefined) {
+      document.addEventListener('click', (e) => clickedOutsideDotsMenu(e));
+      return () => document.removeEventListener('click', (e) => clickedOutsideDotsMenu(e));
+    }
+  }, []);
+
   // Update blog locale when user click language switcher
   const handleLanguageChange = (lang: 'pl' | 'en') => {
     dispatch({ type: ReducerActionType.SET_LOCALE, payload: lang });
@@ -196,6 +213,17 @@ const NavBar = () => {
     dark?: string
     light?: string
   }
+
+  const handleDotsMenuClick = () => {
+    const isDark: boolean = document.documentElement.classList.contains('dark');
+    const menuHoverClass = classNames({ 'bg-stone-100': !isDark, 'bg-zinc-800': isDark });
+
+    const localeDotsMenuWrapper = document.querySelector('#nav-dots-menu-wrapper');
+    const dotsMenu = document.querySelector('#dots-menu');
+    dotsMenu?.classList.toggle('hidden');
+    // To persist hover effect when user hover off yet visible locale menu
+    localeDotsMenuWrapper?.classList.toggle(menuHoverClass);
+  };
 
   const setElementThemeColor = ({ dark = '#FFF', light = '#231F20' }: ThemeColors) => (document.documentElement.classList.contains('dark') ? dark : light);
   return (
@@ -302,20 +330,78 @@ const NavBar = () => {
                         ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
                         : 'Polski'
                     }
-
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div className='w-10 h-10 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-full'>
-            <div>
+            <div className='w-4 h-4 mr-2 self-center'>
               <BsGithub size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
             </div>
           </div>
         </div>
-        <div className="block md:hidden">
-          <BsThreeDotsVertical size={28} />
+        <div id='nav-dots-menu-wrapper' className="block w-12 h-12 mr-auto ml-auto rounded-full hover:bg-stone-100 dark:hover:bg-zinc-800 md:hidden">
+          <div id='nav-dots' className='relative mt-2.5' onClick={() => handleDotsMenuClick()}>
+            <BsThreeDotsVertical size={28} color={setElementThemeColor({ light: '#000' })} className='mx-auto' />
+            <div id='dots-menu' className='hidden absolute top-8 mt-3 px-4 py-2 text-sm dark:text-white bg-white dark:bg-slate-700 right-2 border dark:border-slate-500 rounded-md shadow-md min-w-max z-10'>
+              <ul className='leading-7'>
+                <li className='font-medium text-md border-b leading-6 mt-2 mb-1'>{t('dots_menu.theme')}</li>
+                <ul>
+                  <li
+                    className={localeListElementClass('base', { active: blogState.theme === 'light' })}
+                    onClick={() => handleThemeChange('light')}
+                  >
+                    <div className='w-4 h-4 mr-2 self-center'>
+                      <BsSun size={16} color={setElementThemeColor({ light: '#000' })} />
+                    </div>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'light' })}>{t('theme.light')}</span>
+                  </li>
+                  <li
+                    className={localeListElementClass('base', { active: blogState.theme === 'dark' })}
+                    onClick={() => handleThemeChange('dark')}
+                  >
+                    <div className='w-4 h-4 mr-2 self-center'>
+                      <BsMoonStars size={16} color={setElementThemeColor({ light: '#000' })} />
+                    </div>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'dark' })}>{t('theme.dark')}</span>
+                  </li>
+                  <li
+                    className={localeListElementClass('base', { active: blogState.theme === 'system' })}
+                    onClick={() => handleThemeChange('system')}
+                  >
+                    <div className='w-4 h-4 mr-2 self-center'>
+                      <BsTv size={16} color={setElementThemeColor({ light: '#000' })} />
+                    </div>
+                    <span className={themeToggleClass('base', { active: blogState.theme === 'system' })}>{t('theme.system')}</span>
+                  </li>
+                </ul>
+                <li className='font-medium text-md border-b leading-6 mt-2 mb-1'>{t('dots_menu.language')}</li>
+                <ul>
+                  <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
+                    <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
+                    { isActiveLocalePath('pl')
+                      ? (
+                        <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
+                          Engilsh
+                        </Link>
+                      )
+                      : 'English'}
+                  </li>
+                  <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
+                    <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
+                    {
+                      !isActiveLocalePath('pl')
+                        ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
+                        : 'Polski'
+                    }
+                  </li>
+                </ul>
+                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>{t('dots_menu.github')}</li>
+                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>{t('dots_menu.author')}</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="hidden md:flex w-16 justify-end">
           <StaticImage
