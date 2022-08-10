@@ -49,7 +49,7 @@ export const LocaleIconGB = ({ long = false }) => {
 };
 
 const LocaleIcon = ({ locale, color }: LocaleIconProps) => {
-  const localeIconClass = classNames('absolute -top-2 left-3 w-5 h-5 rounded-full overflow-clip border', { 'border-[#231F20]': color === '#FFF', 'border-black': color === '#000' });
+  const localeIconClass = classNames('absolute -top-2 left-3 w-5 h-5 rounded-full overflow-clip border overflow-hidden', { 'border-[#231F20]': color === '#FFF', 'border-black': color === '#000' });
   return (
     <div className="relative ml-3">
       {/* <div className="absolute -top-2 left-3 w-5 h-5 rounded-full overflow-clip border"> */}
