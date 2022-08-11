@@ -28,7 +28,7 @@ const GoToTop = () => {
   });
 
   return (
-    <div className='fixed bottom-8 block mx-auto w-screen max-w-screen-xl'>
+    <div className='fixed bottom-28 block mx-auto w-screen max-w-screen-xl'>
       <div
         id='button'
         className='ml-auto mr-4 w-12 h-12 pt-2.5 rounded-full border-2 border-stone-400 dark:border-slate-200 bg-stone-100 dark:bg-slate-700 shadow-md opacity-50 hover:opacity-100 cursor-pointer transition-opacity ease-linear'

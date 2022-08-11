@@ -33,5 +33,15 @@
     "theme": "Motyw",
     "github": "Github",
     "author": "O autorze"
-  }
+  },
+  "footer": {
+    "copyright": "Prawa autorskie",
+    "blog_pl": "Blog ",
+    "blog_en": "",
+    "powered": " jest dumnie napędzany przez wspaniałego ",
+    "author": " oraz skromnego ",
+    "author_himself": " autora ",
+    "this_blog": " tego bloga."
+  },
+  "copyright": "<0>Talking3D</0> blog jest dumnie napędzany przez wspaniałego <2>Gatsby</2> oraz skromnie przez <4>authora</4> tego bloga."
 }
