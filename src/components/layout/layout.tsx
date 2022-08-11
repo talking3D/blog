@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next';
 import NavBar from './nav';
 import Filter from '../common/Filter';
 import GoToTop from '../common/GoTop';
+import Footer from './footer';
 
 export interface LayoutProps {
   children?: React.FC<React.ReactNode>
@@ -15,6 +16,7 @@ const Layout = ({ children }: LayoutProps) => (
     { children }
     <Filter />
     <GoToTop />
+    <Footer />
   </div>
 );
 

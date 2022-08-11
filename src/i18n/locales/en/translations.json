@@ -30,5 +30,15 @@
     "theme": "Theme",
     "github": "Github",
     "author": "About the author"
-  }
+  },
+  "footer": {
+    "copyright": "Copyright",
+    "blog_pl": "",
+    "blog_en": " blog ",
+    "powered": " is proudly powered by the great ",
+    "author": " and humble ",
+    "author_himself": " author ",
+    "this_blog": " of this blog."
+  },
+  "copyright": "<0>Talking3D</0> blog is proudly powered by the great <2>Gatsby</2> and humble <4>author</4> of this blog."
 }
