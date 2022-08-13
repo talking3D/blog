@@ -10,7 +10,9 @@
   },
   "post": {
     "home_page": "Go to Home Page",
-    "published": "Published on"
+    "published": "Published on",
+    "hero_image_by": "Photo by",
+    "hero_image_text_preposition": "on"
   },
   "filter": {
     "filter": "Filter",

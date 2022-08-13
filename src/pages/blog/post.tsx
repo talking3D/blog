@@ -6,16 +6,18 @@ import * as React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
-import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image';
+import {
+  GatsbyImage, getImage, ImageDataLike,
+} from 'gatsby-plugin-image';
 import { BsClockFill, BsHouseFill } from 'react-icons/bs';
 import classNames from 'classnames/dedupe';
 import { t } from 'i18next';
 import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
-import { getHeroColor } from '../../components/utils/heroColors';
 import PostImage from '../../components/common/Image';
 import TableOfContents, { TableContentsType } from '../../components/common/TableOfContents';
 import { Header3, Header4 } from '../../components/common/PostHeaders';
 import useLocale from '../../components/hooks/useLocale';
+import { getColorContrast } from '../../components/utils/helpers';
 
 // Use shortcodes
 const components = {
@@ -37,7 +39,10 @@ type DataProps = {
       date: Date
       tags: string[]
       hero_image_alt: string
+      hero_image_author: string
+      hero_image_author_link: string
       hero_image_credit_text: string
+      hero_image_source: string
       hero_image_credit_link: string
       hero_color: string
       hero_image: ImageDataLike
@@ -139,6 +144,11 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
   );
 
   const image = getImage(mdx.frontmatter.hero_image);
+
+  const inlineHeroMarkerStyle = {
+    backgroundColor: image?.backgroundColor,
+    color: getColorContrast(image!.backgroundColor!),
+  };
   return (
     <div className='flex flex-col mt-2 mx-2 px-2 xl:px-0'>
       {/* begining of heroimage top section */}
@@ -147,20 +157,31 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
           <GatsbyImage image={image!} alt={mdx.frontmatter.hero_image_alt} className='min-h-full' />
         </div>
         <div className='flex flex-col h-77 justify-between pb-2'>
-          <div className='mt-2 px-3 text-white text-xs'>
-            <span>{mdx.frontmatter.hero_image_credit_text}</span>
+          <div className='mt-2 px-3 text-sm'>
+            {/* <span>{mdx.frontmatter.hero_image_credit_text}</span> */}
+            <span className='px-2 py-0.5' style={inlineHeroMarkerStyle}>
+              {`${t('post.hero_image_by')} `}
+              <a href={mdx.frontmatter.hero_image_author_link} className='font-bold text-md hover:underline' target='_blank' rel="noreferrer">
+                {mdx.frontmatter.hero_image_author}
+              </a>
+              {` ${t('post.hero_image_text_preposition')} `}
+              <a href={mdx.frontmatter.hero_image_credit_link} className='font-bold text-md hover:underline' target='_blank' rel="noreferrer">
+                {mdx.frontmatter.hero_image_source}
+              </a>
+            </span>
           </div>
-          <div className='flex mx-2'>
+          <div className='flex justify-between mx-2'>
             <div className='flex'>
               <section>
                 <h2 className='hidden'>Tags</h2>
-                <ul className='flex flex-wrap justify-start text-white'>
+                <ul className='flex flex-wrap justify-start'>
                   { mdx.frontmatter.tags.map((tag, index) => (
                     <li
                       // eslint-disable-next-line react/no-array-index-key
                       key={index}
                       // eslint-disable-next-line max-len
-                      className={`px-3 mr-2 mb-1 before:content-["#"] ${getHeroColor(mdx.frontmatter.hero_color).solid} font-roboto text-base rounded-xl`}
+                      className='px-3 mr-2 mb-1 before:content-["#"] font-roboto text-base rounded-xl'
+                      style={inlineHeroMarkerStyle}
                     >
                       {tag}
                     </li>
@@ -168,12 +189,16 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                 </ul>
               </section>
             </div>
-            <div className='flex self-end items-center ml-2 mb-0.5 text-white'>
+            <div
+              className='flex self-end items-center ml-2 mb-1 rounded-xl px-2'
+              style={{
+                backgroundColor: image?.backgroundColor,
+                color: getColorContrast(image!.backgroundColor!),
+              }}
+            >
               <BsClockFill size={17} />
               <span className='ml-2'>
-                { mdx.timeToRead }
-                {' '}
-                min
+                { `${mdx.timeToRead} min` }
               </span>
             </div>
           </div>
@@ -231,7 +256,9 @@ export const query = graphql`
         title
         tags
         hero_image_alt
-        hero_image_credit_text
+        hero_image_author
+        hero_image_author_link
+        hero_image_source
         hero_image_credit_link
         hero_color
         hero_image {
