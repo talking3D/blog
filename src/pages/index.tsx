@@ -47,7 +47,6 @@ export const query = graphql`
           date(formatString: "DD-MM-YYYY")
           tags
           reading_time
-          hero_color
           hero_image {
             childImageSharp {
               gatsbyImageData(width: 235, height: 400, placeholder: DOMINANT_COLOR, formats: JPG, transformOptions: {cropFocus: ATTENTION, fit: COVER})

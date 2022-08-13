@@ -6,13 +6,14 @@ const {
   findKey,
 } = require(`./src/i18n/i18n`);
 
-exports.onCreatePage = ({ page, actions }) => {
+exports.onCreatePage = async ({ page, actions }) => {
   const { createPage, deletePage } = actions;
 
   deletePage(page);
 
   Object.keys(locales).map((lang) => {
     const localizedPath = locales[lang].default ? page.path : `${locales[lang].path}${page.path}`;
+
     return createPage({
       ...page,
       path: removeTrailingSlash(localizedPath),

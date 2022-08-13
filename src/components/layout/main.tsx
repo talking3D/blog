@@ -35,7 +35,6 @@ const Main = ({ data } : DataProps) => {
                 date={node.frontmatter.date}
                 count={data.allMdx.totalCount}
                 hero_image={node.frontmatter.hero_image}
-                hero_color={node.frontmatter.hero_color}
                 tags={node.frontmatter.tags}
                 reading_time={node.timeToRead}
               />
@@ -62,7 +61,6 @@ export type PostNode = {
     title: string
     date: Date
     tags: string[]
-    hero_color: string
     hero_image: ImageDataLike
   }
 }
