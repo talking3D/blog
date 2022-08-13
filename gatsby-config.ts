@@ -3,7 +3,7 @@ import type { GatsbyConfig } from 'gatsby';
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `talking3d`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://www.talking3d.com`,
   },
   plugins: [
     'gatsby-plugin-postcss',

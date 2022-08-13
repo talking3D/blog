@@ -52,7 +52,7 @@ type DataProps = {
 }
 
 const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
-  const addParentDiv = (node: HTMLElement) => {
+  const addParentDiv = (node: Element) => {
     if (node.parentElement?.tagName === 'DIV') {
       return;
     }
@@ -69,8 +69,13 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   React.useEffect(() => {
     if (window !== undefined) {
-      const pNodes = document.querySelectorAll('p');
-      Array.from(pNodes, (node) => addParentDiv(node));
+      const pNodes = document.querySelectorAll('p, main ul:not([id])');
+      Array.from(pNodes, (node) => {
+        if (node.tagName === 'UL') {
+          node.classList.add('leading-8', 'list-disc', 'pl-8');
+        }
+        addParentDiv(node);
+      });
 
       const codeWrappers = document.querySelectorAll('pre');
       const imageWrappers = document.querySelectorAll('img.gatsby-resp-image-image');
