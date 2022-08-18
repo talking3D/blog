@@ -16,7 +16,7 @@ export const Header3 = (props: any) => {
 };
 
 export const Header4 = (props: any) => {
-  const createElementId = (content: string) => content.toLowerCase().replaceAll(" ", "-");
+  const createElementId = (content: string) => content.toLowerCase().replaceAll(" ", "-").replaceAll(/[“”:.,]/g, "");
   return (
     <h4
       id={createElementId(props.children)}

@@ -1,3 +1,5 @@
+// TO:DO: If possible, make katex work <figcaption> elements to support image descriptions
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -35,7 +37,7 @@ const PostImage = (props: any) => {
         paragraphParent?.parentElement?.replaceChild(newFigureWrapper, paragraphParent);
         newFigureWrapper.appendChild(paragraphParent!);
 
-        if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
+        if (!!paragraphElementNextSibling && (paragraphElementNextSibling.tagName === 'FIGCAPTION' || paragraphElementNextSibling.tagName === 'P')) {
           paragraphElementNextSibling
             .classList.add('pt-4', 'md:pl-4', 'md:pr-4', 'md:ml-2', 'lg:pt-0', 'md:pr-2', 'w-full', 'text-justify');
           paragraphParent?.appendChild(paragraphElementNextSibling!);
@@ -49,7 +51,7 @@ const PostImage = (props: any) => {
         wrapperFigure.classList.add('from-inline-image');
         paragraphParent?.replaceChild(wrapperFigure, parentParagraphElement!);
         wrapperFigure.appendChild(parentParagraphElement!);
-        if (!!paragraphElementNextSibling && paragraphElementNextSibling.tagName === 'FIGCAPTION') {
+        if (!!paragraphElementNextSibling && (paragraphElementNextSibling.tagName === 'FIGCAPTION' || paragraphElementNextSibling.tagName === 'P')) {
           paragraphElementNextSibling
             .classList.add(
               'col-start-1',

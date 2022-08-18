@@ -29,8 +29,10 @@ const SyntaxHighlighter = (props: any) => {
         const siblingParagraph: Element | null | undefined = parentPre!.nextElementSibling
           ? parentPre!.nextElementSibling : parentPre!.parentElement?.nextElementSibling;
         const wrapperDiv = parentPre.parentElement;
-        if (codeParagraphClasses.length) codeParagraphClasses.map((cls) => siblingParagraph!.classList.add(cls));
-        wrapperDiv!.appendChild(siblingParagraph!);
+        if (codeParagraphClasses.length && siblingParagraph !== null) {
+          codeParagraphClasses.map((cls) => siblingParagraph!.classList.add(cls));
+          wrapperDiv!.appendChild(siblingParagraph!);
+        }
       }
     }
   }, []);

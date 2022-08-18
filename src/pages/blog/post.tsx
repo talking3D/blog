@@ -69,7 +69,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   React.useEffect(() => {
     if (window !== undefined) {
-      const pNodes = document.querySelectorAll('p, main ul:not([id])');
+      const pNodes = document.querySelectorAll('p, main ul:not([id]), main ol:not([id]), main table');
       Array.from(pNodes, (node) => {
         if (node.tagName === 'UL') {
           node.classList.add('leading-8', 'list-disc', 'pl-8');
@@ -234,7 +234,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
               <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl dark:text-white'>{ mdx.frontmatter.title }</h1>
               <h2 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-3 mb-3 font-normal font-roboto text-2xl text-slate-500 dark:text-slate-300'>{mdx.frontmatter.sub_title}</h2>
             </header>
-            <main className='grid grid-flow-row grid-cols-3 col-start-1 col-span-3 text-xl dark:text-white font-thin leading-a-little-bit-looser'>
+            <main className='grid grid-flow-row grid-cols-3 col-start-1 col-span-3 text-xl dark:text-white font-light leading-a-little-bit-looser'>
               <MDXRenderer>
                 { mdx.body }
               </MDXRenderer>
