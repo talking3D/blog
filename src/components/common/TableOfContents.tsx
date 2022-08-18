@@ -28,7 +28,7 @@ const NoItems = () => (
   </div>
 );
 
-const listItemId = (text: string) => `nav-${text.toLowerCase().replaceAll(' ', '-')}`;
+const listItemId = (text: string) => `nav-${text.toLowerCase().replaceAll(' ', '-').replaceAll(/[“”:.,]/g, "")}`;
 
 const ItemsList = ({ tableOfContents }: ItemListProps) => (
   <ul id='table-of-contents-items' className='text-sm'>
