@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 // import { Trans } from 'react-i18next';
 import { Link } from 'gatsby';
 import { RiCopyrightLine } from 'react-icons/ri';
+import useActiveLocalePath from '../hooks/useActiveLocalePath';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const Footer = () => {
       {' '}
       <a href='https://www.gatsbyjs.com' className='hover:underline text-blue-600 dark:text-blue-400' target='_blank' rel="noreferrer">Gatsby</a>
       {t('footer.author')}
-      <Link to='/about' className='hover:underline text-blue-600 dark:text-blue-400'>{t('footer.author_himself')}</Link>
+      <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'} className='hover:underline text-blue-600 dark:text-blue-400'>{t('footer.author_himself')}</Link>
       {t('footer.this_blog')}
       <br />
       {t('footer.copyright')}
@@ -24,7 +25,7 @@ const Footer = () => {
       {' '}
       2022
       {' '}
-      <Link to='/about' className='hover:underline text-blue-600 dark:text-blue-400'>Krzysztof Skwarski</Link>
+      <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'} className='hover:underline text-blue-600 dark:text-blue-400'>Krzysztof Skwarski</Link>
       .
       {/* TO:DO: Try to use Trans component */}
       {/* {t('footer.copyright')}

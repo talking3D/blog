@@ -17,6 +17,7 @@ import { Link } from 'gatsby';
 import { useLocation } from "@reach/router";
 import classNames from 'classnames/bind';
 import { t } from 'i18next';
+import useActiveLocalePath from '../hooks/useActiveLocalePath';
 import useLocale from '../hooks/useLocale';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
 // import SearchBar from '../common/Search';
@@ -46,12 +47,6 @@ const NavBar = () => {
   const clearFilter = () => {
     dispatch({ type: ReducerActionType.CLEAR_FILTER });
     dispatch({ type: ReducerActionType.UPDATE_FILTER, payload: {} });
-  };
-
-  const { pathname } = useLocation();
-  const isActiveLocalePath = (locale: string) => {
-    const regex = new RegExp(String.raw`^\/${locale}(?:\/|$)`);
-    return regex.test(pathname);
   };
 
   React.useEffect(() => {
@@ -136,7 +131,7 @@ const NavBar = () => {
   };
 
   // Update blog locale state when user changes locale manually by typing URL
-  const activeLocale = isActiveLocalePath('pl') ? 'pl' : 'en';
+  const activeLocale = useActiveLocalePath('pl') ? 'pl' : 'en';
   React.useEffect(() => {
     handleLanguageChange(activeLocale);
   }, [activeLocale]);
@@ -315,7 +310,7 @@ const NavBar = () => {
                 <ul className="leading-7">
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { isActiveLocalePath('pl')
+                    { useActiveLocalePath('pl')
                       ? (
                         <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
                           Engilsh
@@ -326,7 +321,7 @@ const NavBar = () => {
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
                     {
-                      !isActiveLocalePath('pl')
+                      !useActiveLocalePath('pl')
                         ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
                         : 'Polski'
                     }
@@ -380,7 +375,7 @@ const NavBar = () => {
                 <ul>
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { isActiveLocalePath('pl')
+                    { useActiveLocalePath('pl')
                       ? (
                         <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
                           Engilsh
@@ -391,7 +386,7 @@ const NavBar = () => {
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
                     {
-                      !isActiveLocalePath('pl')
+                      !useActiveLocalePath('pl')
                         ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
                         : 'Polski'
                     }
@@ -404,12 +399,19 @@ const NavBar = () => {
           </div>
         </div>
         <div className="hidden md:flex w-16 justify-end">
-          <StaticImage
-            src="./../../images/about_1x.png"
-            alt="Funny drawing showing author of this blog"
-            layout="fullWidth"
-            className="hidden md:block md:w-9 md:h-9 lg:w-12 lg:h-12 p-0 border-2 border-gray-900 dark:border-gray-500 rounded-full drop-shadow-[0_3px_5px_rgba(0,0,0,0.2)]"
-          />
+          <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'}>
+            <StaticImage
+              src="./../../images/about-face.png"
+              alt="Funny drawing showing face of the author of this blog"
+              // layout="fullWidth"
+              objectFit='scale-down'
+              // objectPosition='top'
+              width={25}
+              height={37}
+              imgClassName='border-2 border-green-200'
+              className="hidden md:block md:w-9 md:h-9 lg:w-12 lg:h-12 p-0 border bg-[#FEF7E4] border-gray-900 dark:border-gray-500 rounded-full drop-shadow-[0_3px_5px_rgba(0,0,0,0.2)]"
+            />
+          </Link>
         </div>
       </div>
     </nav>
