@@ -24,6 +24,7 @@ module.exports = {
         '62': '15.5rem',
         '77': '19.25rem',
         '100': '25rem',
+        '108': '27rem',
         '158': '39.5rem',
         '192': '48rem',
         '200': '50rem',
@@ -41,6 +42,7 @@ module.exports = {
         'medium': '390px',
         'long': '632px',
         'code-descr': 'calc(100%-200px)',
+        '108': '27rem',
       },
       lineHeight: {
         'a-little-bit-looser': '1.875rem',
