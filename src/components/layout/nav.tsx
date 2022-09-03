@@ -398,7 +398,7 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        <div className="hidden md:flex w-16 justify-end">
+        <div className="hidden md:flex justify-end rounded-full border-4 dark:border-gray-700 drop-shadow-2xl">
           <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'}>
             <StaticImage
               src="./../../images/about-face.png"
@@ -408,8 +408,7 @@ const NavBar = () => {
               // objectPosition='top'
               width={25}
               height={37}
-              imgClassName='border-2 border-green-200'
-              className="hidden md:block md:w-9 md:h-9 lg:w-12 lg:h-12 p-0 border bg-[#FEF7E4] border-gray-900 dark:border-gray-500 rounded-full drop-shadow-[0_3px_5px_rgba(0,0,0,0.2)]"
+              className="hidden md:block md:w-9 md:h-9 lg:w-12 lg:h-12 p-0 border bg-[#FEF7E4] dark:bg-[#482E22] border-gray-400 dark:border-gray-500 rounded-full "
             />
           </Link>
         </div>

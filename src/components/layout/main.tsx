@@ -1,18 +1,13 @@
 /* eslint-disable camelcase */
 import * as React from 'react';
 import { ImageDataLike } from 'gatsby-plugin-image';
-import { useTranslation } from 'react-i18next';
 import Tile from './tile';
-import Slogan from './slogan';
 
-const Main = ({ data } : DataProps) => {
-  const { t } = useTranslation();
-  return (
-    <div className='mt-7 mx-2'>
-      {/* <Slogan /> */}
-      <div className='mt-7'>
-        <div className='grid grid-cols-2 sm:grid-cols-4 grid-rows-auto grid-flow-row gap-4'>
-          {
+const Main = ({ data } : DataProps) => (
+  <div className='mt-7 mx-2'>
+    <div className='mt-7'>
+      <div className='grid grid-cols-2 sm:grid-cols-4 grid-rows-auto grid-flow-row gap-4'>
+        {
             data.allMdx.nodes.map((node, i) => (
               <Tile
                 key={node.id}
@@ -29,11 +24,10 @@ const Main = ({ data } : DataProps) => {
               />
             ))
             }
-        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Main;
 
