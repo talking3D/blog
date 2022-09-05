@@ -7,6 +7,10 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    screens: {
+      'xs': '414px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         'even-darker': '#231F20',
@@ -43,6 +47,7 @@ module.exports = {
         'long': '632px',
         'code-descr': 'calc(100%-200px)',
         '108': '27rem',
+        '1/2': '50%',
       },
       lineHeight: {
         'a-little-bit-looser': '1.875rem',
