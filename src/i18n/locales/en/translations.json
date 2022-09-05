@@ -41,7 +41,7 @@
     "unexamined_life": "<0>The unexamined life is not worth living.</0> <1>Socrates</1>",
     "the_story": "<0>I had graduated studies with great hopes. And with an overwhelming feeling that I know very little. It was the beginning that life may have written for many of us. By all means for me. There was one direction. Forward. So I started my march. I started gaining knowledge and experience in small steps. Or I would rather say the experience and acquired knowledge.</0><1>The first job in trade showed how the heart of every business works. In particular, that it is people who do business, not products or services. I also realized an important thing - that I can do anything I want to. So?</1><2>Change of job. Logistics. It allowed me to develop my analytical skills and practice what I had known only in theory. I felt that my professional workshop was finally gaining value. Time was rushing inexorably in the only direction it knew, bringing successive changes. It included a new job.</2><3>Data analysis. From then on, my professional tasks focused on this. It seemed that I was rushing forward, and the world slowed down. I lived with the feeling that there were no impossible tasks or unsolvable problems. I thought this was my place on Earth. Unfortunately. By clinging to this piece of dry land, I missed out on the currents that the world travelled towards an unknown tomorrow.</3> <4>I woke up. I was already in a new reality dominated by artificial intelligence and machine learning. What about me? As if I were starting everything from scratch. I realized that I didn't know much again.</4> <5>With one difference - today, I know what I don't know. And this comes more every day... Honestly? I'm happy about this. After all, you only develop when you learn something!</5>",
     "socrates_on_wisdom": "<0>I am wiser than this man, for neither of us appears to know anything great and good; but he fancies he knows something, although he knows nothing; whereas I, as I do not know anything, so I do not fancy I do. In this trifling particular, then, I appear to be wiser than he, because I do not fancy I know what I do not know.</0> <1>Socrates on wisdom</1>",
-    "contact": "<0>My name is</0><1></1><2>Krzysztof Skwarski</2><3></3><4>and I invite you to</4><5></5><6>contact</6><7></7><8>me.</8>",
+    "contact": "My name is <2>Krzysztof Skwarski</2> and I invite you to <6>contact</6> me.",
     "contact_attr": "mailto:krzysztof@talking3d.com?subject=Hi!%20I've%20found%20this%20contact%20on%20your%20blog&body=...just%20drop%20here%20a%20few%20words%20to%20me..."
   },
   "footer": {
@@ -52,6 +52,10 @@
     "author": " and humble ",
     "author_himself": " author ",
     "this_blog": " of this blog."
+  },
+  "404page": {
+    "couldnt_find": "It looks like we couldn&apos;t find what you are looking for.",
+    "see_all_posts": "<0>See</0> the full list of posts on our blog!"
   },
   "copyright": "<0>Talking3D</0> blog is proudly powered by the great <2>Gatsby</2> and humble <4>author</4> of this blog."
 }
