@@ -44,7 +44,7 @@
     "unexamined_life": "<0>Bezmyślne życie, nie jest nic warte.</0> <1>Sokrates</1>",
     "the_story": "<0>Skończone studia, ogromne nadzieje i nieodparte uczucie, że umiem naprawdę niewiele. To był początek, który być może napisało życie dla wielu z nas. Napewno dla mnie. Kierunek był jeden. Do przodu. Rozpocząłem więc swój marsz. Małymi krokami zacząłem zdobywać wiedzę i doświadczenie. W zasadzie doświadczenie a z nim wiedzę.</0> <1>Pierwsza praca w handlu, pokazała jak działa serce każdego biznesu. Uświadomiła, ze biznes tworzą ludzie a nie produkty czy usługi. Zrozumiałem, też bardzo ważną rzecz - że mogę w życiu robić wszystko, pod warunkiem, że tego naprawdę chcę. Więc?</1> <2>Zmiana pracy. Logistyka. Dała mi możliwość rozwijania analitycznych umiejętności i pozwoliła w praktyce sprawdzić to, co do tej pory znałem tylko w teorii. Poczułem, że mój zawodowy warsztat w końcu nabierał wartości. A czas nieubłaganie pędził w jedynym sobie znanym kierunku, przynosząc kolejne zmiany. W tym także nową pracę.</2> <3>Analiza danych. Od tej pory na tym koncentrowały się moje, zawodowe zadania. Wydawało mi się, że gnam do przodu a Świat nieco zwolnił. Żyłem w poczuciu, że nie ma zadań nie do wykonania i problemów nie do rozwiązania. Myślałem, że to moje miejsce na Ziemii. Niestety. Trzymając się kurczowo tego kawałka suchego lądu, przegapiłem prądy, którymi Świat podążał w stronę nieznanego jutra.</3><4>Ocknąłem się. Byłem już w nowej rzeczywistości, którą zdominowała sztuczna inteligencja i uczenie maszynowe. A ja? Jakbym zaczynał wszystko od początku. Zdałem sobie sprawę, że znowu umiem niewiele.</4> <5>Z jedną różnicą – dzisiaj, wiem czego nie wiem. I codziennie tego przybywa… Szczerze? Bardzo mnie to cieszy. Przecież rozwijasz się tylko wtedy, gdy się czegoś uczysz!</5>",
     "socrates_on_wisdom": "<0>Jestem mądrzejszy od tego człowieka, bo wydaje się, że choć żadne z nas nie wie nic wielkiego i dobrego, jemu się wydaje, że coś wie, chociaż nic nie wie. Natomiast ja, jak nic nie wiem, to mi się to nie podoba. W tym błahym szczególe wydaję się więc mądrzejszy od niego, bo nie wydaje mi się, że wiem, czego nie wiem.</0> <1>Sokrates o mądrości</1>",
-    "contact": "<0>Nazywam się</0><1></1><2>Krzysztof Skwarski</2><3></3><4>i zapraszem Cię do</4><5></5><6>kontaktu</6><7></7><8>ze mną.</8>",
+    "contact": "Nazywam się <2>Krzysztof Skwarski</2> i zapraszam Cię do <6>kontaktu</6> ze mną.",
     "contact_attr": "mailto:krzysztof@talking3d.com?subject=Cześć!%20Znalazłem%20ten%20kontakt%20na%20Twoim%20blogu&body=...po%20prostu%20napisz%20do%20mnie%20tutaj%20kilka%20słów..."
   },
   "footer": {
@@ -55,6 +55,10 @@
     "author": " oraz skromnego ",
     "author_himself": " autora ",
     "this_blog": " tego bloga."
+  },
+  "404page": {
+    "couldnt_find": "Wygląda na to, że niemożemy znaleźć tego czego szukasz.",
+    "see_all_posts": "<0>Zobacz</0> pełną listę naszych artykułów!"
   },
   "copyright": "<0>Talking3D</0> blog jest dumnie napędzany przez wspaniałego <2>Gatsby</2> oraz skromnie przez <4>authora</4> tego bloga."
 }
