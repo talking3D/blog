@@ -46,7 +46,7 @@ main pre+table tr {
     @apply bg-white dark:bg-even-darker transition-colors;
   };
   .heading-span-letter {
-    @apply text-4xl text-cube-like;
+    @apply text-3xl sm:text-4xl text-cube-like;
   };
   /* To overcome image overflow problem in Safari */
   .image-overflow {

@@ -5,7 +5,7 @@ const Slogan = () => {
   const { t } = useTranslation();
   return (
     <div className='mt-7 mx-2'>
-      <h3 className='font-roboto text-3xl font-bold'>
+      <h3 className='font-roboto text-2xl sm:text-3xl font-bold leading-3'>
         <span className='heading-span-letter'>D</span>
         <span className='dark:text-white'>ata</span>
         {' '}
@@ -15,8 +15,8 @@ const Slogan = () => {
         <span className='heading-span-letter'>D</span>
         <span className='dark:text-white'>iscussion</span>
       </h3>
-      <h4 className='font-roboto text-2xl font-medium text-gray-700'>
-        <span className='dark:text-slate-300'>{ t('main.subtitle') }</span>
+      <h4 className='font-roboto text-2xl font-medium text-gray-700 leading-3'>
+        <span className='dark:text-slate-300 text-base md:text-xl lg:text-2xl'>{ t('main.subtitle') }</span>
       </h4>
     </div>
   );
