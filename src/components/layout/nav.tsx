@@ -17,12 +17,12 @@ import { Link } from 'gatsby';
 import { useLocation } from "@reach/router";
 import classNames from 'classnames/bind';
 import { t } from 'i18next';
+import { LogoVertical, LogoHorizontal } from '../common/Logo';
 import useActiveLocalePath from '../hooks/useActiveLocalePath';
 import useLocale from '../hooks/useLocale';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
 // import SearchBar from '../common/Search';
 import LocaleIcon, { LocaleIconPL, LocaleIconGB } from '../common/LocaleIcon';
-import { LogoVertical, LogoHorizontal } from '../common/Logo';
 
 const NavBar = () => {
   const blogState = React.useContext(BlogStateContext);
