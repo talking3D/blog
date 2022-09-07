@@ -2,10 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300;1,400;1,500;1,600&display=swap');
+
+.math-display {
+  @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full;
+};
+code {
+  @apply block mr-auto ml-auto py-4 px-4 my-6  max-w-max border border-stone-300 rounded-xl text-base;
+};
+/* workaround to make inline katex-math look like block level in images descriptions */
+br.before-equation+span.math.math-inline {
+  @apply block my-6 text-center;
+};
+
+p {
+  @apply py-2;
+};
+main table {
+  @apply my-6 ml-auto mr-auto table-auto px-4 text-xs;
+};
+main table thead {
+  @apply bg-stone-100;
+};
+main table tr {
+ @apply h-12 border-b border-stone-100;
+};
+main table td, th {
+ @apply px-4;
+};
+.inline-code {
+  @apply font-mono tracking-wider text-lg;
+};
+
+main pre+table {
+  @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 mr-auto ml-0 font-mono text-sm !important;
+}
+main pre+table tr {
+  @apply h-8 !important;
+}
 
 @layer base {
+  body {
+    @apply bg-white dark:bg-even-darker transition-colors;
+  };
   .heading-span-letter {
-    @apply text-4xl text-cube-like;
+    @apply text-3xl sm:text-4xl text-cube-like;
+  };
+  /* To overcome image overflow problem in Safari */
+  .image-overflow {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  };
+
+}
+
+@layer components {
+  .from-inline-image {
+    @apply grid grid-cols-3 lg:grid-cols-2 col-span-3 w-full py-4 pl-4 pr-4 my-4 bg-gradient-to-b from-white dark:from-transparent to-stone-100 dark:to-zinc-800 md:bg-gradient-to-r lg:from-white dark:lg:from-transparent lg:to-stone-100 dark:lg:to-zinc-800 rounded-b-xl md:rounded-r-xl;
+  };
+
+  .from-inline-image-no-caption {
+    @apply grid col-span-3 lg:col-start-2 lg:col-span-2 my-4 py-4 px-4 bg-gradient-to-r from-stone-100 dark:from-zinc-800 via-white dark:via-transparent to-stone-100 dark:to-zinc-800 rounded-xl md:bg-gradient-to-r md:from-white md:to-stone-100 md:rounded-r-xl lg:bg-gradient-to-r lg:from-stone-100 lg:via-white lg:to-stone-100 lg:rounded-xl;
+  };
+  .from-inline-image img {
+    @apply border border-stone-400 p-4;
   }
+
+  .post-paragraph {
+    @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full;
+  };
+  .post-paragraph ol {
+    @apply list-decimal ml-4 pl-4 my-4;
+  };
+  .post-paragraph ol>li {
+    @apply pl-2 mb-4;
+  };
+  .table-of-contents-active-title {
+    @apply bg-stone-200 dark:bg-slate-700 py-2 border-l-4 border-stone-400;
+  };
+}
+
+@layer utilities {
+  .filter-modal-visible {
+    @apply bg-neutral-800/40 dark:bg-zinc-300/50 transition-colors ease-in-out duration-500;
+  };
+  .filter-content-visible {
+    @apply opacity-100 top-2 md:top-10 my-4 md:my-20;
+  };
+  a.visible {
+    @apply hover:underline text-blue-600 dark:text-blue-400;
+  };
 }

@@ -9,8 +9,8 @@ const useScreenSize = () => {
   const [screenSize, setScreenSize] = React.useState<ScreenSize>({
     width: undefined,
     height: undefined,
-  })
-// Update screenWidth on widow resize
+  });
+  // Update screenWidth on widow resize
   React.useEffect(() => {
     const handleScreenChange = (): void => setScreenSize({
       width: window.innerWidth,
@@ -18,10 +18,10 @@ const useScreenSize = () => {
     });
     // Get initial screen size
     handleScreenChange();
-    window.addEventListener('resize', handleScreenChange)
-    return () => removeEventListener('resize', handleScreenChange)
-  }, [])
+    window.addEventListener('resize', handleScreenChange);
+    return () => window.removeEventListener('resize', handleScreenChange);
+  }, []);
   return screenSize;
-}
+};
 
 export default useScreenSize;

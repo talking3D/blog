@@ -1,0 +1,61 @@
+{
+  "main": {
+    "subtitle": "Generally speaking, a technically oriented blog..."
+  },
+  "search": {
+    "find_on_blog": "Find on the blog..."
+  },
+  "toc": {
+    "cannot_find": "We couldn't find any structure in this post"
+  },
+  "post": {
+    "home_page": "Go to Home Page",
+    "published": "Published on",
+    "hero_image_by": "Photo by",
+    "hero_image_text_preposition": "on"
+  },
+  "filter": {
+    "filter": "Filter",
+    "clear_filter": "Clear filter",
+    "show": "Show",
+    "keyWithCount_zero": "all posts",
+    "keyWithCount_one": "{{count}} post",
+    "keyWithCount_other": "{{count}} posts"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "dots_menu": {
+    "language": "Language",
+    "theme": "Theme",
+    "github": "Github",
+    "author": "About the author"
+  },
+  "about": {
+    "dots": "<0>The data is like dots on a canvas that someone accidentally (or not…) left on it yesterday.</0><1>Machine learning is like the palette and brush with which the artist paints a picture of tomorrow, carefully connecting the dots.</1>",
+    "dots_thinker": "It popped into my head,  I don't know where from. I may not be the one who thought it up...",
+    "working_with_data": "I've learned from working with data that there's always a story behind it. Sometimes it is a seemingly boring story, which we flip through with more and more difficulty, to be finally delighted with the bizarre twist of the plot. At other times, it's a fascinating and agile short story, the ending of which leaves you at a crossroads with the feeling that neither of them has a good end. Most often, however, it is the prose of life that makes us play the role of the main narrator and put together something out of torn pieces. And each of them is a hero who came here from a completely different story.",
+    "carrier_briefly": "<0>In the beginning, I worked in a small company that wanted to be a large corporation in its ambitious plans.</0> <1>Later, I found myself in a medium-sized company that was already firmly in corporate mode.</1> <2>Then I got into a large organization that was trying with all its power never to become a corporation.</2> <3>Today I know that regardless of the form, place, and time, the most important thing is to devote your energy to activities that can help others at least a little. I believe this is the right recipe for a better world.</3>",
+    "unexamined_life": "<0>The unexamined life is not worth living.</0> <1>Socrates</1>",
+    "the_story": "<0>I had graduated studies with great hopes. And with an overwhelming feeling that I know very little. It was the beginning that life may have written for many of us. By all means for me. There was one direction. Forward. So I started my march. I started gaining knowledge and experience in small steps. Or I would rather say the experience and acquired knowledge.</0><1>The first job in trade showed how the heart of every business works. In particular, that it is people who do business, not products or services. I also realized an important thing - that I can do anything I want to. So?</1><2>Change of job. Logistics. It allowed me to develop my analytical skills and practice what I had known only in theory. I felt that my professional workshop was finally gaining value. Time was rushing inexorably in the only direction it knew, bringing successive changes. It included a new job.</2><3>Data analysis. From then on, my professional tasks focused on this. It seemed that I was rushing forward, and the world slowed down. I lived with the feeling that there were no impossible tasks or unsolvable problems. I thought this was my place on Earth. Unfortunately. By clinging to this piece of dry land, I missed out on the currents that the world travelled towards an unknown tomorrow.</3> <4>I woke up. I was already in a new reality dominated by artificial intelligence and machine learning. What about me? As if I were starting everything from scratch. I realized that I didn't know much again.</4> <5>With one difference - today, I know what I don't know. And this comes more every day... Honestly? I'm happy about this. After all, you only develop when you learn something!</5>",
+    "socrates_on_wisdom": "<0>I am wiser than this man, for neither of us appears to know anything great and good; but he fancies he knows something, although he knows nothing; whereas I, as I do not know anything, so I do not fancy I do. In this trifling particular, then, I appear to be wiser than he, because I do not fancy I know what I do not know.</0> <1>Socrates on wisdom</1>",
+    "contact": "My name is <2>Krzysztof Skwarski</2> and I invite you to <6>contact</6> me.",
+    "contact_attr": "mailto:krzysztof@talking3d.com?subject=Hi!%20I've%20found%20this%20contact%20on%20your%20blog&body=...just%20drop%20here%20a%20few%20words%20to%20me..."
+  },
+  "footer": {
+    "copyright": "Copyright",
+    "blog_pl": "",
+    "blog_en": " blog ",
+    "powered": " is proudly powered by the great ",
+    "author": " and humble ",
+    "author_himself": " author ",
+    "this_blog": " of this blog."
+  },
+  "404page": {
+    "couldnt_find": "It looks like we couldn&apos;t find what you are looking for.",
+    "see_all_posts": "<0>See</0> the full list of posts on our blog!"
+  },
+  "copyright": "<0>Talking3D</0> blog is proudly powered by the great <2>Gatsby</2> and humble <4>author</4> of this blog."
+}
