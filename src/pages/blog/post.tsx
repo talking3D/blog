@@ -13,7 +13,7 @@ import { BsClockFill, BsHouseFill } from 'react-icons/bs';
 import classNames from 'classnames/dedupe';
 import { t } from 'i18next';
 import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
-import PostImage from '../../components/common/Image';
+import PostImage from '../../components/common/PostImage';
 import TableOfContents, { TableContentsType } from '../../components/common/TableOfContents';
 import { Header3, Header4 } from '../../components/common/PostHeaders';
 import useLocale from '../../components/hooks/useLocale';
