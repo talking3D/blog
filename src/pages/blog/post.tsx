@@ -44,7 +44,6 @@ type DataProps = {
       hero_image_credit_text: string
       hero_image_source: string
       hero_image_credit_link: string
-      hero_color: string
       hero_image: ImageDataLike
     }
     body: string
@@ -265,7 +264,6 @@ export const query = graphql`
         hero_image_author_link
         hero_image_source
         hero_image_credit_link
-        hero_color
         hero_image {
           childImageSharp {
             gatsbyImageData(width: 1280, height: 308, placeholder: DOMINANT_COLOR, formats: JPG, transformOptions: {cropFocus: ATTENTION, fit: COVER})
