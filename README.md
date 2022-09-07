@@ -15,7 +15,7 @@
     <p style="text-align: end;"><i>Albert Einstein</i></p>
   </div>
 </div>
-I've created this blog to help me better understand things that are interesting to me but what remain a mystery (at least for me).
+I've created this blog to help me better understand things that are interesting to me but which remain a mystery (at least for me).
 I have always shown a love for mathematics and numbers. I am passionate about the world of IT and specifically in aspects of artificial intelligence and software development.  
 
 If for whatever reason, you would like to accompany me in discovering these secrets, I will be happier. I wholeheartedly invite you to follow my [posts](http://talking3d.com) and submit any comments or thoughts if any come to your mind.  
