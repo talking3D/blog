@@ -18,7 +18,6 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-remark-images`,
-    `gatsby-plugin-gatsby-cloud`,
     `gatsby-remark-katex`,
     {
       resolve: `gatsby-plugin-mdx`,
@@ -48,6 +47,7 @@ const config: GatsbyConfig = {
       },
     },
     `gatsby-transformer-json`,
+    `gatsby-plugin-gatsby-cloud`,
   ],
 };
 
