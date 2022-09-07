@@ -5,7 +5,7 @@ export interface LogoProps extends React.SVGProps<SVGSVGElement> {
   textColor?: string
   cubeColor?: string
 }
-export const LogoHorizontal = ({
+const LogoHorizontal = ({
   width = '100%',
   height = '100%',
   textColor = '#231F20',
@@ -20,7 +20,7 @@ export const LogoHorizontal = ({
   </svg>
 );
 
-export const LogoVertical = ({
+const LogoVertical = ({
   width = '100%',
   height = '100%',
   textColor = '#231F20',
@@ -34,3 +34,5 @@ export const LogoVertical = ({
     <path d="M139.169,198.62l131.149,75.728l131.157,-75.728l-262.306,0Z" fill={cubeColor} fillRule="nonzero" />
   </svg>
 );
+
+export { LogoHorizontal, LogoVertical };
