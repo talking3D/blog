@@ -72,22 +72,22 @@ const PostImage = (props: any) => {
           wrapperFigure.className = 'from-inline-image-no-caption';
         }
       }
+      if (imgRes !== null) {
+        const newDivWrapper = document.createElement('div');
+        newDivWrapper
+          .classList.add(
+            'col-start-1',
+            'col-end-4',
+            'lg:col-start-1',
+            'lg:col-end-2',
+            'overflow-hidden',
+            'h-auto',
+            'px-2',
+          );
 
-      const newDivWrapper = document.createElement('div');
-      newDivWrapper
-        .classList.add(
-          'col-start-1',
-          'col-end-4',
-          'lg:col-start-1',
-          'lg:col-end-2',
-          'overflow-hidden',
-          'h-auto',
-          'px-2',
-        );
-
-      newDivWrapper.appendChild(imgRes!);
-
-      parentParagraphElement?.parentElement!.replaceChild(newDivWrapper, parentParagraphElement);
+        newDivWrapper.appendChild(imgRes);
+        parentParagraphElement?.parentElement!.replaceChild(newDivWrapper, parentParagraphElement);
+      }
     }
   }, []);
 
