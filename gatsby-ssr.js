@@ -1,6 +1,11 @@
-// import CustomLayout from './wrapPageElement';
-// import BlogContextProvider from './wrapRootElement';
-import BlogContextProvider from './wrapPageElement';
+import './src/styles/global.css';
+import 'katex/dist/katex.min.css';
+
+import BlogContextProvider from './wrapRootElement';
+import BlogLayout from './wrapPageElement';
 
 // eslint-disable-next-line import/prefer-default-export
-export const wrapPageElement = BlogContextProvider;
+export const wrapRootElement = BlogContextProvider;
+
+// eslint-disable-next-line import/prefer-default-export
+export const wrapPageElement = BlogLayout;
