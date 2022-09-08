@@ -333,8 +333,10 @@ const NavBar = () => {
             </div>
           </div>
           <div className='w-10 h-10 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-full'>
-            <div className='w-4 h-4 mr-2 self-center'>
-              <BsGithub size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
+            <div className='w-4 h-4 mr-auto ml-auto self-center'>
+              <a href='https://github.com/talking3D' target='_blank' rel='noreferrer'>
+                <BsGithub size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
+              </a>
             </div>
           </div>
         </div>
