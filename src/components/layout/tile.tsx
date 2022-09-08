@@ -91,7 +91,7 @@ const Tile = ({
       <div className="w-full h-full image-overflow overflow-hidden rounded-2xl">
         <Link to={`${isDefault ? '/' : `/${locale}/`}blog/${slug}`}>
           <div className="flex flex-col justify-between h-full rounded-2xl">
-            <GatsbyImage image={image!} alt="altext" className="absolute -z-50 w-full rounded-2xl" />
+            <GatsbyImage image={image!} alt="altext" className="!absolute -z-50 w-full rounded-2xl" />
             <div className="flex flex-col">
               <div
                 className='flex items-center py-1 px-2 self-end rounded-tr-xl rounded-bl-xl text-sm font-normal'

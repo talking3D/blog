@@ -173,7 +173,7 @@ const Filter = () => {
         <div className="flex items-center py-4 h-16 border-b-slate-300 border-b relative">
           <span className="absolute block w-full text-lg dark:text-white text-center font-semibold -z-1">{t('filter.filter')}</span>
           <div id="xfilter" className="ml-8 w-8 h-8 z-10 relative">
-            <BsXLg size={18} className="m-0 z-40 absolute top-1/4 left-1/4" color={document.documentElement.classList.contains('dark') ? '#FFF' : '#000'} />
+            <BsXLg size={18} className="m-0 z-40 absolute top-1/4 left-1/4" color={typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? '#FFF' : '#000'} />
           </div>
         </div>
         <div className="my-4">

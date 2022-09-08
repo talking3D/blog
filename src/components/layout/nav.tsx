@@ -17,12 +17,14 @@ import { Link } from 'gatsby';
 import { useLocation } from "@reach/router";
 import classNames from 'classnames/bind';
 import { t } from 'i18next';
+// import { LogoVertical, LogoHorizontal } from '../common/Logo';
+import LogoVertical from '../common/LogoVertical';
+import LogoHorizontal from '../common/LogoHorizontal';
 import useActiveLocalePath from '../hooks/useActiveLocalePath';
 import useLocale from '../hooks/useLocale';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
 // import SearchBar from '../common/Search';
 import LocaleIcon, { LocaleIconPL, LocaleIconGB } from '../common/LocaleIcon';
-import { LogoVertical, LogoHorizontal } from '../common/Logo';
 
 const NavBar = () => {
   const blogState = React.useContext(BlogStateContext);
@@ -220,7 +222,7 @@ const NavBar = () => {
     localeDotsMenuWrapper?.classList.toggle(menuHoverClass);
   };
 
-  const setElementThemeColor = ({ dark = '#FFF', light = '#231F20' }: ThemeColors) => (document.documentElement.classList.contains('dark') ? dark : light);
+  const setElementThemeColor = ({ dark = '#FFF', light = '#231F20' }: ThemeColors) => (typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? dark : light);
   return (
     <nav>
       <div className="flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5">
@@ -331,8 +333,10 @@ const NavBar = () => {
             </div>
           </div>
           <div className='w-10 h-10 hover:bg-stone-100 dark:hover:bg-zinc-800 rounded-full'>
-            <div className='w-4 h-4 mr-2 self-center'>
-              <BsGithub size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
+            <div className='w-4 h-4 mr-auto ml-auto self-center'>
+              <a href='https://github.com/talking3D' target='_blank' rel='noreferrer'>
+                <BsGithub size={20} className='mx-auto mt-2.5' color={setElementThemeColor({ light: '#000' })} />
+              </a>
             </div>
           </div>
         </div>

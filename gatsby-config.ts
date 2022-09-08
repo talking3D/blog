@@ -12,6 +12,9 @@ const config: GatsbyConfig = {
     title: `talking3d`,
     siteUrl: `https://www.talking3d.com`,
   },
+  flags: {
+    FAST_DEV: true,
+  },
   plugins: [
     'gatsby-plugin-postcss',
     `gatsby-plugin-image`,
