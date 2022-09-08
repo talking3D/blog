@@ -222,7 +222,7 @@ const NavBar = () => {
     localeDotsMenuWrapper?.classList.toggle(menuHoverClass);
   };
 
-  const setElementThemeColor = ({ dark = '#FFF', light = '#231F20' }: ThemeColors) => (document.documentElement.classList.contains('dark') ? dark : light);
+  const setElementThemeColor = ({ dark = '#FFF', light = '#231F20' }: ThemeColors) => (typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? dark : light);
   return (
     <nav>
       <div className="flex items-center justify-between mx-4 xl:mx-1 h-22.5 md:h-20 lg:h-22.5">
