@@ -9,7 +9,8 @@ import rehypeKatex from 'rehype-katex';
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `talking3d`,
+    title: `Talking3d - Domain Driven Discussion - Generally speaking, a technically oriented blog`,
+    description: `Personal blog about data science, software development and information technology (IT)`,
     siteUrl: `https://www.talking3d.com`,
   },
   flags: {
