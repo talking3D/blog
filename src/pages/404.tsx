@@ -36,5 +36,5 @@ const NotFoundPage = () => (
 export default NotFoundPage;
 
 export const Head = () => (
-  <SEO title='We cannot find what you are looking for' />
+  <SEO title={t('404page.seo_title')} />
 );

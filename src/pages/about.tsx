@@ -137,5 +137,5 @@ const About = () => {
 export default About;
 
 export const Head = () => (
-  <SEO title='About author of the blog' />
+  <SEO title={t('about.seo_title')} />
 );
