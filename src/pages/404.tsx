@@ -5,6 +5,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { Trans } from 'react-i18next';
 import { t } from 'i18next';
 import useActiveLocalePath from '../components/hooks/useActiveLocalePath';
+import SEO from '../components/common/SEO';
 
 const NotFoundPage = () => (
   <div className='dark:text-white'>
@@ -33,3 +34,7 @@ const NotFoundPage = () => (
 );
 
 export default NotFoundPage;
+
+export const Head = () => (
+  <SEO title={t('404page.seo_title')} />
+);
