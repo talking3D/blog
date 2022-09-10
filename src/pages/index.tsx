@@ -4,6 +4,7 @@ import * as React from "react";
 import { graphql } from 'gatsby';
 import Main, { DataProps, PostNode } from '../components/layout/main';
 import { BlogStateContext } from '../context/BlogContextProvider';
+import SEO from '../components/common/SEO';
 
 // markup
 const IndexPage = ({ data }: DataProps) => {
@@ -25,6 +26,10 @@ const IndexPage = ({ data }: DataProps) => {
 };
 
 export default IndexPage;
+
+export const Head = () => (
+  <SEO />
+);
 
 export const query = graphql`
   query Index ($locale: String) {

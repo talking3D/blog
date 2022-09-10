@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import { BsChatQuote } from 'react-icons/bs';
 import * as React from 'react';
 import useScreenSize from '../components/hooks/useScreenSize';
+import SEO from '../components/common/SEO';
 
 const About = () => {
   const { width } = useScreenSize();
@@ -134,3 +135,7 @@ const About = () => {
 };
 
 export default About;
+
+export const Head = () => (
+  <SEO title='About author of the blog' />
+);

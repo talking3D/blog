@@ -18,6 +18,7 @@ import TableOfContents, { TableContentsType } from '../../components/common/Tabl
 import { Header3, Header4 } from '../../components/common/PostHeaders';
 import useLocale from '../../components/hooks/useLocale';
 import { getColorContrast } from '../../components/utils/helpers';
+import SEO from '../../components/common/SEO';
 
 // Use shortcodes
 const components = {
@@ -246,6 +247,10 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 };
 
 export default BlogPost;
+
+export const Head = ({ data: { mdx } }: PageProps<DataProps>) => (
+  <SEO title={mdx.frontmatter.title} />
+);
 
 export const query = graphql`
   query Post ($postId: String) {
