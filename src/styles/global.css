@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300;1,400;1,500;1,600&display=swap');
 
 .math-display {
-  @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full;
+  @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full overflow-scroll;
 };
 code {
   @apply block mr-auto ml-auto py-4 px-4 my-6  max-w-max border border-stone-300 rounded-xl text-base;
