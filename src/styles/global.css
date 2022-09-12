@@ -79,6 +79,9 @@ main pre+table tr {
   .table-of-contents-active-title {
     @apply bg-stone-200 dark:bg-slate-700 py-2 border-l-4 border-stone-400;
   };
+  .post-paragraph-table {
+    @apply col-start-1 col-span-3 md:col-start-2 md:col-span-2 w-full overflow-scroll;
+  };
 }
 
 @layer utilities {
