@@ -32,7 +32,6 @@ const PostImage = (props: any) => {
 
       // If paragraph tag has already got div parent then replace css paragraph class with image class
       if (paragraphParent!.tagName === 'DIV') {
-        console.log('hello form Paragraph parent tagname div');
         const newFigureWrapper = document.createElement('figure');
         newFigureWrapper.className = 'from-inline-image';
         paragraphParent?.parentElement?.replaceChild(newFigureWrapper, paragraphParent);
@@ -48,7 +47,6 @@ const PostImage = (props: any) => {
 
       // Otherwise add DIV parent and and attach image style to it
       } else {
-        console.log('from no DIV parent');
         const wrapperFigure = document.createElement('figure');
         wrapperFigure.classList.add('from-inline-image');
         paragraphParent?.replaceChild(wrapperFigure, parentParagraphElement!);
