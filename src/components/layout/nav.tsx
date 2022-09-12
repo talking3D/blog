@@ -396,8 +396,16 @@ const NavBar = () => {
                     }
                   </li>
                 </ul>
-                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>{t('dots_menu.github')}</li>
-                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>{t('dots_menu.author')}</li>
+                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>
+                  <a href='https://github.com/talking3D' target='_blank' rel='noreferrer'>
+                    {t('dots_menu.github')}
+                  </a>
+                </li>
+                <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>
+                  <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'}>
+                    {t('dots_menu.author')}
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

@@ -6,7 +6,7 @@ import Slogan from './slogan';
 import Filter from '../common/Filter';
 import GoToTop from '../common/GoTop';
 import Footer from './footer';
-import useActiveLocalePath from '../hooks/useActiveLocalePath';
+import usePathPattern from '../hooks/usePathPattern';
 
 export interface LayoutProps {
   children?: React.FC<React.ReactNode>
@@ -15,7 +15,7 @@ export interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => (
   <div className='block mx-auto w-screen max-w-screen-xl pb-4'>
     <NavBar />
-    { !useActiveLocalePath('blog') && <Slogan />}
+    { !usePathPattern('blog') && <Slogan />}
     { children }
     <Filter />
     <GoToTop />

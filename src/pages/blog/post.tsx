@@ -58,7 +58,11 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
     }
     const parent = node.parentNode;
     const wrapperDiv = document.createElement('div');
-    wrapperDiv.classList.add('post-paragraph');
+    if (node.tagName === 'TABLE') {
+      wrapperDiv.classList.add('post-paragraph-table');
+    } else {
+      wrapperDiv.classList.add('post-paragraph');
+    }
     parent?.replaceChild(wrapperDiv, node);
     wrapperDiv.appendChild(node);
   };
