@@ -22,7 +22,7 @@ main table {
   @apply my-6 ml-auto mr-auto table-auto px-4 text-xs;
 };
 main table thead {
-  @apply bg-stone-100;
+  @apply bg-stone-100 dark:bg-stone-800;
 };
 main table tr {
  @apply h-12 border-b border-stone-100;
