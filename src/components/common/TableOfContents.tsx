@@ -28,7 +28,13 @@ const NoItems = () => (
   </div>
 );
 
-const listItemId = (text: string) => `nav-${text.toLowerCase().replaceAll(' ', '-').replaceAll(/[“”:.,]/g, "")}`;
+export const standarizeId = (idProposal: string) => {
+  let itemId = idProposal.toLocaleLowerCase();
+  itemId = itemId.replaceAll(' ', '-').replaceAll(/[“”:….,'"?()]/g, "");
+  return itemId;
+};
+
+export const listItemId = (text: string) => `nav-${standarizeId(text)}`;
 
 const ItemsList = ({ tableOfContents }: ItemListProps) => (
   <ul id='table-of-contents-items' className='text-sm'>
