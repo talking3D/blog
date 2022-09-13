@@ -113,7 +113,7 @@ const About = () => {
               layout='constrained'
             />
           </div>
-          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-6'>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-2 lg:-mt-12'>
             <StaticImage
               src='../images/about-me-on-desk.png'
               alt='Drawing showing author dreaming at the desk'
@@ -137,7 +137,7 @@ const About = () => {
               layout='constrained'
             />
           </div>
-          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-6'>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-12'>
             <StaticImage
               src='../images/about-me-at-desk.png'
               alt='Drawing showing the author of the blog working on a computer'
