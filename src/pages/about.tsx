@@ -75,26 +75,82 @@ const About = () => {
         </div>
       </div>
       <div className='w-full min-h-full py-8 px-4 md:px-12 bg-[#FEF7E4] dark:bg-[#482E22] leading-loose'>
-        <Trans i18nKey='about.the_story'>
-          <p>
-            I had graduated studies with great hopes. And with an overwhelming feeling that I know very little. It was the beginning that life may have written for many of us. By all means for me. There was one direction. Forward. So I started my march. I started gaining knowledge and experience in small steps. Or I would rather say the experience and acquired knowledge.
-          </p>
-          <p>
-            The first job in trade showed how the heart of every business works. In particular, that it is people who do business, not products or services. I also realized an important thing - that I can do anything, as long as I want to. So?
-          </p>
-          <p>
-            Change of job. Logistics. It allowed me to develop my analytical skills and practice what I had known only in theory. I felt that my professional workshop was finally gaining value. Time was rushing inexorably in the only direction it knew, bringing successive changes. It included a new job.
-          </p>
-          <p>
-            Data analysis. From then on, my professional tasks focused on this. It seemed that I was rushing forward, and the world slowed down. I lived with the feeling that there were no impossible tasks or unsolvable problems. I thought this was my place on Earth. Unfortunately. By clinging to this piece of dry land, I missed out on the currents that the world travelled towards an unknown tomorrow.
-          </p>
-          <p>
-            I woke up. I was already in a new reality dominated by artificial intelligence and machine learning. What about me? As if I were starting everything from scratch. I realized that I didn&apos;t know much again.
-          </p>
-          <p>
-            With one difference - today, I know what I don&apos;t know. And this comes more every day... Honestly? I&apos;m happy about this. After all, you only develop when you learn something!
-          </p>
-        </Trans>
+        {/* <Trans i18nKey='about.the_story'> */}
+        <div className='grid grid-template-rows-2 grid-rows-auto max-w-5xl mx-auto'>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap sm:flex-nowrap md:-mb-6'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+              I had graduated studies with great hopes. And with an overwhelming feeling that I know very little. It was the beginning that life may have written for many of us. By all means for me. There was one direction. Forward. So I started my march. I started gaining knowledge and experience in small steps. Or I would rather say the experience and acquired knowledge.
+            </p>
+            <StaticImage
+              src='../images/about-jurney-starts.png'
+              alt='Drawing showing author of the blog in front of mountains'
+              className='shrink justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+          </div>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap'>
+            <StaticImage
+              src='../images/about-agreement.png'
+              alt='Drawing showing author of the blog handshaking other mans hand'
+              className='justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center md:-mb-6'>
+              The first job in trade showed how the heart of every business works. In particular, that it is people who do business, not products or services. I also realized an important thing - that I can do anything, as long as I want to. So?
+            </p>
+          </div>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap sm:flex-nowrap md:-mt-6'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+              Change of job. Logistics. It allowed me to develop my analytical skills and practice what I had known only in theory. I felt that my professional workshop was finally gaining value. Time was rushing inexorably in the only direction it knew, bringing successive changes. It included a new job.
+            </p>
+            <StaticImage
+              src='../images/about-logistics.png'
+              alt='Drawing showing author of the working on tablet'
+              className='justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+          </div>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-6'>
+            <StaticImage
+              src='../images/about-me-on-desk.png'
+              alt='Drawing showing author dreaming at the desk'
+              className='justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+              Data analysis. From then on, my professional tasks focused on this. It seemed that I was rushing forward, and the world slowed down. I lived with the feeling that there were no impossible tasks or unsolvable problems. I thought this was my place on Earth. Unfortunately. By clinging to this piece of dry land, I missed out on the currents that the world travelled towards an unknown tomorrow.
+            </p>
+          </div>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap sm:flex-nowrap md:-mt-6'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+              I woke up. I was already in a new reality dominated by artificial intelligence and machine learning. What about me? As if I were starting everything from scratch. I realized that I didn&apos;t know much again.
+            </p>
+            <StaticImage
+              src='../images/about-sail-away.png'
+              alt='Drawing showing the author of the blog who is sitting on the island&quote;s shore watching sailing away yachts'
+              className='justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+          </div>
+          <div className='flex flex-initial justify-between gap-x-4 flex-wrap-reverse sm:flex-nowrap md:-mt-6'>
+            <StaticImage
+              src='../images/about-me-at-desk.png'
+              alt='Drawing showing the author of the blog working on a computer'
+              className='justify-self-center w-full sm:w-auto'
+              objectFit='contain'
+              layout='constrained'
+            />
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+              With one difference - today, I know what I don&apos;t know. And this comes more every day... Honestly? I&apos;m happy about this. After all, you only develop when you learn something!
+            </p>
+          </div>
+          {/* </Trans> */}
+        </div>
       </div>
       <div className='pt-12 pb-8'>
         <div className='flex flex-col max-w-5xl ml-auto mr-auto px-4'>
