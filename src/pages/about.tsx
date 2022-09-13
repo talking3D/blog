@@ -97,7 +97,7 @@ const About = () => {
               objectFit='contain'
               layout='constrained'
             />
-            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center md:-mb-6'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center md:-mb-6 md:text-right'>
               {t('about.the_story_first_job')}
             </p>
           </div>
@@ -121,7 +121,7 @@ const About = () => {
               objectFit='contain'
               layout='constrained'
             />
-            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center md:text-right'>
               {t('about.the_story_data_analysis')}
             </p>
           </div>
@@ -145,7 +145,7 @@ const About = () => {
               objectFit='contain'
               layout='constrained'
             />
-            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center'>
+            <p className='w-full sm:w-2/3 sm:min-w-1/2 self-center md:text-right'>
               {t('about.the_story_new_begining')}
             </p>
           </div>
