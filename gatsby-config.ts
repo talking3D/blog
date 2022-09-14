@@ -52,6 +52,13 @@ const config: GatsbyConfig = {
     },
     `gatsby-transformer-json`,
     `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        display: `standalone`,
+        icon: `src/images/gatsby-icon.png`,
+      },
+    },
   ],
 };
 
