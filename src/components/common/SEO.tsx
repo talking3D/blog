@@ -23,6 +23,7 @@ const SEO = ({
     <>
       <title>{seo.title}</title>
       <meta name='description' content={seo.description} />
+      <link rel='icon' href='../../images/gatsby-icon.png' />
       { children }
     </>
   );
