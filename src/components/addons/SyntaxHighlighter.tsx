@@ -38,7 +38,7 @@ const SyntaxHighlighter = (props: any) => {
   }, []);
 
   const { className } = props.children.props || '';
-  const preStylingClass = 'col-span-3 rounded-xl min-w-[60%] max-w-min w-full mb-4 md:m-4 md:ml-0 ml-auto mr-auto py-8 overflow-scroll text-sm md:text-base';
+  const preStylingClass = 'col-span-3 rounded-xl min-w-[60%] max-w-min w-full mb-4 md:m-4 md:ml-0 ml-auto mr-auto py-8 overflow-auto text-sm md:text-base';
   const lang = className.match(/language-(?<lang>.*)/);
   const { lineNumbers } = props.children.props;
 
