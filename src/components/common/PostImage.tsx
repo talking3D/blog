@@ -46,7 +46,7 @@ const PostImage = (props: any) => {
         }
 
       // Otherwise add DIV parent and and attach image style to it
-      } else {
+      } else if (Array.from(parentParagraphElement?.childNodes!).every((elem) => elem.nodeName !== 'FIGURE')) {
         const wrapperFigure = document.createElement('figure');
         wrapperFigure.classList.add('from-inline-image');
         paragraphParent?.replaceChild(wrapperFigure, parentParagraphElement!);
