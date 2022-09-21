@@ -31,7 +31,7 @@ const PostImage = (props: any) => {
       const paragraphParent = parentParagraphElement?.parentElement;
 
       // If paragraph tag has already got div parent then replace css paragraph class with image class
-      if (paragraphParent!.tagName === 'DIV') {
+      if (paragraphParent!.tagName === 'DIV' && !paragraphParent?.classList.contains('grid')) {
         const newFigureWrapper = document.createElement('figure');
         newFigureWrapper.className = 'from-inline-image';
         paragraphParent?.parentElement?.replaceChild(newFigureWrapper, paragraphParent);
