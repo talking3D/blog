@@ -4,7 +4,7 @@ import { standarizeId } from './TableOfContents';
 
 // These compoments create headers ids which are then used to link page fragments (parts (h3) and sections (h2))
 
-export const Header3 = (props: any) => {
+export const Header3 = (props: {children: string}) => {
   const createElementId = (content: string) => standarizeId(content);
   return (
     <h3
@@ -16,7 +16,7 @@ export const Header3 = (props: any) => {
   );
 };
 
-export const Header4 = (props: any) => {
+export const Header4 = (props: {children: string}) => {
   const createElementId = (content: string) => standarizeId(content);
   return (
     <h4
