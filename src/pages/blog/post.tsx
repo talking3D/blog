@@ -19,14 +19,16 @@ import { Header3, Header4 } from '../../components/common/PostHeaders';
 import useLocale from '../../components/hooks/useLocale';
 import { getColorContrast } from '../../components/utils/helpers';
 import SEO from '../../components/common/SEO';
+import Blockquote from '../../components/common/Blockquote';
 
 // Use shortcodes
 const components = {
   pre: (props: React.FC) => <SyntaxHighlighter {...props} />,
-  h3: (props: React.FC) => <Header3 {...props} />,
-  h4: (props: React.FC) => <Header4 {...props} />,
+  h3: (props: {children: string}) => <Header3 {...props} />,
+  h4: (props: {children: string}) => <Header4 {...props} />,
   h6: (props: React.FC) => <div {...props} className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-1 mb-4 text-lg font-normal' />,
   img: (props: React.FC) => <PostImage {...props} />,
+  blockquote: (props: {children: string}) => <Blockquote {...props} />,
 };
 
 type DataProps = {
@@ -53,7 +55,7 @@ type DataProps = {
 
 const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
   const addParentDiv = (node: Element) => {
-    if (node.parentElement?.tagName === 'DIV') {
+    if (!!node.parentElement && ['DIV', 'BLOCKQUOTE', 'FIGURE'].includes(node.parentElement?.tagName)) {
       return;
     }
     const parent = node.parentNode;
