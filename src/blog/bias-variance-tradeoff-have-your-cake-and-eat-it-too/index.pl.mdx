@@ -30,7 +30,7 @@ $$
 y = f(x) + \epsilon
 $$  
 
-gdzie $\epsilon$[to nieredukowalny błąd, mogący czerpać swoje źródło z różnych przyczyn, takich jak występowanie czynników wpływających na zmienną objaśnianą *y*, ale nie zależnych od *x*. Przyjmuje się, że $\epsilon$ ma charakter losowy o rozkładzie normalnym, a więc charakterystycznym dla wielu zjawisk w otaczającym nas świecie. Rozkład ten cechują wariancja $\sigma_{\epsilon}^2$ i średnia równa 0 (co można zapisać następująco: $\epsilon \sim N(0, \sigma_{\epsilon}^2)$. Warto zauważyć, że losowy charakter błędu $\epsilon$ wpływa bezpośrednio na zmienną y sprawiając, że ta ostatnia także ma losową zmienność z tym, że jej średnia jest dodatkowo warunkowana przez $f(x)$. Wykorzystując bibliotekę numpy możemy wygenerować losową zmienną $\epsilon$ o zadanych parametrach średniej $\mu$ oraz odchyleniu standardowym $\sigma_{\epsilon}$:
+gdzie $\epsilon$ to nieredukowalny błąd, mogący czerpać swoje źródło z różnych przyczyn, takich jak występowanie czynników wpływających na zmienną objaśnianą *y*, ale nie zależnych od *x*. Przyjmuje się, że $\epsilon$ ma charakter losowy o rozkładzie normalnym, a więc charakterystycznym dla wielu zjawisk w otaczającym nas świecie. Rozkład ten cechują wariancja $\sigma_{\epsilon}^2$ i średnia równa 0 (co można zapisać następująco: $\epsilon \sim N(0, \sigma_{\epsilon}^2)$. Warto zauważyć, że losowy charakter błędu $\epsilon$ wpływa bezpośrednio na zmienną *y* sprawiając, że ta ostatnia także ma losową zmienność z tym, że jej średnia jest dodatkowo warunkowana przez $f(x)$. Wykorzystując bibliotekę **NumPy** możemy wygenerować losową zmienną $\epsilon$ o zadanych parametrach średniej $\mu$ oraz odchyleniu standardowym $\sigma_{\epsilon}$:
 
 `np.random.normal(loc=0.0, scale=1.0, size=None)`
 
@@ -61,7 +61,7 @@ plt.show()
 
 Uruchomienie komórki notatnika z  powyższym kodem spowoduje utworzenie widocznego poniżej wykresu (jeśli chcesz wiedzieć więcej o tworzeniu wykresów zajrzyj [tutaj]()).
 
-![Wykres pokazujący chaotyczność błędu losowego oraz histogram rozkładu zbioru wartości błędu](./random_error.jpg)
+![Graph showing the chaotic nature of the random error and histogram of the distribution of the set of error values](./random_error.jpg)
 <figcaption>
   Wykres dość obrazowo ilustruje charakter błędu (“szumu”) występującego w danych. Górny wykres pokazuje dużą spontaniczność wychyleń poszczególnych wartości, wokół zaznaczonej czarną kropkowaną kreską średniej (równej zero). Dolny rysunek, na którym widnieje histogram, wyraźnie wskazuje, że mamy do czynienia ze zbiorem o normalnym rozkładzie prawdopodobieństwa. Zrozumienie tego zagadnienia powoli nam łatwiej przejść przez pozostałą część materiału.
 </figcaption>
@@ -130,7 +130,7 @@ plt.show();
 
 #### "Wyginam śmiało ciało...", czyli taniec o!..błędny
 
-Dla potrzeb tego przykładu, postaramy znaleźć rozwiązanie naszego problemu (czyli zbudować model) w oparciu o prosty model funkcji wielomianowej o *n* stopniach swobody. Ogólną postać takiego wielomianu możemy zapisać następująco:
+Dla potrzeb tego przykładu, postaramy znaleźć rozwiązanie naszego problemu (czyli zbudować model) w oparciu o prosty model funkcji **wielomianowej** o *n* stopniach swobody. Ogólną postać takiego wielomianu możemy zapisać następująco:
 
 $$
 g_{n}(x) = \beta_{n}x^{n} + \beta_{n-1}x^{n-1}+\beta_{n-2}x^{n-2}+\dots+\beta_{2}x^{2}+\beta_{1}x+\beta_{0}
@@ -140,7 +140,7 @@ Cechą charakterystyczną takiego wielomianu jest jego "elastyczność", rosnąc
 
 `np.polynomial.polynomial.polyfit(x, y, deg)`
 
-Funkcja *polyfit()* zwraca nam współczynniki $\beta_n$ (*coefficients*) wielomianu o zadanym stopniu *n* (*deg*), stanowiący najlepsze dopasowanie do danych o wartościach równych *y*, w punkatach wyznaczonych przez *x*. Używa do tego celu, wspomnianą wcześniej, *metodę najmniejszych kwadratów błędów*. Innymi słowy otrzymamy współczynniki wielomianu, który w najlepszy możliwy sposób przybliży nam funkcję $f(x)$ charakteryzyjącą zależność pomiędzy *y* a *x* dla n stopni swobody.
+Funkcja *polyfit()* zwraca nam współczynniki $\beta_n$ (*coefficients*) wielomianu o zadanym stopniu *n* (*deg*), stanowiący najlepsze dopasowanie do danych o wartościach równych *y*, w punkatach wyznaczonych przez *x*. Używa do tego celu, wspomnianą wcześniej, *metodę najmniejszych kwadratów błędów*. Innymi słowy otrzymamy współczynniki wielomianu, który w najlepszy możliwy sposób przybliży nam funkcję $f(x)$ charakteryzyjącą zależność pomiędzy *y* a *x* dla n stopni swobody:
 
 `np.polynomial.polynomial.polyval(x, c)`
 
@@ -176,7 +176,7 @@ Modele możemy podzielić na trzy grupy, w zależności od stopnia w jakim odnaj
 + $g_9(x)$ - model, idealnie odnajdujący zarejestrowane obserwacje (zwróć uwagę, że mówimy o dopasowaniu do danych z próbki, a nie do prawdziwej funkcji $f(x)$, czyli "krzywej elastyczności"). Można by się pokusić o stwierdzenie, że model w pewnym sensie jest bezbłędny.
 + $g_5(x)$ - model, który nie jest bardzo elastyczny, ale stara się "przybliżyć" do obserwacji, często nie trafiając "w punkt" i pozostawiając sobie trochę swobody na popełnianie błędów.  
 
-Sporo w tej klasyfikacji mówiliśmy o błędzie. Czym on w zasadzie jest? Z perspektywy naszego problemu, błędem nazwiemy każdą taką sytuację, w której model pomyli się w swojej estymacji i źle oszacuje wartość y dla zadanego mu parametru x. W najprostszym ujęciu jest to różnica pomiędzy rzeczywistą wartością obserwacji a wartością, którą oszacował model. Weźmy pod lupę środkowy model, o czterech stopniach swobody i zobaczmy to na rysunku:  
+Sporo w tej klasyfikacji mówiliśmy o błędzie. Czym on w zasadzie jest? Z perspektywy naszego problemu, błędem nazwiemy każdą taką sytuację, w której model pomyli się w swojej estymacji i źle oszacuje wartość *y* dla zadanego mu parametru *x*. W najprostszym ujęciu jest to różnica pomiędzy rzeczywistą wartością obserwacji a wartością, którą oszacował model. Weźmy pod lupę środkowy model, o czterech stopniach swobody i zobaczmy to na rysunku:  
 
 ```python lineNumbers
 degree = 4
@@ -233,7 +233,7 @@ def plot_errors(x_train, x, y_true, y_preds, model_fits):
     plt.show()
     return [True if any(itm == sub_set) else False for itm in main_set]
 ```
-Chciałbym zwrócić Twoją uwagę na funkcję mse(), która oblicza błąd średniokwadratowy. Jest to jedna z podstawowych metryk wykorzystywanych w uczeniu maszynowym do oceny jakości modelu. Jej działanie sprowadza się zasadniczo do policzenia średniego kwadratu odchyleń pomiędzy wartościami, które przewidział model (predykcje) a wartościami rzeczywistymi.
+Chciałbym zwrócić Twoją uwagę na funkcję **mse()**, która oblicza błąd średniokwadratowy. Jest to jedna z podstawowych metryk wykorzystywanych w uczeniu maszynowym do oceny jakości modelu. Jej działanie sprowadza się zasadniczo do policzenia średniego kwadratu odchyleń pomiędzy wartościami, które przewidział model (predykcje) a wartościami rzeczywistymi.
 
 Matematycznie możemy zapisać to następująco:
 
@@ -345,7 +345,7 @@ Nasz model coraz lepiej się uczy. Opieranie się zatem tylko na danych treningo
 Wciąż pozostaje jednak jedno pytanie. Dlaczego właściwie tak się dzieje? Aby to wytłumaczyć, potrzebna nam będzie odrobina matematyki.
 
 #### Królowa nauk wchodzi na parkiet
-Okazuje się (i mam nadzieję, że pozostawienie tego, w tej chwili, bez dowodu zostanie mi przez Ciebie wybaczone), że oczekiwana wartość błędu *MSE* dla zbioru testowego, czerpie swoje źródło z trzech innych wielkości statystycznych. A konkretnie? Jeżeli poprzez $x_0$ oznaczymy pewną wartość zmiennej x ze zbioru testowego, a poprzez $y_0$ odpowiadającą jej wartość y z tego samego zbioru, to możemy zapisać:
+Okazuje się (i mam nadzieję, że pozostawienie tego, w tej chwili, bez dowodu zostanie mi przez Ciebie wybaczone), że oczekiwana wartość błędu *MSE* dla zbioru testowego, czerpie swoje źródło z trzech innych wielkości statystycznych. A konkretnie? Jeżeli poprzez $x_0$ oznaczymy pewną wartość zmiennej *x* ze zbioru testowego, a poprzez $y_0$ odpowiadającą jej wartość *y* z tego samego zbioru, to możemy zapisać:
 
 $$
 \mathbb{E}\bigl(g(x_0) - y_0\bigr)^2 = Var\bigl(g(x_0)\bigr) + \bigl[Bias(g(x_0))\bigr]^2 + Var(\epsilon)
@@ -360,15 +360,15 @@ $$
 Jak można interpretować to równanie? Wielkość błędu zależy od w zasadzie od dwóch "konkurujących" wielkości:
 
 + wariancji (*variance*): $\mathbb{E}\bigl[(g(x_0) - \mathbb{E}[g(x)])^2\bigr]$, która jest miarą pewnej wrażliwości modelu na zmianę danych. Inaczej mówiąc możemy przyjąć, że jest to wartość, o jaką zmieni się estymacja $g(x)$, gdy będziemy testować model na nowych danych. W idealnej sytuacji wielkość ta nie powinna się zmieniać. Zachowanie wariancji możesz obserwować na dziewięciu wykresach, które narysowaliśmy wcześniej. Jest ona reprezentowana przez blado-niebieskie linie towarzyszące głównej niebieskiej linii modelu. Dla prostych modeli (*n=1* lub *n=2*) poziom zmienności (wahań) tych linii jest niewielki. Rośnie on jednak wraz ze wzrostem stopnia złożoności modelu, by ostatecznie dla *n=8* czy *n=9* utworzyć prawdziwie "egzotyczne" kształty. Dzieje się tak, gdyż estymator mocno podąża za obserwacjami ze zbioru, przez co nawet mała zmiana w zbiorze powoduje bardzo dużą zmianę wartości estymatora.
-+ niedokładność modelu w odwzorowaniu prawdziwego rozkładu obserwacji w zbiorze, jest reprezentowana przez błąd oszacowania (*bias2*) modelu $\bigl(\mathbb{E}[ g(x_0)] - y_0\bigr )^2$. Jest w pewnym uproszczeniu miarą pokazującą o ile prosty model (*n=1*, *n=2*) myli się stając się dopasować do zmiennych w zbiorze. Widzimy na wykresie proste linie, starające się niejako przebić przez środek chmury obserwacji, sprawiając ostatecznie, że znajdują się one gdzieś w pobliżu każdej z nich, ale na tyle daleko, że trudno mówić o dokładności. Wraz ze wzrostem złożoności modelu, rośnie jego elastyczność, a co za tym idzie zdolność do przybliżania wartości estymacji (zmniejszania odległości pomiędzy predykcją a rzeczywistymi wartościami w zbiorze). Powoduje to zmniejszanie się błędu.
++ niedokładność modelu w odwzorowaniu prawdziwego rozkładu obserwacji w zbiorze, jest reprezentowana przez błąd oszacowania (*bias<sup>2</sup>*) modelu $\bigl(\mathbb{E}[ g(x_0)] - y_0\bigr )^2$. Jest w pewnym uproszczeniu miarą pokazującą o ile prosty model (*n=1*, *n=2*) myli się stając się dopasować do zmiennych w zbiorze. Widzimy na wykresie proste linie, starające się niejako przebić przez środek chmury obserwacji, sprawiając ostatecznie, że znajdują się one gdzieś w pobliżu każdej z nich, ale na tyle daleko, że trudno mówić o dokładności. Wraz ze wzrostem złożoności modelu, rośnie jego elastyczność, a co za tym idzie zdolność do przybliżania wartości estymacji (zmniejszania odległości pomiędzy predykcją a rzeczywistymi wartościami w zbiorze). Powoduje to zmniejszanie się błędu.
 Nie wymieniłem trzeciego parametru jakim jest wariancja nieredukowalnego błędu. We wstępnych analizach tego wpisu założyłem, że błąd danych ma charakter losowy o cechach rozkładu normalnego, czyli $\epsilon \sim \mathbb{N}(0, \sigma_{\epsilon}^2)$. Ponieważ $Var(\epsilon) = \sigma_{\epsilon}^2$, to mogę przyjąć, że ma wartość stałą. Ponadto warto zauważyć, że zarówno $Var\bigl(g(x_0)\bigr)$ oraz $\bigl[Bias(g(x_0))\bigr]^2$ są wartościami nie mniejszymi od 0, więc błąd ogólny modelu (MSE) nie będzie nigdy mniejszy od $Var(\epsilon)$.
 
 #### Bo potrzebny jest kompromis
 
 Jak zwykł mawiać pewien mój znajomy - jak sam sobie coś narysuję, to zaczynam to lepiej rozumieć. Poniższy wykres przedstawia teoretyczny i uproszczony schemat zależności pomiędzy opisywanymi wielkościami:  
 
-![Wykres  ilustrujący błąd całkowity modelu i jego elementy składowe bias i variance w zależności od złozoności modelu](./tradeoff.jpg)  
-<figcaption>Jak widzisz dostrajanie modelu to sztuka szukania kompromisu (ang. <em>trade-off</em>). Choć na początku wydawało się, że idealny model to taki, który doskonale potrafi przewidywać wartości, zobaczyliśmy jak dalekie od oczekiwań takie rozumowanie potrafi być.</figcaption>
+![Wykres ilustrujący błąd całkowity modelu i jego elementy składowe bias i variance w zależności od złozoności modelu](./tradeoff.jpg)  
+<figcaption>Jak widzisz dostrajanie modelu to sztuka szukania kompromisu (ang. <strong>trade-off</strong>). Choć na początku wydawało się, że idealny model to taki, który doskonale potrafi przewidywać wartości, zobaczyliśmy jak dalekie od oczekiwań takie rozumowanie potrafi być.</figcaption>
 
 I właśnie takiego balansu zabrakło w modelu, który miał wspierać Oskar'a (możesz go jeszcze pamiętać ze wstępu do tego posta :)). Ktoś po prostu o tym zapomniał...  
 
