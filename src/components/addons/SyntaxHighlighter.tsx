@@ -24,12 +24,14 @@ const SyntaxHighlighter = (props: any) => {
         'md:pt-2',
         'text-justify',
       ];
+      const images = document.querySelectorAll('img');
       if (parentPre !== null) {
         parentPre.id = parentPreId;
         const siblingParagraph: Element | null | undefined = parentPre!.nextElementSibling
           ? parentPre!.nextElementSibling : parentPre!.parentElement?.nextElementSibling;
         const wrapperDiv = parentPre.parentElement;
-        if (codeParagraphClasses.length && siblingParagraph !== null) {
+        // eslint-disable-next-line max-len
+        if (codeParagraphClasses.length && siblingParagraph !== null && Array.from(images).every((image) => !siblingParagraph?.contains(image))) {
           codeParagraphClasses.map((cls) => siblingParagraph!.classList.add(cls));
           wrapperDiv!.appendChild(siblingParagraph!);
         }
