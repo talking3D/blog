@@ -1,5 +1,3 @@
-// TO:DO: If possible, make katex work <figcaption> elements to support image descriptions
-
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
