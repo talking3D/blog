@@ -61,10 +61,10 @@ plt.show()
 
 Uruchomienie komórki notatnika z  powyższym kodem spowoduje utworzenie widocznego poniżej wykresu (jeśli chcesz wiedzieć więcej o tworzeniu wykresów zajrzyj [tutaj]()).
 
-![Graph showing the chaotic nature of the random error and histogram of the distribution of the set of error values](./random_error.jpg)
-<figcaption>
-  Wykres dość obrazowo ilustruje charakter błędu (“szumu”) występującego w danych. Górny wykres pokazuje dużą spontaniczność wychyleń poszczególnych wartości, wokół zaznaczonej czarną kropkowaną kreską średniej (równej zero). Dolny rysunek, na którym widnieje histogram, wyraźnie wskazuje, że mamy do czynienia ze zbiorem o normalnym rozkładzie prawdopodobieństwa. Zrozumienie tego zagadnienia powoli nam łatwiej przejść przez pozostałą część materiału.
-</figcaption>
+![Wykresy przedstawiające chaotyczność błędu losowego oraz jego histogram](./random_error.jpg)
+
+[figure_caption]
+Wykres dość obrazowo ilustruje charakter błędu (“szumu”) występującego w danych. Górny wykres pokazuje dużą spontaniczność wychyleń poszczególnych wartości, wokół zaznaczonej czarną kropkowaną kreską średniej (równej zero). Dolny rysunek, na którym widnieje histogram, wyraźnie wskazuje, że mamy do czynienia ze zbiorem o normalnym rozkładzie prawdopodobieństwa. Zrozumienie tego zagadnienia powoli nam łatwiej przejść przez pozostałą część materiału.
 
 Zaczęliśmy od najbardziej "chaotycznej" składowej obserwowanego zjawiska. Czas abyśmy przyjrzeli się pozostałym zależnościom. Powróćmy w tym celu do problemu z jakim boryka się Oskar. Owego feralnego wieczora, dostał on informację, że wystąpił poważny problem z trwałością form. Model, który został wdrożony niedawno do procesu wytwórczego w fabryce, miał kontrolować skład surowcowy mieszanki, a dokładnie dwóch jej dość niestabilnych składników, wpływających na elastyczność końcowego produktu. Naszym redaktorom nie udało się dotrzeć do szczegółów składowych mieszanki, które były analizowane przez model w fabryce, gdyż jak nam powiedziano, stanowią "tajemnicę zakładu" ;). Dlatego dla dalszej analizy przyjmijmy, że istnieje pewna zależność w procesie produkcyjnym (zwana przez inżynierów w zakładzie produkcyjnym "krzywą elastyczności"). Określona jest za pomocą funkcji eksponencjalnej o logarytmicznie zmiennym wykładniku (pamiętaj, że zazwyczaj jest tak, że prawdziwy kształt funkcji f(x) nie jest nam znany). Wiemy ze wcześniejszych rozważań, że $y=f(x) + \epsilon$. W takim razie, każda z naszych obserwacji będzie kształtowana przez następującą relację:
 
@@ -126,7 +126,9 @@ plt.show();
 ```   
 
 ![Wykres rzeczywistej funkcji elastyczności w zależności od udziału składników w mieszance](./f_x_plus_epsilon_135h.jpg)  
-<figcaption>Na wykresie widzimy, zaznaczony czarną linią, przebieg prawdziwej funkcji f(x) oraz skupione wokół niej, w postaci niebieskich punktów, rzeczywiste obserwacje. Ponieważ w praktyce dysponujemy tylko zbiorem obserwacji (czyli mamy tylko dane, o funkcji nie wiemy nic lub niewiele), potrzebny jest nam model, który będzie potrafił odnaleźć najbardziej ogólną i prawdziwą zależność (f(x)) pomiędzy danymi.</figcaption>
+
+[figure_caption]
+Na wykresie widzimy, zaznaczony czarną linią, przebieg prawdziwej funkcji f(x) oraz skupione wokół niej, w postaci niebieskich punktów, rzeczywiste obserwacje. Ponieważ w praktyce dysponujemy tylko zbiorem obserwacji (czyli mamy tylko dane, o funkcji nie wiemy nic lub niewiele), potrzebny jest nam model, który będzie potrafił odnaleźć najbardziej ogólną i prawdziwą zależność (f(x)) pomiędzy danymi.  
 
 #### "Wyginam śmiało ciało...", czyli taniec o!..błędny
 
@@ -167,9 +169,11 @@ plt.show()
 ```
 
 ![Wykres przedstawiający działanie funkcji polyfit() i polyval()](./polyfit.jpg)
-<figcaption>
+
+[figure_caption]
+
   Na wykresie widzisz, jak "zachowują" się poszczególne wielomiany w zależności od stopnia. Zauważ, że zwiększanie n wyraźnie wpływa na elastyczność krzywej. Dla n=1 (g<sub>1</sub>(x) - szara, przerywana linia) widzisz prostoliniowy przebieg funkcji. W zasadzie można powiedzieć, że model stara się przebić przez środek chmury punktów, składających się na zbiór naszych obserwacji. Zwiększenie stopni swobody do 4 (g<sub>4</sub>(x), niebieska linia) sprawia, że krzywa zaczyna się wyginać, starając się bardziej dopasować do krzywej elastyczności. Gdy dalej zwiększamy wartość n (g<sub>9</sub>(x), krzywa zielona), funkcja wygina się już bardzo mocno i trafia niemal w każdy punkt naszych rzeczywistych obserwacji. Jednocześnie jej kształt wychyla się mocno w stronę rejonów, w których prawdopodobieństwo znalezienia jakiejkolwiek obserwacji jest równe zeru (np. fragmenty krzywej wychodzące poza widoczny obszar wykresu).
-</figcaption>
+  
 
 Modele możemy podzielić na trzy grupy, w zależności od stopnia w jakim odnajdują dane:
 + $g_1(x)$ - model, który wyraźnie nie doszacowuje naszych obserwacji, jest obciążony bardzo dużym błędem estymacji.
@@ -199,7 +203,9 @@ plt.show()
 ```
 
 ![Wykres przedstawiający błąd predykcji dla hipotetycznego modelu funkcji](./errors.jpg)  
-<figcaption>Czerwone strzałki na wykresie, skierowane od przerywanej linii estymacji (model) do punktów rzeczywistych obserwacji (y) pokazują, jak myli się model. Czerwona wartość przy każdym z punktów reprezentuje błąd, czyli wartość o jaka model przeszacował lub nie doszacował naszych obserwacji. Zobaczmy jak to będzie wyglądało dla pozostałych modeli.</figcaption>  
+
+[figure_caption]
+Czerwone strzałki na wykresie, skierowane od przerywanej linii estymacji (model) do punktów rzeczywistych obserwacji (y) pokazują, jak myli się model. Czerwona wartość przy każdym z punktów reprezentuje błąd, czyli wartość o jaka model przeszacował lub nie doszacował naszych obserwacji. Zobaczmy jak to będzie wyglądało dla pozostałych modeli.    
 
 Napiszemy kilka pomocniczych funkcji, które pozwolą nam to zrobić:  
 
@@ -257,9 +263,11 @@ for degree in degrees_of_freedom:
 plot_errors(random_samples, x, y_true, y_preds, model_fits)
 ```  
 ![Wykres przedstawiający zależność złożoności modelu od stopnia swobody](./mse_fit.jpg)
-<figcaption>
+
+[figure_caption]
+
   Na podstawie analizy tych wykresów jasno widać, że najlepszy model to ten, który jest opary o wielomian najwyższego stopnia (9). Linia predykcji modelu przechodzi niemal dokładnie przez każdy punkt a wartość MSE jest równa zero. Można powiedzieć, że model jest idealny. Tylko czy rzeczywiście?
-</figcaption>
+  
 
 Pamiętaj, że model został "dostrojony" dla określonego zbioru danych. Nazwijmy go dla uproszczenia zbiorem treningowym. Co się stanie, gdy tak zbudowany model wykorzystamy dla innego zestawu danych, którego model jeszcze nie widział (nazwijmy go zbiorem testowym)? Wygenerujemy nowy, testowy zbiór i sprawdzimy:  
 
@@ -269,7 +277,9 @@ plot_errors(random_samples, x, y_true, y_preds, model_fits)
 ```
 
 ![Wykres przedtawiający zachwanie modeli o różnym stopniu złożoności dla danych, których modele wcześniej nie widziały](./mse_test.jpg)
-<figcaption>I tu mała niespodzianka. Model podstawowy (n=1) zwiększył swój błąd nieznacznie, czyli myli się tak samo mocno . To samo stało się dla modelu środkowego (n=4), przy czym wzrost błędu MSE był trochę większy. Natomiast nasz model "idealny" (n=9), wypadł okropnie. Wartość błędu średniokwadratowego jest znacznie większa niż dla modelu środkowego (n=4) i dorównuje niemal modelowi podstawowemu.</figcaption>  
+
+[figure_caption]
+I tu mała niespodzianka. Model podstawowy (n=1) zwiększył swój błąd nieznacznie, czyli myli się tak samo mocno . To samo stało się dla modelu środkowego (n=4), przy czym wzrost błędu MSE był trochę większy. Natomiast nasz model "idealny" (n=9), wypadł okropnie. Wartość błędu średniokwadratowego jest znacznie większa niż dla modelu środkowego (n=4) i dorównuje niemal modelowi podstawowemu.    
 
 Co w takim razie poszło nie tak? Cóż.... w zasadzie wszystko jest w porządku. Przeanalizujemy powyższe wyniki dla każdego z przypadków oddzielnie:
 
@@ -320,9 +330,11 @@ for model, degree in enumerate(degrees_of_freedom):
 ```
 
 ![Wykresy ukazujące zachowanie modeli w zależności od rosnących stopni swobdy, dla większej ilości danych](./9_test_errors.jpg)
-<figcaption>
+
+[figure_caption]
+
   Myślę, że ten widok wcale Cię nie dziwi (pamiętaj, że możesz otrzymać nieco inne wykresy, gdyż generujemy losowo zmienne dane). Początkowo widzisz jak wraz ze wzrostem złożoności modelu (czyli wzrostem stopni swobody) dopasowuje się on do danych treningowych (zmniejszanie błędu, malejący bias), osiągając optymalny kształt w okolicach n=5. Dalsze zwiększanie stopnia wielomianu powoduje wzrost błędu MSE, co świadczy o pogarszającej się jakości modelu. Następuje przetrenowanie.
-  </figcaption>
+    
 
 Żeby lepiej sobie to uzmysłowić wykonajmy jeszcze jeden wykres, na którym naniesiemy zależność błędu treningowego i testowego od poziomu złożoności modelu:  
 
@@ -338,7 +350,9 @@ plt.legend()
 ```
 
 ![Wykres ilustrujący zależność wartości MSE modelu od stopnia swobody](./mse_vs_degree.jpg)  
-<figcaption>Wykres ilustruje coś w rodzaju krzywej uczenia (choć klasycznie powinna to być zależność błędu od np. ilości iteracji). Najbardziej optymalna dla nas sytuacja to ta, w której przy malejącym błędzie treningowym, błąd testowy ma minimalną wartość. Zauważ, że zielona krzywa reprezentująca błąd dla zbioru treningowego nieustannie maleje w funkcji stopnia złożoności modelu</figcaption>
+
+[figure_caption]
+Wykres ilustruje coś w rodzaju krzywej uczenia (choć klasycznie powinna to być zależność błędu od np. ilości iteracji). Najbardziej optymalna dla nas sytuacja to ta, w której przy malejącym błędzie treningowym, błąd testowy ma minimalną wartość. Zauważ, że zielona krzywa reprezentująca błąd dla zbioru treningowego nieustannie maleje w funkcji stopnia złożoności modelu  
 
 Nasz model coraz lepiej się uczy. Opieranie się zatem tylko na danych treningowych nie pozwoli nam znaleźć odpowiedniego optimum. Dlatego obserwujemy jednocześnie zachowanie modelu dla zbioru testowego (linia czerwona). Widzimy, że model zaczyna pogarszać swoją zdolność predykcji powyżej 5-go stopnia swobody (model się przetrenowuje). Płynie stąd prosty wniosek, że optymalny poziom złożoności modelu to 5.  
 
@@ -357,7 +371,7 @@ $$
 \mathbb{E}\bigl(g(x_0) - y_0\bigr)^2 = \mathbb{E}\bigl[(g(x_0) - \mathbb{E}[g(x)])^2\bigr ] +\bigl(\mathbb{E}[ g(x_0)] - y_0\bigr )^2+ \mathbb{E}\bigl[(y_0 - f(x_0))^2\bigr ]
 $$
 
-Jak można interpretować to równanie? Wielkość błędu zależy od w zasadzie od dwóch "konkurujących" wielkości:
+Jak można interpretować to równanie? Wielkość błędu zależy w zasadzie od dwóch "konkurujących" wielkości:
 
 + wariancji (*variance*): $\mathbb{E}\bigl[(g(x_0) - \mathbb{E}[g(x)])^2\bigr]$, która jest miarą pewnej wrażliwości modelu na zmianę danych. Inaczej mówiąc możemy przyjąć, że jest to wartość, o jaką zmieni się estymacja $g(x)$, gdy będziemy testować model na nowych danych. W idealnej sytuacji wielkość ta nie powinna się zmieniać. Zachowanie wariancji możesz obserwować na dziewięciu wykresach, które narysowaliśmy wcześniej. Jest ona reprezentowana przez blado-niebieskie linie towarzyszące głównej niebieskiej linii modelu. Dla prostych modeli (*n=1* lub *n=2*) poziom zmienności (wahań) tych linii jest niewielki. Rośnie on jednak wraz ze wzrostem stopnia złożoności modelu, by ostatecznie dla *n=8* czy *n=9* utworzyć prawdziwie "egzotyczne" kształty. Dzieje się tak, gdyż estymator mocno podąża za obserwacjami ze zbioru, przez co nawet mała zmiana w zbiorze powoduje bardzo dużą zmianę wartości estymatora.
 + niedokładność modelu w odwzorowaniu prawdziwego rozkładu obserwacji w zbiorze, jest reprezentowana przez błąd oszacowania (*bias<sup>2</sup>*) modelu $\bigl(\mathbb{E}[ g(x_0)] - y_0\bigr )^2$. Jest w pewnym uproszczeniu miarą pokazującą o ile prosty model (*n=1*, *n=2*) myli się stając się dopasować do zmiennych w zbiorze. Widzimy na wykresie proste linie, starające się niejako przebić przez środek chmury obserwacji, sprawiając ostatecznie, że znajdują się one gdzieś w pobliżu każdej z nich, ale na tyle daleko, że trudno mówić o dokładności. Wraz ze wzrostem złożoności modelu, rośnie jego elastyczność, a co za tym idzie zdolność do przybliżania wartości estymacji (zmniejszania odległości pomiędzy predykcją a rzeczywistymi wartościami w zbiorze). Powoduje to zmniejszanie się błędu.
@@ -368,7 +382,9 @@ Nie wymieniłem trzeciego parametru jakim jest wariancja nieredukowalnego błęd
 Jak zwykł mawiać pewien mój znajomy - jak sam sobie coś narysuję, to zaczynam to lepiej rozumieć. Poniższy wykres przedstawia teoretyczny i uproszczony schemat zależności pomiędzy opisywanymi wielkościami:  
 
 ![Wykres ilustrujący błąd całkowity modelu i jego elementy składowe bias i variance w zależności od złozoności modelu](./tradeoff.jpg)  
-<figcaption>Jak widzisz dostrajanie modelu to sztuka szukania kompromisu (ang. <strong>trade-off</strong>). Choć na początku wydawało się, że idealny model to taki, który doskonale potrafi przewidywać wartości, zobaczyliśmy jak dalekie od oczekiwań takie rozumowanie potrafi być.</figcaption>
+
+[figure_caption]
+Jak widzisz dostrajanie modelu to sztuka szukania kompromisu (ang. <strong>trade-off</strong>). Choć na początku wydawało się, że idealny model to taki, który doskonale potrafi przewidywać wartości, zobaczyliśmy jak dalekie od oczekiwań takie rozumowanie potrafi być.  
 
 I właśnie takiego balansu zabrakło w modelu, który miał wspierać Oskar'a (możesz go jeszcze pamiętać ze wstępu do tego posta :)). Ktoś po prostu o tym zapomniał...  
 

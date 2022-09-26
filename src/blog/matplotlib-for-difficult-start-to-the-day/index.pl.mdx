@@ -84,7 +84,9 @@ Powyższa formuła, uruchamia wspomnianą metodę *plot()* z biblioteki matplotl
 Po uruchomieniu komórki zawierającej powyższy kod, naszym oczom ukazuje się “fantastyczny” wykres.
 
 ![Wykres funkcji wykonany w matplotlib](./matplotlib_function_chart.png "Wykres w matplotlib")  
-<figcaption>Na wykresie widać przebieg zmienności naszej funkcji na krótkim "odcinku" zbioru argumentów (0-40). Łatwo dostrzec, że niesie on w sobie charakter dwóch innych funkcji, które są elementami składowymi funcji złożonej. Nie martw się jeśli jeszcze tego nie widzisz. W dalszej części artykułu, wykorzystamy <i>matplolib</i> do głębszego rozrysowania sobie tych zależności.</figcaption>
+
+[figure_caption]
+Na wykresie widać przebieg zmienności naszej funkcji na krótkim "odcinku" zbioru argumentów (0-40). Łatwo dostrzec, że niesie on w sobie charakter dwóch innych funkcji, które są elementami składowymi funcji złożonej. Nie martw się jeśli jeszcze tego nie widzisz. W dalszej części artykułu, wykorzystamy <i>matplolib</i> do głębszego rozrysowania sobie tych zależności.  
 
 Zwróć uwagę, że nad wykresem pojawia się dodatkowy tekst. Wynika to z mechanizmu działania samego notatnika, który “drukuje” w komórce wyjściowej reprezentację ostatniego obiektu. Nie wdając się w szczegóły mechanizmu, możemy się łatwo pozbyć tego tekstu, dodając średnik (;) na końcu naszego polecenia rysującego wykres:
 
@@ -103,13 +105,17 @@ plt.title("Prosty wykres funkcji");
 Tych kilka poleceń sprawi, że nasz wykres zyska nieco więcej elementów. W następnej sekcji zajmiemy się tymi aspektami nieco bardziej szczegółowo.
 
 ![Wykres matplolib z dodatkowymi elementami](./first_chart_enchanced.jpg)
-<figcaption>Jeżeli wykonujesz polecenia razem ze mną to widzisz zapewne, że na wykresie pojawił się teraz tytuł <i>Prosty wykres funkcji</i> oraz opis obydwu osi.</figcaption>
+
+[figure_caption]
+Jeżeli wykonujesz polecenia razem ze mną to widzisz zapewne, że na wykresie pojawił się teraz tytuł <i>Prosty wykres funkcji</i> oraz opis obydwu osi.  
 
 #### Anatomia wykresu
 Zanim zagłębimy się w bardziej zaawansowaną “mechanikę” matplotlib, zobaczmy jak zbudowany jest wykres. W dużym uproszczeniu możemy przedstawić go następująco:
 
 ![Elemeny składowe wykresy w matplotlib](./chart_anathomy.png)  
-<figcaption>
+
+[figure_caption]
+
 Jak widzisz biblioteka oddaje do Twojej dyspozycji takie elementy jak:
 <li><b>Figure</b> – najbardziej zewnętrzny kontener na wszystkie elementy wykresu, który sam w sobie może zawierać wiele niezależnych wykresów (tak naprawdę obiektów typu Axes, ale na tym etapie to nie jest istotne),</li>
 <li><b>Axes</b> – właściwa przestrzeń rysowania wykresu, składająca się z takich elementów jak osie (Axis), znaczniki osi (Ticks), linie, tekst (Text), etykiety (Labels) itp.,</li>
@@ -117,7 +123,7 @@ Jak widzisz biblioteka oddaje do Twojej dyspozycji takie elementy jak:
 <li><b>title</b> – jak łatwo się domyślić, jest to tytuł wykresu,</li>
 <li><b>xlabel</b> – definiuje etykietę osi poziomej (X),</li>
 <li><b>ylabel</b> – pozwala dodać opis dla osi pionowej (Y)</li>
-</figcaption>
+  
 
 Oczywiście zbiór wszystkich elementów wykresu jest znacznie szerszy, ale więcej o tym dowiesz się w kolejnych postach.
 
@@ -132,7 +138,9 @@ Z matplotlib to naprawdę nic trudnego! Postaramy się umieścić w jednym obsza
 Działanie tej metody umożliwia proste określenie sposobu, w jaki wykres ma być skonstruowany. Parametry nrows oraz ncols odpowiadają za kształt siatki komponującej cały rysunek, czyli odpowiednio liczbę wierszy oraz liczbę kolumn. Argument index umożliwia “dostęp” do konkretnego wykresu w ramach naszej siatki. 
 
 ![Działanie metody subplot()](./subplot_schema.png)  
-<figcaption>“Liczenie” wykresów w siatce zaczyna się od lewego górnego rogu i rośnie w miarę przesuwania się w prawą stronę. Grafika pozwola to bardziej zrozumieć. Widzimy jak to dokładnie wygląda dla wykresu złożonego z 6 podwykresów, opartego na siatce zbudowanej z 3 kolumn i 2 wierszy.</figcaption>
+
+[figure_caption]
+“Liczenie” wykresów w siatce zaczyna się od lewego górnego rogu i rośnie w miarę przesuwania się w prawą stronę. Grafika pozwola to bardziej zrozumieć. Widzimy jak to dokładnie wygląda dla wykresu złożonego z 6 podwykresów, opartego na siatce zbudowanej z 3 kolumn i 2 wierszy.  
 
 Spróbujmy narysować wykres. Chcemy, żeby składał się z trzech podwykresów, umieszczonych jeden nad drugim (czyli w jednej kolumnie). Pierwszy wykres będzie zawierał naszą funkcję $f(x)$ a dwa pozostałe to funkcje “składowe”:  
 
@@ -154,14 +162,18 @@ plt.plot(x, np.log(x));
 Konstruujemy wykres w trzech etapach. Każdy z "podwykresów" definiujemy osobno za pomocą metody *subplot()*, przekazując do niej odpowienie parametry określające ilość wierszy, kolumn oraz kolejność danego wykresu w siatce. Następnie uruchamiamy metodę *plot()*, dla każdego z nich, podając wartości dla osi X oraz Y. 
 
 ![Wykres narysowany przy wykorzystaniu metody subplot()](./no_tight_layout.jpg)
-<figcaption>Widzimy, że się udało! No prawie… Jeśli się uważnie przyjżysz, to zapewne dostrzeżesz, że wykresy trochę na siebie zachodzą, przez co stają się mniej czytelne.</figcaption>
+
+[figure_caption]
+Widzimy, że się udało! No prawie… Jeśli się uważnie przyjżysz, to zapewne dostrzeżesz, że wykresy trochę na siebie zachodzą, przez co stają się mniej czytelne.  
 
 Jeżeli myślisz, że czeka nas żmudny porces wyrównywania wykresów, to jesteś w błędzie. Jest na to sprytna metoda (oczywiście mam na myśli metodę z biblioteki matplotlib):
 
 `tight_layout()`
 
 ![Sposób działania metody subplot()](./tight_layout-1.png)
-<figcaption><i>tight_layout()</i> "wpuszcza" nieco więcej przestrzeni pomiędzy wykresami. Dzięki temu zabiegowi unikamy sytuacji wzajemnego przesłaniania się przez poszczególne elementy wykresów.</figcaption>
+
+[figure_caption]
+<i>tight_layout()</i> "wpuszcza" nieco więcej przestrzeni pomiędzy wykresami. Dzięki temu zabiegowi unikamy sytuacji wzajemnego przesłaniania się przez poszczególne elementy wykresów.  
 
 Wystarczy dopisać ją na końcu ostatniej komórki, w której tworzyliśmy wykres i sprawa załatwiona:
 

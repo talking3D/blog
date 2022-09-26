@@ -54,7 +54,35 @@ type DataProps = {
 }
 
 const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
-  const addParentDiv = (node: Element) => {
+  const wrapNode = (node: Element) => {
+    if (node.firstElementChild?.classList.contains('gatsby-resp-image-wrapper') && node.parentElement?.tagName !== 'FIGURE') {
+      const figureWrapper = document.createElement('figure');
+      figureWrapper.className = 'from-inline-image';
+      const divImageWraper = document.createElement('div');
+      divImageWraper.classList
+        .add('col-start-1', 'col-end-4', 'lg:col-start-1', 'lg:col-end-2', 'overflow-hidden', 'h-auto', 'px-2');
+      figureWrapper.appendChild(divImageWraper);
+      if (node.parentElement !== null) {
+        node.parentElement.replaceChild(figureWrapper, node);
+        divImageWraper.appendChild(node.firstElementChild);
+      }
+      if (figureWrapper.nextElementSibling?.tagName === 'FIGCAPTION') {
+        figureWrapper.nextElementSibling
+          .classList.add('col-start-1', 'col-end-4', 'pt-4', 'md:col-start-2', 'md:col-end-4', 'md:-ml-1', 'md:pr-2', 'lg:pl-4', 'lg:pr-4', 'lg:pt-0', 'w-full', 'text-justify');
+        figureWrapper.appendChild(figureWrapper.nextElementSibling);
+      }
+    }
+    if (node.firstChild?.nodeType === 3
+        && node.firstChild?.textContent === '[figure_caption]'
+        && node.previousElementSibling?.tagName === 'FIGURE') {
+      const figCaption = document.createElement('figcaption');
+      figCaption
+        .classList.add('col-start-1', 'col-end-4', 'pt-4', 'md:col-start-2', 'md:col-end-4', 'md:-ml-1', 'md:pr-2', 'lg:pl-4', 'lg:pr-4', 'lg:pt-0', 'w-full', 'text-justify');
+      node.removeChild(node.firstChild);
+      node.previousElementSibling.appendChild(figCaption);
+      figCaption.appendChild(node);
+    }
+
     if (!!node.parentElement && ['DIV', 'BLOCKQUOTE', 'FIGURE'].includes(node.parentElement?.tagName)) {
       return;
     }
@@ -80,7 +108,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         if (node.tagName === 'UL') {
           node.classList.add('leading-8', 'list-disc', 'pl-8');
         }
-        addParentDiv(node);
+        wrapNode(node);
       });
 
       const codeWrappers = document.querySelectorAll('pre');

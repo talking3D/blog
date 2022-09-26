@@ -58,7 +58,13 @@ plt.subplot(212, title='Histogram oraz funkcja gęstości rozkładu dla zbioru w
 sns.distplot(epsilon)
 plt.show()
 ```  
-<figcaption>The graph vividly illustrates the nature of the error ('noise') in data. The top drawing shows a large spontaneity in the skewness of the individual values, around the mean (equal to zero) marked with a black dotted line. The bottom figure, which shows the histogram, clearly indicates that we are dealing with a set with a normal probability distribution. Understanding this will slowly help us get through the rest of the material more easily.</figcaption>
+
+Running the notepad cell with the above code will create the graph shown below (if you want to know more about creating charts, see [here]()).
+
+![Graph showing the chaotic nature of the random error and histogram of the distribution of the set of error values](./random_error.jpg)
+
+[figure_caption]
+The graph vividly illustrates the nature of the error ('noise') in data. The top drawing shows a large spontaneity in the skewness of the individual values, around the mean (equal to zero) marked with a black dotted line. The bottom figure, which shows the histogram, clearly indicates that we are dealing with a set with a normal probability distribution. Understanding this will slowly help us get through the rest of the material more easily.
 
 We have started with the most 'chaotic' component of the phenomenon. It is time for us to look at the other correlations. For this, let us return to the problem faced by Oskar. On that fateful evening, he received information that there was a serious problem with the durability of the moulds. The model, which had recently been implemented into the factory's manufacturing process, was supposed to control the raw material composition of the mix, or more precisely two, of its rather unstable components, affecting the flexibility of the final product. Our editors did not get to the composition details of the mix analysed by the model at the factory because, as suggested, they are a 'factory secret'. Therefore, for the sake of further analysis, let us assume that there is a certain relationship in the production process (called the 'elasticity curve' by the engineers at the factory). In its definition it has an exponential function with a logarithmically varying exponent (remember that it is usually the case that the true shape of the function f(x) is not known to us). We know from earlier considerations that $y=f(x) + \epsilon$. Then, each of our observations will be an outcome of the following relation:
 
@@ -120,7 +126,9 @@ plt.show();
 ```   
 
 ![Graph of the actual elasticity function as a function of the proportion of components in the mixture](./f_x_plus_epsilon_135h.jpg)  
-<figcaption>On the graph, we see, indicated by the black line, the course of the essential function f(x) and the actual observations clustered around it as blue points. Since, in practice, we only have a set of measurements (i.e. we only have the data, we know little or nothing about the function), we need a model that can find the most general and authentic relationship (f(x)) between the data.</figcaption>
+
+[figure_caption]
+On the graph, we see, indicated by the black line, the course of the essential function f(x) and the actual observations clustered around it as blue points. Since, in practice, we only have a set of measurements (i.e. we only have the data, we know little or nothing about the function), we need a model that can find the most general and authentic relationship (f(x)) between the data.
 
 #### "I bend my body boldly...", or dance ero... erroneous!
 For this example, we will try to find a solution to our problem (i.e. build a model) based on a simple model of a **polynomial** function with *n* degrees of freedom. The general form of such a polynomial function can is as follows:
@@ -159,7 +167,9 @@ plt.show()
 ```
 
 ![Graph showing how the polyfit () and polyval () functions work](./polyfit.jpg)
-<figcaption>In the graph, you can see how the individual polynomials "behave" as a function of degree. Note that increasing "n" clearly affects the flexibility of the curve. For n = 1 (g<sub>1</sub> (x) - gray dashed line) you can see the rectilinear course of the function. In principle, we can say that the model tries to penetrate the centre of the cloud of points that make up the set of our observations. Increasing the degrees of freedom to 4 (g<sub>4</sub>(x), blue line) causes the curve to bend, trying to follow the elasticity curve more closely. When we further increase the value of *n* (g<sub>9</sub>(x), green curve), the function bends very much and hits almost every point of our actual observations. At the same time, its shape strongly tends toward regions where the probability of finding any observation is equal to zero (e.g. fragments of the curve extending beyond the visible area of the graph).</figcaption>
+
+[figure_caption]
+In the graph, you can see how the individual polynomials "behave" as a function of degree. Note that increasing "n" clearly affects the flexibility of the curve. For n = 1 (g<sub>1</sub> (x) - gray dashed line) you can see the rectilinear course of the function. In principle, we can say that the model tries to penetrate the centre of the cloud of points that make up the set of our observations. Increasing the degrees of freedom to 4 (g<sub>4</sub>(x), blue line) causes the curve to bend, trying to follow the elasticity curve more closely. When we further increase the value of *n* (g<sub>9</sub>(x), green curve), the function bends very much and hits almost every point of our actual observations. At the same time, its shape strongly tends toward regions where the probability of finding any observation is equal to zero (e.g. fragments of the curve extending beyond the visible area of the graph).
 
 We can divide the models into three groups, depending on the degree to which they find the data:
  + $g_1(x)$ - a model that underestimates our observations is subject to considerable estimation error.
@@ -187,7 +197,9 @@ plt.legend()
 plt.show()
 ```
 ![Graph showing the prediction error for a hypothetical function model](./errors.jpg)  
-<figcaption>The red arrows on the graph, pointing from the dashed estimation line (model) to the actual observation points (y), show how the model is wrong. The red value next to each point represents the error, i.e. the value by which the model overestimated or underestimated our observations. Let's see how this will look for the other models.</figcaption>
+
+[figure_caption]
+The red arrows on the graph, pointing from the dashed estimation line (model) to the actual observation points (y), show how the model is wrong. The red value next to each point represents the error, i.e. the value by which the model overestimated or underestimated our observations. Let's see how this will look for the other models.
 
 We will write some auxiliary functions to do this:  
 ```python lineNumbers
@@ -243,7 +255,9 @@ for degree in degrees_of_freedom:
 plot_errors(random_samples, x, y_true, y_preds, model_fits)
 ```  
 ![Graph showing the relationship between the complexity of the model and the degree of freedom](./mse_fit.jpg)  
-<figcaption>From the analysis of these graphs, it is clear that the best model is the one based on the highest degree polynomial (9). The model's prediction line passes almost exactly through every point, and the MSE value is zero. One could say that the model is perfect. But is it really so?</figcaption>
+
+[figure_caption]
+From the analysis of these graphs, it is clear that the best model is the one based on the highest degree polynomial (9). The model's prediction line passes almost exactly through every point, and the MSE value is zero. One could say that the model is perfect. But is it really so?
 
 Remember that the model has been "tuned" for a specific dataset. Let's call it the training set for simplicity. What happens when we use the model thus built for another dataset that the model has not yet seen (let's call it the test set)? We generate a new test set and check:   
 
@@ -253,7 +267,9 @@ plot_errors(random_samples, x, y_true, y_preds, model_fits)
 ```
 
 ![Graph showing the behaviour of models with different levels of complexity for data the models have not seen before](./mse_test.jpg)  
-<figcaption>And here is a little surprise. The base model (n=1) increased its error slightly, i.e. it is wrong just as much. The same happened for the middle model (n=4), where the MSE error was slightly more considerable. On the other hand, our "perfect" model (n=9) performed terribly. The value of the mean squared error was much more extensive than the middle model (n=4) and almost matched the base model.</figcaption>  
+
+[figure_caption]
+And here is a little surprise. The base model (n=1) increased its error slightly, i.e. it is wrong just as much. The same happened for the middle model (n=4), where the MSE error was slightly more considerable. On the other hand, our "perfect" model (n=9) performed terribly. The value of the mean squared error was much more extensive than the middle model (n=4) and almost matched the base model.  
 
 What then went wrong? Well... in principle, everything is fine. We will analyse the above results for each case separately:  
 + The basic model (*n=1*) already had a high error during training. It was due to its low flexibility and limited ability to fit the data. Consequently, it incorrectly estimates values for the test set. In such a situation, we say the model has a high bias. We are dealing with the **underfitting** of the model.
@@ -301,7 +317,9 @@ for model, degree in enumerate(degrees_of_freedom):
     plt.legend()
 ```  
 ![Graphs show the behaviour of models while increasing degrees of freedom for more data.](./9_test_errors.jpg)  
-<figcaption>I don't think this view surprises you at all (remember that you may get slightly different graphs as we generate randomly varying data). Initially, you see how, as the complexity of the model increases (i.e. increasing degrees of freedom), it fits the training data (decreasing error, decreasing bias), reaching its optimal shape around n=5. Further increasing the degree of the polynomial causes the MSE error to increase, indicating that the quality of the model is deteriorating. Overtraining is occurring.</figcaption>
+
+[figure_caption]
+I don't think this view surprises you at all (remember that you may get slightly different graphs as we generate randomly varying data). Initially, you see how, as the complexity of the model increases (i.e. increasing degrees of freedom), it fits the training data (decreasing error, decreasing bias), reaching its optimal shape around n=5. Further increasing the degree of the polynomial causes the MSE error to increase, indicating that the quality of the model is deteriorating. Overtraining is occurring.  
 
 To get a better idea of this, let's make another graph in which we plot the dependence of the training and testing error on the level of complexity of the model:  
 ```python lineNumbers
@@ -315,7 +333,9 @@ plt.ylabel('MSE')
 plt.legend()
 ``` 
 ![Graph illustrating the dependence of the MSE value of the model on the degree of freedom](./mse_vs_degree.jpg)  
-<figcaption>The graph illustrates something like a learning curve (although classically, it should be the dependence of the error on, for example, the number of iterations). The most optimal situation for us is one in which, with decreasing training error, the test error has a minimum value. Note that the green curve representing the error for the training set continually decreases as a function of model complexity.</figcaption>
+
+[figure_caption]
+The graph illustrates something like a learning curve (although classically, it should be the dependence of the error on, for example, the number of iterations). The most optimal situation for us is one in which, with decreasing training error, the test error has a minimum value. Note that the green curve representing the error for the training set continually decreases as a function of model complexity.
 
 Our model is learning more and more. Relying only on the training data will not allow us to find the right optimum. We simultaneously observe the model's behaviour for the test set (red line). We notice the model starts to deteriorate in its predictive ability above the 5th degree of freedom (the model overtrains). A simple conclusion flows from this - the optimal level of model complexity is 5.  
 
@@ -344,7 +364,9 @@ I have not mentioned the third parameter, which is the variance of the irreducib
 As a friend of mine used to say - when I draw something myself, I start to understand it better. The diagram below shows a theoretical and simplified diagram of the relationship between the quantities described:
 
 ![Diagram illustrating the total model error and its components - bias and variance as a function of model complexity](./tradeoff.jpg)  
-<figcaption>As you can see, fine-tuning a model is an art of finding a compromise (<strong>trade-off</strong>). Although at first, it seemed that the ideal model was one that could predict values perfectly, we have seen how far from expectations such reasoning can be.</figcaption>
+
+[figure_caption]
+As you can see, fine-tuning a model is an art of finding a compromise (<strong>trade-off</strong>). Although at first, it seemed that the ideal model was one that could predict values perfectly, we have seen how far from expectations such reasoning can be.  
 
 And it was precisely this balance missing from the model which was supposed to support Oskar (you may still remember him from the introduction to this post :)). Someone just forgot about it...  
 
