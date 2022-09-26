@@ -30,19 +30,22 @@ $$
 
 A glance at three essential aspects of the model will help us understand it better:  
 
-![Graph illustrating the principle of the importance of the regression coefficients B0 and B1](./regression_coefficients.jpg)  
+![Graph illustrating the principle of the importance of the regression coefficients B0 and B1](./regression_coefficients.jpg)
 
-**Aspect 1: regression roefficients**  
+[figure_caption]
+**Aspect 1: regression coefficients**  
 The essence of the method is to train the model on the so-called training set that allows you to calculate the values of the regression coefficients $\beta_{0}$ and $\beta_{1}$.  
 The linear regression coefficients $\beta_{0}$, $\beta_{1}$ are responsible for the course of the line defined by the formula (1), and specifically for its slope concerning the oX axis ($\beta_{1}$) and the place of intersection of the line with the oY axis ($\beta_ {0}$). It is worth noting that from the definition of the $\beta_{1} = \frac{\Delta y_{i}}{\Delta x_{i}}$ coefficient, it follows that it is the tangent of the angle formed by the regression line with the axis oX.
 
 ![A graph showing the idea of regression model](./regression_model.jpg) 
 
+[figure_caption]
 **Aspect 2: the course of the regression curve**  
 We want to find the values of the $\beta_ {0}$ and $\beta_ {1}$ coefficients for which the straight line defined by the formula (1) runs as close as possible to the points representing the actual observations. The determined straight line is a set of values that are predictions of our model. 
 
 ![A graph showing the prediction error](./regression_error.jpg)
 
+[figure_caption]
 **Aspect 3: prediction error**  
 The distance between the value predicted by the model ($\hat{y}_{i}$) and the actual observation ($y_{i}$) is nothing more than the prediction error ($e_{i}$):<br class='before-equation'/>
 $e_{i} = y_{i} - \hat{y}_{i}$  
@@ -75,23 +78,23 @@ $$
 \beta_{0} = \bar{y} - \beta_{1}\bar{x}\tag{3}
 $$
 
-In the above formulas, $\bar{x}$ and $\bar{y}$ denote the mean value for the feature and the target, respectively. Cool, but what's going on? While it is easy to explain equation (3) because you can see at a glance that it is a mathematical "consequence" resulting from the regression equation (1) itself (you need to transform it). If it comes to the equation for $\beta_ {1}$ (2) is not so clear on the level of intuitive understanding. But let's try to think about it for a moment. 
-
-
+In the above formulas, $\bar{x}$ and $\bar{y}$ denote the mean value for the feature and the target, respectively. Cool, but what's going on? While it is easy to explain equation (3) because you can see at a glance that it is a mathematical "consequence" resulting from the regression equation (1) itself (you need to transform it). If it comes to the equation for $\beta_ {1}$ (2) is not so clear on the level of intuitive understanding. But let's try to think about it for a moment:  
 
 ![Graph of the slope of the regression curve in relation to B1 (B1 = 1)](./coefficient_b1_1.jpg)  
 
+[figure_caption]
 We know that $\beta_ {1}$ is responsible for the slope of the regression line towards the oX axis. Let's first assume that $x_{i} = y_{i}$. Then: <br class='before-equation' />
 $\beta_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(x_{i} - \bar{x})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})^2}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} = 1$
 It means that each change in the value of the feature (X) corresponds to the precisely equal change in the target value (Y). It manifests in a straight line inclined 45 degrees to the x-axis ($tg45^\circ =1$) on the graph.
 
 ![Graph of the slope of the regression curve in relation to B1 (B1 <1)](./coefficient_b1_less.jpg)
 
+[figure_caption]
 Now, look at another case. Changing the value of the feature causes a much smaller reaction of the target, i.e. $\Delta x > \Delta y$. Then for each pair $x_{i}, y_{i}$, the inequality will be true:<br class='before-equation' /> 
 $(x_{i} - \bar{x})(y_{i} - \bar{y}) <(x_{i} - \bar{x})^2$ (the square of any number will always be greater than the product of this number and the lower number below).  
 What does this mean for the $\beta_{1}$ ratio? If we divide a small number by the greater, we always get a result less than 1: <br class='before-equation' />
 $\beta_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} < 1$  
-The straight line formed by the regression equation based on such a factor beta_ {1} will be inclined concerning the oX axis by an angle of fewer than 45 degrees. It is intuitive since we know the tangent in the range $0^\circ$ do $45^\circ$ is less than 1.  
+The straight line formed by the regression equation based on such a factor $\beta_ {1}$ will be inclined concerning the oX axis by an angle of fewer than 45 degrees. It is intuitive since we know the tangent in the range $0^\circ$ do $45^\circ$ is less than 1.  
 
 I hope it makes more sense to you now.
 
@@ -155,6 +158,7 @@ I warn more sensitive people that the results may shock ;):
 
 ![Graph of changes in the level of global emissions](./emmision_plot.png)  
 
+[figure_caption]
 A curve represents the changing global level of carbon dioxide emissions to the atmosphere. It clearly shows how ruthless human activity is for the environment. The last four decades have seen an almost twofold increase in the emission of harmful gases into the atmosphere. If this does not convince someone, I do not know what could...  
 
 Remember that our goal is to study the impact of atmospheric gas emissions on global warming. The only thing we are missing at this stage is... data on temperature changes!
@@ -223,6 +227,7 @@ plt.show();
 
 ![Graph of changes in the temperature of the Earth's surface](./global_warming_scatter.png)
 
+[figure_caption]
 The chart shows a clearly-cutting upward trend. 
 
 #### Simple linear regression model.
@@ -244,6 +249,7 @@ You may notice that the result of the <span className='inline-code'>train_test_s
 
 ![Principle of operation of the train_test_split () method](./train_test_split.jpg)  
 
+[figure_caption]
 The principle of the <span className='inline-code'>train_test_split()</span> method is simple. It randomly selects the elements of our dataset, dividing it into a training and a test part. For each set of features (*X*) in the training set, this method assigns an appropriate target value (*y*). It does the same for the test set. With this approach, everyone can easily subject the model to a validation (quality assessment) process using the training data. It is worth noting that this is one of the more basic optimization methods.
 
 Now it's time to train the model. We use the already mentioned  <span className='inline-code'>LinearRegression()</span> model.
@@ -388,6 +394,7 @@ plt.show();
 
 ![Graph of changes in the Earth's surface temperature in relation to CO2 emissions](./final_prediction.png)
 
+[figure_caption]
 You can see that the model allows us to predict the values of temperature changes in the future based on our estimates of the level of greenhouse gas emissions into the atmosphere. Since we used linear regression, the answer we obtained in our experiment obviously lies along a straight line. The course over time of the points along the straight line, i.e. the increasing trend, suggests the conclusion that a lack of regulation of harmful gas emissions could unceremoniously lead to an environmental catastrophe 🙁
 
 #### Only calmness will save us... (and more common sense)
