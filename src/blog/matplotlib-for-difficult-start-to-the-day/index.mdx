@@ -84,7 +84,9 @@ The above formula runs the already mentioned *plot()* method from the matplotlib
 After running the cell containing the above code, a "fantastic" graph appears in our eyes.
 
 ![Function graph made in matplotlib](./matplotlib_function_chart.png "Graph in matplotlib")  
-<figcaption>The graph shows the course of variation of our function on a short "section" of the set of arguments (0-40). It is easy to see that it carries the nature of two other functions, which are components of the complex function. Don't worry if you don't see this yet. Later in the article, we'll use <i>matplolib</i> to delineate these relationships for ourselves in more depth.</figcaption>
+
+[figure_caption]
+The graph shows the course of variation of our function on a short "section" of the set of arguments (0-40). It is easy to see that it carries the nature of two other functions, which are components of the complex function. Don't worry if you don't see this yet. Later in the article, we'll use <i>matplolib</i> to delineate these relationships for ourselves in more depth.  
 
 Note that additional text appears above the graph. It is due to the mechanism of the notepad itself, which "prints" in the output cell the representation of the last object. Without going into the details of this mechanism, we can effortlessly get rid of this text by adding a semicolon (;) to the end of our command that draws the graph:
 
@@ -103,13 +105,17 @@ plt.title("Simple graph of the function");
 These few commands will make our chart gain a few more elements. In the next section, we will cover these aspects in more detail.
 
 ![Matplolib chart with additional elements](./first_chart_enchanced.jpg)
-<figcaption>If you follow the instructions with me, you probably see that the title <i>Simple graph of a function</i> and the description of the two axes have now appeared on the graph.</figcaption>
+
+[figure_caption]
+If you follow the instructions with me, you probably see that the title <i>Simple graph of a function</i> and the description of the two axes have now appeared on the graph.  
 
 #### Chart anatomy
 Before we delve into the more advanced "mechanics" of matplotlib, let's see the graph construction. In a nutshell, we can present it as follows:
 
 ![The constituent elements of graphs in matplotlib](./chart_anathomy.png)  
-<figcaption>
+
+[figure_caption]
+
 As you can see, the library puts at your disposal such elements as:
 <li><b>Figure</b> – the outermost container for all chart elements, which itself can contain multiple independent charts (actually, objects of type Axes, but that's not important at this stage),</li>
 <li><b>Axes</b> –  the actual drawing space of the chart, consisting of elements such as axes (Axis), axis markers (Ticks), lines, text (Text), labels (Labels), etc.,</li>
@@ -117,7 +123,7 @@ As you can see, the library puts at your disposal such elements as:
 <li><b>title</b> –  as you can easily guess, this is the title of the chart,</li>
 <li><b>xlabel</b> – defines the label of the horizontal (X) axis,</li>
 <li><b>ylabel</b> – allows you to add a description for the vertical axis (Y)</li>
-</figcaption>
+  
 
 Oczywiście zbiór wszystkich elementów wykresu jest znacznie szerszy, ale więcej o tym dowiesz się w kolejnych postach.
 
@@ -132,7 +138,9 @@ With matplotlib, it's not problematic! We will try to put all three graphs in on
 The operation of this method allows you to specify easly the graph construction. The parameters *nrows* and *ncols* are responsible for the grid shape that composes the entire drawing, i.e. the number of rows and the number of columns, respectively. The index argument allows "access" to a specific chart within our grid. 
 
 ![How subplot() method works](./subplot_schema.png)  
-<figcaption>"Counting" the graphs in the grid starts from the upper left corner and increases as you move to the right. The graphic will help you understand this more. We can see how it looks for a graph of six subgraphs based on a grid of three columns and two rows.</figcaption>
+
+[figure_caption]
+"Counting" the graphs in the grid starts from the upper left corner and increases as you move to the right. The graphic will help you understand this more. We can see how it looks for a graph of six subgraphs based on a grid of three columns and two rows.  
 
 Let's try to draw a graph. We want it to consist of three subgraphs, placed one above the other (that is, in one column). The first graph will contain our function $f(x)$, and the other two are "component" functions:  
 
@@ -154,14 +162,18 @@ plt.plot(x, np.log(x));
 We construct the graph in three stages. We define each "subgraph" separately using the *subplot()* method, passing the appropriate parameters specifying the number of rows, columns and the order of the given graph in the grid. Then we run the *plot()* method for each drawing, providing values for the X and Y axes.
 
 ![Graph drawn using the subplot() method](./no_tight_layout.jpg)
-<figcaption>WWe can see that it worked! Well almost. If you look closely, you'll probably notice that the graphs overlap a bit, making them less readable.</figcaption>
+
+[figure_caption]
+We can see that it worked! Well almost. If you look closely, you'll probably notice that the graphs overlap a bit, making them less readable.  
 
 You may think we're in for a tedious operation of graph alignment. Well, none of those things. There is a nifty method for this (of course, I'm referring to the matplotlib library method):
 
 `tight_layout()`
 
 ![Graph drawn using the tight_layout() method](./tight_layout-1.png)
-<figcaption><i>tight_layout()</i> "lets in" a little more space between the charts. This procedure avoids the situation of mutual obscuring by the various elements of the charts.</figcaption>
+
+[figure_caption]
+*tight_layout()* "lets in" a little more space between the charts. This procedure avoids the situation of mutual obscuring by the various elements of the charts.  
 
 It is enough to add it at the end of the last cell in which we created the chart, and that's it:
 

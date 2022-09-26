@@ -33,17 +33,20 @@ Rzut okiem na trzy kluczowe aspekty modelu, pozwolą nam go lepiej zrozumieć:
 
 ![Wykres ilustrujący zasadę znaczenie współczynników regresji B0 i B1](./regression_coefficients.jpg)  
 
+[figure_caption]
 **Aspekt 1: współczynniki regresji**  
 Istotą działania metody jest trenowanie modelu na tzw. zbiorze treningowym, które umożliwia obliczenie wartości współczynników regresji $\beta_{0}$ i $\beta_{1}$.  
 Współczynniki regresji liniowej $\beta_{0}$, $\beta_{1}$ odpowiadają za przebieg prostej określonej wzorem (1), a konkretnie za jej nachylenie względem osi oX ($\beta_{1}$) oraz miejsce przecięcia prostej z osią oY ($\beta_{0}$). Warto zauważyć, że z definicji współczynnika $\beta_{1} = \frac{\Delta y_{i}}{\Delta x_{i}}$ wynika, że jest to tangens kąta jaki tworzy prosta z osią oX.
 
 ![Wykres model regresji liniowej](./regression_model.jpg) 
 
+[figure_caption]
 **Aspekt 2: przebieg krzywej regresji**  
 Zależy nam na tym, aby znaleźć takie wartości współczynników $\beta_{0}$ i $\beta_{1}$, dla których linia prosta, określona przez wzór (1) przebiega w jak najmniejszej odległości od punktów reprezentujących rzeczywiste obserwacje. Wyznaczona linia prosta stanowi zbiór punktów, będących predykcjami naszego modelu.  
 
 ![Wykres ilustrujący błąd predykcji](./regression_error.jpg)
 
+[figure_caption]
 **Aspekt 3: błąd predykcji**  
 Odległość między wartością przewidzianą przez model ($\hat{y}_{i}$) a rzeczywistą obserwacją ($y_{i}$) to nic innego jak błąd predykcji ($e_{i}$):<br class='before-equation'/>
 $e_{i} = y_{i} - \hat{y}_{i}$  
@@ -76,18 +79,18 @@ $$
 \beta_{0} = \bar{y} - \beta_{1}\bar{x}\tag{3}
 $$
 
-W powyższych wzorach $\bar{x}$ oraz $\bar{y}$ oznaczają odpowiednio wartość średnią dla cechy oraz wartość średnią dla targetu. Fajnie, tylko... o co w tym chodzi? O ile bardzo łatwo jest sobie wytłumaczyć równanie (3), gdyż na pierwszy rzut oka widać, że jest to matematyczna "konsekwencja" wynikająca z samego równania regresji (1) (wystarczy je po prostu przekształcić), o tyle równanie na $\beta_{1}$ (2) nie jest tak oczywiste na poziomie intuicyjnego zrozumienia. Spróbujmy się jednak nad tym chwilkę zastanowić.  
-
-
+W powyższych wzorach $\bar{x}$ oraz $\bar{y}$ oznaczają odpowiednio wartość średnią dla cechy oraz wartość średnią dla targetu. Fajnie, tylko... o co w tym chodzi? O ile bardzo łatwo jest sobie wytłumaczyć równanie (3), gdyż na pierwszy rzut oka widać, że jest to matematyczna "konsekwencja" wynikająca z samego równania regresji (1) (wystarczy je po prostu przekształcić), o tyle równanie na $\beta_{1}$ (2) nie jest tak oczywiste na poziomie intuicyjnego zrozumienia. Spróbujmy się jednak nad tym chwilkę zastanowić:  
 
 ![Wykres zależności nachylenia krzywej regresji w zależności od B1 (B1 =1)](./coefficient_b1_1.jpg)  
 
+[figure_caption]
 Wiemy, że $\beta_{1}$ odpowiada za nachylenie prostej regresji względem osi oX. Załóżmy najpierw, że $x_{i} =y_{i}$. Wtedy: <br class='before-equation' />
 $\beta_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(x_{i} - \bar{x})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})^2}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} = 1$
 Oznacza to, że każdej zmianie wartości cechy (X) oznacza dokładnie taka sama co do wartości zmiana targetu (Y). Na wykresie, będzie się to manifestowało prostą nachyloną o 45 stopni do osi oX ($tg45^\circ =1$).  
 
 ![Wykres zależności nachylenia krzywej regresji w zależności od B1 (B1<1)](./coefficient_b1_less.jpg)
 
+[figure_caption]
 Teraz popatrz na inny przypadek. Zmiana wartości cechy powoduje znacznie mniejszą reakcję targetu, czyli $\Delta x > \Delta y$. Wtedy dla każdej pary $x_{i}, y_{i}$ prawdziwa będzie nierówność:<br class='before-equation' /> $(x_{i} - \bar{x})(y_{i} - \bar{y}) <(x_{i} - \bar{x})^2$ (kwadrat dowolnej liczby będzie zawsze większy od iloczynu tej liczby i liczby od dniej mniejszej).  
 Co to oznacza dla współczynnika $\beta_{1}$ ? Jeżeli będziemy dzielić liczbę mniejszą przez większą, to zawsze otrzymamy wynik mniejszy niż 1: <br class='before-equation' />$\beta_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^2} < 1$  
 Linia prosta utworzona przez równanie regresji oparte na na takim współczynniku $\beta_{1}$ będzie nachylona względem osi oX pod kątem mniejszym niż 45 stopni. Jest to zgodne z naszą intuicją, gdyż wiemy, że tangens kąta w przedziale od $0^\circ$ do $45^\circ$ przyjmuje wartości mniejsze od 1.  
@@ -154,6 +157,7 @@ Uprzedzam wrażliwsze osoby, że rezultaty mogą szokować ;):
 
 ![Wykres zmian poziomu globalnej emisji](./emmision_plot.png)  
 
+[figure_caption]
 Krzywa reprezentująca zmieniający się globalny poziom emisji dwutlenku węgla do atmosfery. Widać wyraźnie pokazuje, jak bardzo bezlitosna dla środowiska jest działalność człowieka. Ostatnie cztery dekady to niemal dwukrotny wzrost emisji szkodliwych gazów do atmosfery. Jeśli to kogoś nie przekonuje, to sam nie wiem co jest w stanie to zrobić…  
 
 Pamiętaj, że naszym celem jest zbadanie wpływu emisji gazów do atmosfery na poziom globalnego ocieplenia. Jedyne czego nam na tym etapie brakuje to… danych dotyczących zmian temperatury! 
@@ -222,6 +226,7 @@ plt.show();
 
 ![Wykres zmian temperatury powierzchni Ziemi](./global_warming_scatter.png)
 
+[figure_caption]
 Na wykresie widzimy wyraźnie zarysowujący się trend rosnący. 
 
 #### Prosty model regresji liniowej.
@@ -243,6 +248,7 @@ Możesz zauważyć, że wynik działania funkcji <span className='inline-code'>t
 
 ![Zasada działania metody train_test_split()](./train_test_split.jpg)  
 
+[figure_caption]
 Zasada działania metody <span className='inline-code'>train_test_split()</span> jest bardzo prosta. Wybiera ona w sposób losowy elementy naszego zbioru danych, dzieląc go na część treningową i testową. Dla każdego zestawu cech (*X*) w zbiorze treningowym przypisana jest właściwa wartość targetu (*y*). Analogicznie odbywa się to dla zbioru testowego. Dzięki takiemu podejściu, możemy w prosty sposób poddać model procesowi walidacji (oceny jakości), wykorzystując do tego dane treningowe. Warto zaznaczyć, że jest to jedna z bardziej podstawowych metod optymalizacji.  
 
 Nadszedł czas wytrenować model. Używamy wspominanego już modelu <span className='inline-code'>LinearRegression()</span>
@@ -387,6 +393,7 @@ plt.show();
 
 ![Wykres zmian temperatury powierzchni Ziemi w zależności od emisji CO2](./final_prediction.png)
 
+[figure_caption]
 Widzisz, że model pozwala nam przewidzieć wartości zmian temperatury w przyszłości na podstawie naszych estymacji poziomu emisji gazów cieplarnianych do atmosfery. Ponieważ zastosowaliśmy regresję liniową, odpowiedź jaką uzyskaliśmy w naszym eksperymencie w sposób oczywisty układa się wzdłuż linii prostej. Przebieg w czasie punktów znajdujących się na prostej, czyli rosnący trend, podsuwa wniosek, że brak regulacji dotyczących emisji szkodliwych gazów, może w bezceremonialny sposób doprowadzić do katastrofy ekologicznej 🙁
 
 #### Tylko spokój nas uratuje… (a raczej zdrowy rozsądek)
