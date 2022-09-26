@@ -1,7 +1,7 @@
 const path = require(`path`);
 const {
   locales,
-  removeTrailingSlash,
+  // removeTrailingSlash,
   localizedSlug,
   findKey,
 } = require(`./src/i18n/i18n`);
@@ -16,8 +16,8 @@ exports.onCreatePage = async ({ page, actions }) => {
 
     return createPage({
       ...page,
-      path: removeTrailingSlash(localizedPath),
-      // path: localizedPath,
+      // path: removeTrailingSlash(localizedPath),
+      path: localizedPath,
       context: {
         ...page.context,
         locale: lang,
