@@ -12,8 +12,8 @@ const options = {
 };
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
+  .use(LanguageDetector)
   .init({
     fallbackLng: 'en',
     resources: {
