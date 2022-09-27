@@ -109,8 +109,8 @@ const Tile = ({
                 </span>
               </h2>
             </div>
-            <div className="flex justify-between mb-2 px-4  w-full">
-              <ul className="flex flex-wrap justify-start">
+            <div className="flex justify-between mb-2 px-4 w-full">
+              <ul className="flex flex-wrap justify-start max-w-max">
                 { tags.map((tag) => (
                   <li
                     key={tag}
@@ -122,10 +122,12 @@ const Tile = ({
                 )) }
               </ul>
               <div
-                className="flex flex-nowrap w-min-max self-end items-center mb-1"
+                className="flex flex-nowrap w-min-max self-end items-center mb-1 pr-2"
                 style={{ color: getColorContrast(image!.backgroundColor!) }}
               >
-                <BsClockFill size={17} />
+                <div className='w-4 h-4'>
+                  <BsClockFill size={17} />
+                </div>
                 <span className="ml-2 block min-w-max">
                   { reading_time }
                   {' '}
