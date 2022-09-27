@@ -6,14 +6,14 @@ const Slogan = () => {
   return (
     <div className='mt-7 mx-2'>
       <h3 className='font-roboto text-2xl sm:text-3xl font-bold leading-3'>
-        <span className='heading-span-letter'>D</span>
-        <span className='dark:text-white'>ata</span>
+        <span className='heading-span-letter align-baseline'>D</span>
+        <span className='dark:text-white align-baseline'>ata</span>
         {' '}
-        <span className='heading-span-letter'>D</span>
-        <span className='dark:text-white'>riven</span>
+        <span className='heading-span-letter align-baseline'>D</span>
+        <span className='dark:text-white align-baseline'>riven</span>
         {' '}
-        <span className='heading-span-letter'>D</span>
-        <span className='dark:text-white'>iscussion</span>
+        <span className='heading-span-letter align-baseline'>D</span>
+        <span className='dark:text-white align-baseline'>iscussion</span>
       </h3>
       <h4 className='font-roboto text-2xl font-medium text-gray-700 leading-3'>
         <span className='dark:text-slate-300 text-base md:text-xl lg:text-2xl'>{ t('main.subtitle') }</span>
