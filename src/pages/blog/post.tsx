@@ -76,11 +76,15 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         && node.firstChild?.textContent === '[figure_caption]'
         && node.previousElementSibling?.tagName === 'FIGURE') {
       const figCaption = document.createElement('figcaption');
+      const nodeNextElementSibling = node.nextElementSibling;
       figCaption
         .classList.add('col-start-1', 'col-end-4', 'pt-4', 'md:col-start-2', 'md:col-end-4', 'md:-ml-1', 'md:pr-2', 'lg:pl-4', 'lg:pr-4', 'lg:pt-0', 'w-full', 'text-justify');
       node.removeChild(node.firstChild);
       node.previousElementSibling.appendChild(figCaption);
       figCaption.appendChild(node);
+      if (nodeNextElementSibling?.tagName === 'UL') {
+        figCaption.appendChild(nodeNextElementSibling);
+      }
     }
 
     if (!!node.parentElement && ['DIV', 'BLOCKQUOTE', 'FIGURE'].includes(node.parentElement?.tagName)) {
