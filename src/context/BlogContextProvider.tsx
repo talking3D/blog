@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
+import i18next from 'i18next';
+import { useLocation } from '@reach/router';
+import { navigate } from 'gatsby';
 
 export interface Tag {
   [index: string]: string;
@@ -131,7 +134,6 @@ const reducer = (state: BlogState, action: ReducerAction) => {
 
 const BlogContextProvider = ({ children }: ContextProps) => {
   const [state, dispatch] = React.useReducer(reducer, defaultState);
-  // const [locale, setLocale] = React.useState<string>();
 
   React.useEffect(() => {
     if (window !== undefined) {
@@ -141,10 +143,19 @@ const BlogContextProvider = ({ children }: ContextProps) => {
         const lang = localStorage.getItem('i18nextLng');
         if (lang) {
           // set up lang value based on localStorage value
-          dispatch({ type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en' });
+          if (lang === 'en') {
+            navigate(`/`);
+          } else {
+            navigate(`/pl`);
+          }
+          i18next.changeLanguage(lang);
+          if (lang !== state.locale) {
+            dispatch({ type: ReducerActionType.SET_LOCALE, payload: lang as 'pl' | 'en' });
+          }
         } else {
           // Set up default value for lang
           localStorage.setItem('i18nextLng', defaultState.locale);
+          dispatch({ type: ReducerActionType.SET_LOCALE, payload: defaultState.locale as 'pl' | 'en' });
         }
         const theme = localStorage.getItem('theme');
         if (theme === 'dark' || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -158,7 +169,7 @@ const BlogContextProvider = ({ children }: ContextProps) => {
         }
       }
     }
-  }, []);
+  }, [state.locale]);
 
   return (
     <BlogStateContext.Provider value={state}>
