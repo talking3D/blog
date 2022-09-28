@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
 import i18next from 'i18next';
-import { useLocation } from '@reach/router';
 import { navigate } from 'gatsby';
 
 export interface Tag {
@@ -144,9 +143,12 @@ const BlogContextProvider = ({ children }: ContextProps) => {
         if (lang) {
           // set up lang value based on localStorage value
           if (lang === 'en') {
-            navigate(`/`);
+            navigate(window.location.pathname.replace(/^\/pl(?:\/|$)/, `/`));
           } else {
-            navigate(`/pl`);
+            const regex = new RegExp(String.raw`^\/${lang}(?:\/|$)`);
+            if (!regex.test(window.location.pathname)) {
+              navigate(window.location.pathname.replace(/^\//, window.location.pathname === '/' ? '/pl' : '/pl/'));
+            }
           }
           i18next.changeLanguage(lang);
           if (lang !== state.locale) {

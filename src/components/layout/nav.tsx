@@ -14,13 +14,11 @@ import {
 } from 'react-icons/bs';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
-import { useLocation } from "@reach/router";
+// import { useLocation } from "@reach/router";
 import classNames from 'classnames/bind';
 import { t } from 'i18next';
-// import { LogoVertical, LogoHorizontal } from '../common/Logo';
 import LogoVertical from '../common/LogoVertical';
 import LogoHorizontal from '../common/LogoHorizontal';
-// import useActiveLocalePath from '../hooks/useActiveLocalePath';
 import usePathPattern from '../hooks/usePathPattern';
 import useLocale from '../hooks/useLocale';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
@@ -205,8 +203,10 @@ const NavBar = () => {
   const localeListElementClass = classNames.bind(localeStyles);
   const themeToggleClass = classNames.bind({ base: 'dark:text-white hover:underline hover:cursor-pointer', active: 'text-stone-500 dark:text-zinc-400 hover:no-underline hover:cursor-auto' });
 
-  const lokaleURLPL = useLocation().pathname.replace(/^\//, useLocation().pathname === '/' ? '/pl' : '/pl/');
-  const lokaleURLGB = useLocation().pathname.replace(/^\/pl(?:\/|$)/, `/`);
+  // const lokaleURLPL = useLocation().pathname.replace(/^\//, useLocation().pathname === '/' ? '/pl' : '/pl/');
+  // const lokaleURLGB = useLocation().pathname.replace(/^\/pl(?:\/|$)/, `/`);
+
+  const activeLocaleClass = classNames.bind({ active: 'hover:underline' });
 
   // Check currently set theme mode and return respective color
   interface ThemeColors {
@@ -315,21 +315,11 @@ const NavBar = () => {
                 <ul className="leading-7">
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { usePathPattern('pl')
-                      ? (
-                        <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
-                          Engilsh
-                        </Link>
-                      )
-                      : 'English'}
+                    <span className={activeLocaleClass({ active: blogState.locale !== 'en' })}>English</span>
                   </li>
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
-                    {
-                      !usePathPattern('pl')
-                        ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
-                        : 'Polski'
-                    }
+                    <span className={activeLocaleClass({ active: blogState.locale !== 'pl' })}>Polski</span>
                   </li>
                 </ul>
               </div>
@@ -382,21 +372,11 @@ const NavBar = () => {
                 <ul>
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { usePathPattern('pl')
-                      ? (
-                        <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
-                          Engilsh
-                        </Link>
-                      )
-                      : 'English'}
+                    <span className={activeLocaleClass({ active: blogState.locale !== 'en' })}>English</span>
                   </li>
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
-                    {
-                      !usePathPattern('pl')
-                        ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
-                        : 'Polski'
-                    }
+                    <span className={activeLocaleClass({ active: blogState.locale !== 'pl' })}>Polski</span>
                   </li>
                 </ul>
                 <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>
