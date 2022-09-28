@@ -115,14 +115,13 @@ Zanim zagłębimy się w bardziej zaawansowaną “mechanikę” matplotlib, zob
 ![Elemeny składowe wykresy w matplotlib](./chart_anathomy.png)  
 
 [figure_caption]
-
-Jak widzisz biblioteka oddaje do Twojej dyspozycji takie elementy jak:
-<li><b>Figure</b> – najbardziej zewnętrzny kontener na wszystkie elementy wykresu, który sam w sobie może zawierać wiele niezależnych wykresów (tak naprawdę obiektów typu Axes, ale na tym etapie to nie jest istotne),</li>
-<li><b>Axes</b> – właściwa przestrzeń rysowania wykresu, składająca się z takich elementów jak osie (Axis), znaczniki osi (Ticks), linie, tekst (Text), etykiety (Labels) itp.,</li>
-<li><b>Line</b> (plot) – serce wykresu, czyli linia łącząca punkty danych,</li>
-<li><b>title</b> – jak łatwo się domyślić, jest to tytuł wykresu,</li>
-<li><b>xlabel</b> – definiuje etykietę osi poziomej (X),</li>
-<li><b>ylabel</b> – pozwala dodać opis dla osi pionowej (Y)</li>
+Jak widzisz biblioteka oddaje do Twojej dyspozycji takie elementy jak:  
+  + **Figure** – najbardziej zewnętrzny kontener na wszystkie elementy wykresu, który sam w sobie może zawierać wiele niezależnych wykresów (tak naprawdę obiektów typu Axes, ale na tym etapie to nie jest istotne),
+  + **Axes** – właściwa przestrzeń rysowania wykresu, składająca się z takich elementów jak osie (Axis), znaczniki osi (Ticks), linie, tekst (Text), etykiety (Labels) itp.,
+  + **Line** (plot) – serce wykresu, czyli linia łącząca punkty danych,
+  + **title** – jak łatwo się domyślić, jest to tytuł wykresu,
+  + **xlabel** – definiuje etykietę osi poziomej (X),
+  + **ylabel** – pozwala dodać opis dla osi pionowej (Y)
   
 
 Oczywiście zbiór wszystkich elementów wykresu jest znacznie szerszy, ale więcej o tym dowiesz się w kolejnych postach.
@@ -173,7 +172,7 @@ Jeżeli myślisz, że czeka nas żmudny porces wyrównywania wykresów, to jeste
 ![Sposób działania metody subplot()](./tight_layout-1.png)
 
 [figure_caption]
-<i>tight_layout()</i> "wpuszcza" nieco więcej przestrzeni pomiędzy wykresami. Dzięki temu zabiegowi unikamy sytuacji wzajemnego przesłaniania się przez poszczególne elementy wykresów.  
+*tight_layout()* "wpuszcza" nieco więcej przestrzeni pomiędzy wykresami. Dzięki temu zabiegowi unikamy sytuacji wzajemnego przesłaniania się przez poszczególne elementy wykresów.  
 
 Wystarczy dopisać ją na końcu ostatniej komórki, w której tworzyliśmy wykres i sprawa załatwiona:
 
