@@ -20,7 +20,8 @@ import { t } from 'i18next';
 // import { LogoVertical, LogoHorizontal } from '../common/Logo';
 import LogoVertical from '../common/LogoVertical';
 import LogoHorizontal from '../common/LogoHorizontal';
-import useActiveLocalePath from '../hooks/useActiveLocalePath';
+// import useActiveLocalePath from '../hooks/useActiveLocalePath';
+import usePathPattern from '../hooks/usePathPattern';
 import useLocale from '../hooks/useLocale';
 import { BlogDispatchContext, BlogStateContext, ReducerActionType } from '../../context/BlogContextProvider';
 // import SearchBar from '../common/Search';
@@ -132,10 +133,12 @@ const NavBar = () => {
     i18n.changeLanguage(lang);
   };
 
-  // Update blog locale state when user changes locale manually by typing URL
-  const activeLocale = useActiveLocalePath('pl') ? 'pl' : 'en';
+  // Update blog locale state when user changes locale manually by typing URL (if not set!)
+  const activeLocale = usePathPattern('pl') ? 'pl' : 'en';
   React.useEffect(() => {
-    handleLanguageChange(activeLocale);
+    if (!blogState.locale) {
+      handleLanguageChange(activeLocale);
+    }
   }, [activeLocale]);
 
   const handleLocaleClick = () => {
@@ -312,7 +315,7 @@ const NavBar = () => {
                 <ul className="leading-7">
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { useActiveLocalePath('pl')
+                    { usePathPattern('pl')
                       ? (
                         <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
                           Engilsh
@@ -323,7 +326,7 @@ const NavBar = () => {
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
                     {
-                      !useActiveLocalePath('pl')
+                      !usePathPattern('pl')
                         ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
                         : 'Polski'
                     }
@@ -379,7 +382,7 @@ const NavBar = () => {
                 <ul>
                   <li onClick={() => handleLanguageChange('en')} className={localeListElementClass('base', { active: blogState.locale === 'en' })}>
                     <div className="w-4 h-3 mr-2 rounded-sm"><LocaleIconGB /></div>
-                    { useActiveLocalePath('pl')
+                    { usePathPattern('pl')
                       ? (
                         <Link to={lokaleURLGB} hrefLang="en" className="hover:underline">
                           Engilsh
@@ -390,7 +393,7 @@ const NavBar = () => {
                   <li onClick={() => handleLanguageChange('pl')} className={localeListElementClass('base', { active: blogState.locale === 'pl' })}>
                     <div className="w-4 h-3 mr-2"><LocaleIconPL /></div>
                     {
-                      !useActiveLocalePath('pl')
+                      !usePathPattern('pl')
                         ? <Link to={lokaleURLPL} hrefLang="pl" className="hover:underline">Polski</Link>
                         : 'Polski'
                     }
@@ -402,7 +405,7 @@ const NavBar = () => {
                   </a>
                 </li>
                 <li className='font-medium leading-5 mt-2 hover:underline cursor-pointer'>
-                  <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'}>
+                  <Link to={usePathPattern('pl') ? '/pl/about' : '/about'}>
                     {t('dots_menu.author')}
                   </Link>
                 </li>
@@ -411,7 +414,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className="hidden md:flex justify-end rounded-full border-4 dark:border-gray-700 drop-shadow-2xl">
-          <Link to={useActiveLocalePath('pl') ? '/pl/about' : '/about'}>
+          <Link to={usePathPattern('pl') ? '/pl/about' : '/about'}>
             <StaticImage
               src="./../../images/about-face.png"
               alt="Funny drawing showing face of the author of this blog"
