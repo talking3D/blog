@@ -145,7 +145,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   React.useEffect(() => {
     if (window !== undefined) {
-      const titleElements = Array.from(document.querySelectorAll('h3, h4'));
+      const titleElements = Array.from(document.querySelectorAll('main h3, main h4'));
       const navLinks = Array.from(document.querySelectorAll('#table-of-contents-items a'));
       let truthTable: boolean[] = Array(titleElements.length).fill(false);
 

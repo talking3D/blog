@@ -30,7 +30,7 @@ const NoItems = () => (
 
 export const standarizeId = (idProposal: string) => {
   let itemId = idProposal.toLocaleLowerCase();
-  itemId = itemId.replaceAll(' ', '-').replaceAll(/[“”:….,'"?()]/g, "");
+  itemId = itemId.replaceAll(' ', '-').replaceAll(/[“”:….,'"?()!]/g, "");
   return itemId;
 };
 
