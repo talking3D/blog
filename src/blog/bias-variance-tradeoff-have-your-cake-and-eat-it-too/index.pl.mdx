@@ -171,8 +171,7 @@ plt.show()
 ![Wykres przedstawiający działanie funkcji polyfit() i polyval()](./polyfit.jpg)
 
 [figure_caption]
-
-  Na wykresie widzisz, jak "zachowują" się poszczególne wielomiany w zależności od stopnia. Zauważ, że zwiększanie n wyraźnie wpływa na elastyczność krzywej. Dla n=1 (g<sub>1</sub>(x) - szara, przerywana linia) widzisz prostoliniowy przebieg funkcji. W zasadzie można powiedzieć, że model stara się przebić przez środek chmury punktów, składających się na zbiór naszych obserwacji. Zwiększenie stopni swobody do 4 (g<sub>4</sub>(x), niebieska linia) sprawia, że krzywa zaczyna się wyginać, starając się bardziej dopasować do krzywej elastyczności. Gdy dalej zwiększamy wartość n (g<sub>9</sub>(x), krzywa zielona), funkcja wygina się już bardzo mocno i trafia niemal w każdy punkt naszych rzeczywistych obserwacji. Jednocześnie jej kształt wychyla się mocno w stronę rejonów, w których prawdopodobieństwo znalezienia jakiejkolwiek obserwacji jest równe zeru (np. fragmenty krzywej wychodzące poza widoczny obszar wykresu).
+Na wykresie widzisz, jak "zachowują" się poszczególne wielomiany w zależności od stopnia. Zauważ, że zwiększanie n wyraźnie wpływa na elastyczność krzywej. Dla n=1 (g<sub>1</sub>(x) - szara, przerywana linia) widzisz prostoliniowy przebieg funkcji. W zasadzie można powiedzieć, że model stara się przebić przez środek chmury punktów, składających się na zbiór naszych obserwacji. Zwiększenie stopni swobody do 4 (g<sub>4</sub>(x), niebieska linia) sprawia, że krzywa zaczyna się wyginać, starając się bardziej dopasować do krzywej elastyczności. Gdy dalej zwiększamy wartość n (g<sub>9</sub>(x), krzywa zielona), funkcja wygina się już bardzo mocno i trafia niemal w każdy punkt naszych rzeczywistych obserwacji. Jednocześnie jej kształt wychyla się mocno w stronę rejonów, w których prawdopodobieństwo znalezienia jakiejkolwiek obserwacji jest równe zeru (np. fragmenty krzywej wychodzące poza widoczny obszar wykresu).
   
 
 Modele możemy podzielić na trzy grupy, w zależności od stopnia w jakim odnajdują dane:
@@ -265,8 +264,7 @@ plot_errors(random_samples, x, y_true, y_preds, model_fits)
 ![Wykres przedstawiający zależność złożoności modelu od stopnia swobody](./mse_fit.jpg)
 
 [figure_caption]
-
-  Na podstawie analizy tych wykresów jasno widać, że najlepszy model to ten, który jest opary o wielomian najwyższego stopnia (9). Linia predykcji modelu przechodzi niemal dokładnie przez każdy punkt a wartość MSE jest równa zero. Można powiedzieć, że model jest idealny. Tylko czy rzeczywiście?
+Na podstawie analizy tych wykresów jasno widać, że najlepszy model to ten, który jest opary o wielomian najwyższego stopnia (9). Linia predykcji modelu przechodzi niemal dokładnie przez każdy punkt a wartość MSE jest równa zero. Można powiedzieć, że model jest idealny. Tylko czy rzeczywiście?
   
 
 Pamiętaj, że model został "dostrojony" dla określonego zbioru danych. Nazwijmy go dla uproszczenia zbiorem treningowym. Co się stanie, gdy tak zbudowany model wykorzystamy dla innego zestawu danych, którego model jeszcze nie widział (nazwijmy go zbiorem testowym)? Wygenerujemy nowy, testowy zbiór i sprawdzimy:  
@@ -332,8 +330,7 @@ for model, degree in enumerate(degrees_of_freedom):
 ![Wykresy ukazujące zachowanie modeli w zależności od rosnących stopni swobdy, dla większej ilości danych](./9_test_errors.jpg)
 
 [figure_caption]
-
-  Myślę, że ten widok wcale Cię nie dziwi (pamiętaj, że możesz otrzymać nieco inne wykresy, gdyż generujemy losowo zmienne dane). Początkowo widzisz jak wraz ze wzrostem złożoności modelu (czyli wzrostem stopni swobody) dopasowuje się on do danych treningowych (zmniejszanie błędu, malejący bias), osiągając optymalny kształt w okolicach n=5. Dalsze zwiększanie stopnia wielomianu powoduje wzrost błędu MSE, co świadczy o pogarszającej się jakości modelu. Następuje przetrenowanie.
+Myślę, że ten widok wcale Cię nie dziwi (pamiętaj, że możesz otrzymać nieco inne wykresy, gdyż generujemy losowo zmienne dane). Początkowo widzisz jak wraz ze wzrostem złożoności modelu (czyli wzrostem stopni swobody) dopasowuje się on do danych treningowych (zmniejszanie błędu, malejący bias), osiągając optymalny kształt w okolicach n=5. Dalsze zwiększanie stopnia wielomianu powoduje wzrost błędu MSE, co świadczy o pogarszającej się jakości modelu. Następuje przetrenowanie.
     
 
 Żeby lepiej sobie to uzmysłowić wykonajmy jeszcze jeden wykres, na którym naniesiemy zależność błędu treningowego i testowego od poziomu złożoności modelu:  
