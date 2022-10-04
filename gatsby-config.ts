@@ -22,6 +22,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-remark-images`,
+    `babel-preset-gatsby`,
     `gatsby-remark-katex`,
     {
       resolve: `gatsby-plugin-mdx`,

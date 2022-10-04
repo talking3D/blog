@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": [">0.25%", "not dead", "supports css-grid", "maintained node versions", "iOS >= 13.2"]
+        }
+      }
+    ]
+  ]
+}
