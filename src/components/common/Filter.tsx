@@ -112,7 +112,7 @@ const Filter = () => {
     // } else {
     //   dispatch({type: ReducerActionType.REMOVE_TAG, payload: { [target.id]: target.innerText } })
     // }
-    if (!Object.hasOwn(filterTags, target.id)) {
+    if (!Object.hasOwnProperty.call(filterTags, target.id)) {
       setFilterTags((filter) => ({ ...filter, [target.id]: target.innerText }));
     } else {
       const { [target.id]: _, ...restOfTags } = filterTags;
@@ -181,8 +181,8 @@ const Filter = () => {
             { [...tags.entries()].sort().map(([tag, id]) => {
               const listElementClass = classnames(
                 'rounded-2xl px-4 py-1 my-2 mx-2 text-sm before:content-["#"] inline',
-                { 'border border-even-darker dark:border-white dark:bg-even-darker dark:text-white transition-colors duration-300 animate-bumpdown': !Object.hasOwn(filterTags, id) },
-                { 'border border-even-darker dark:border-white bg-even-darker dark:bg-white text-white dark:text-black transition-colors duration-300 animate-bumpup': Object.hasOwn(filterTags, id) },
+                { 'border border-even-darker dark:border-white dark:bg-even-darker dark:text-white transition-colors duration-300 animate-bumpdown': !Object.hasOwnProperty.call(filterTags, id) },
+                { 'border border-even-darker dark:border-white bg-even-darker dark:bg-white text-white dark:text-black transition-colors duration-300 animate-bumpup': Object.hasOwnProperty.call(filterTags, id) },
               );
               return (
                 <li
