@@ -197,11 +197,11 @@ const Filter = () => {
             })}
           </ul>
         </div>
-        <div className="flex justify-between items-center h-16 border-t border-t-slate-300">
-          <span className="ml-6 font-medium underline cursor-pointer dark:text-white" onClick={() => clearFilter()}>{ t('filter.clear_filter') }</span>
+        <div className="flex justify-between items-center h-16 py-10 sm:py-0 border-t border-t-slate-300">
+          <span className="ml-6 font-medium underline cursor-pointer text-sm sm:text-base dark:text-white" onClick={() => clearFilter()}>{ t('filter.clear_filter') }</span>
           {
             // Object.keys(filterTags).length > 0
-            <button id="apply-filter" type="button" className="mr-6 px-6 py-2 font-medium bg-cube-like rounded-xl" onClick={() => applyFilter()}>
+            <button id="apply-filter" type="button" className="mr-6 px-6 py-2 my-2 text-sm sm:text-base font-medium bg-cube-like rounded-xl" onClick={() => applyFilter()}>
               { t('filter.show')}
               {' '}
               {t('filter.keyWithCount', { count: countBlogPostByTag(filterTags) })}
