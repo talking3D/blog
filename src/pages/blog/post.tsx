@@ -142,7 +142,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
       };
     }
   });
-
+  const [activeSection, setActiveSection] = React.useState<string | null>(null);
   React.useEffect(() => {
     if (window !== undefined) {
       const titleElements = Array.from(document.querySelectorAll('main h3, main h4'));
@@ -166,14 +166,18 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
           truthTable = [...tempArr];
         }
 
-        const activeTitleClass = 'table-of-contents-active-title';
-        navLinks.map((navLink, id) => {
-          if (id === truthTable.findIndex((item) => item === true)) {
-            if (!navLink.classList.contains(activeTitleClass)) navLink.classList.add(activeTitleClass);
-          } else {
-            navLink.classList.remove(activeTitleClass);
-          }
-        });
+        if (truthTable.find((item) => item === true)) {
+          navLinks.map((navLink, id) => {
+            if (id === truthTable.findIndex((item) => item === true)) {
+              // if (!navLink.classList.contains(activeTitleClass)) navLink.classList.add(activeTitleClass);
+              setActiveSection(navLink.id);
+            } else {
+              // navLink.classList.remove(activeTitleClass);
+            }
+          });
+        } else {
+          setActiveSection(null);
+        }
       };
 
       window.addEventListener('scroll', updateView);
@@ -257,7 +261,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         {/* begining of blog post main part  */}
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
           <MDXProvider components={components}>
-            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1'>
+            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 border border-red-600'>
               <div id="table-of-contents" className={contentTableClass}>
                 <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500 dark:text-slate-300'>
                   <Link to={useLocale()} className='hover:underline'>
@@ -265,7 +269,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
                     {t('post.home_page')}
                   </Link>
                 </div>
-                <TableOfContents tableOfContents={mdx.tableOfContents} />
+                <TableOfContents tableOfContents={mdx.tableOfContents} active={activeSection} />
               </div>
             </nav>
             <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>

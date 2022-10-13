@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { t } from 'i18next';
+import classNames from 'classnames/dedupe';
 
 export type TableContentsType = {
   items?: {
@@ -15,7 +16,8 @@ export type TableContentsType = {
 };
 
 export interface ItemListProps {
-    tableOfContents: TableContentsType
+    tableOfContents: TableContentsType,
+    active: string | null
   }
 
 export interface TableOfContentsProps {
@@ -36,16 +38,44 @@ export const standarizeId = (idProposal: string) => {
 
 export const listItemId = (text: string) => `nav-${standarizeId(text)}`;
 
-const ItemsList = ({ tableOfContents }: ItemListProps) => (
+const ItemsList = ({ tableOfContents, active }: ItemListProps) => (
   <ul id='table-of-contents-items' className='text-sm'>
     { !!tableOfContents.items && tableOfContents.items.map((part, partId) => (
       <li key={partId} className='font-semibold'>
-        <Link to={part.url!} id={listItemId(part.title)} className='hover:underline block px-2 dark:text-white'>{ part.title }</Link>
+        <Link
+          to={part.url!}
+          id={listItemId(part.title)}
+          className={classNames(
+            'hover:underline',
+            'block',
+            'px-2',
+            'dark:text-white',
+            { 'table-of-contents-active-title': listItemId(part.title) === active },
+          )}
+        >
+          { part.title }
+        </Link>
         { !!part.items
               && (
               <ul key={partId} className='mb-4 mt-2 font-normal leading-5 list-outside list-disc pl-4'>
                 { part.items.map((section, sectionId) => (
-                  <li key={sectionId} className='mb-2 dark:text-white'><Link to={section.url} id={listItemId(section.title)} className='hover:underline block px-2'>{ section.title }</Link></li>))}
+                  <li key={sectionId} className='mb-2 dark:text-white'>
+                    <Link
+                      to={section.url}
+                      id={listItemId(section.title)}
+                      className={
+                        classNames(
+                          'hover:underline',
+                          'block',
+                          'px-2',
+                          { 'table-of-contents-active-title': listItemId(section.title) === active },
+                        )
+                      }
+                    >
+                      { section.title }
+                    </Link>
+                  </li>
+                ))}
               </ul>
               )}
       </li>
@@ -54,10 +84,10 @@ const ItemsList = ({ tableOfContents }: ItemListProps) => (
   </ul>
 );
 
-const TableOfContents = ({ tableOfContents }: TableOfContentsProps) => (
+const TableOfContents = ({ tableOfContents, active }: ItemListProps) => (
   <div>
     { tableOfContents.items
-      ? <ItemsList tableOfContents={tableOfContents} />
+      ? <ItemsList tableOfContents={tableOfContents} active={active} />
       : <NoItems />}
   </div>
 );
