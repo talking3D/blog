@@ -29,7 +29,8 @@ export interface ItemListProps {
 
 export interface TableOfContentsProps extends ItemListProps {
   title: string,
-  expanded: boolean
+  expanded: boolean,
+  onCollapsedTocClicked: () => void;
 }
 
 const NoItems = () => (
@@ -103,7 +104,7 @@ const ItemsList = ({ tableOfContents, active }: ItemListProps) => (
 );
 
 const TableOfContents = ({
-  tableOfContents, title, active, expanded,
+  tableOfContents, title, active, expanded, onCollapsedTocClicked,
 }: TableOfContentsProps) => {
   // Table of contents styling: semi-transparent when it overlaps blog post elements (images or code)
   const contentTableClassExpanded = classNames(
@@ -112,7 +113,7 @@ const TableOfContents = ({
   );
 
   const contentTableClassCollapsed = classNames(
-    'flex flex-nowrap items-center absolute overflow-hidden z-20 w-full',
+    'flex flex-nowrap items-center absolute overflow-hidden z-20 w-full hover:cursor-pointer',
     { visible: !expanded, invisible: expanded },
   );
 
@@ -139,7 +140,7 @@ const TableOfContents = ({
           <BsHouseFill size={20} className='inline text-slate-500 dark:text-slate-300 align-bottom mt-2' />
         </Link>
       </div>
-      <div className='w-full pl-8 py-4 border rounded-xl bg-white font-medium shadow'>
+      <div className='w-full pl-8 py-4 border rounded-xl bg-white font-medium shadow' onClick={onCollapsedTocClicked}>
         { unpackItems(tableOfContents).find((item) => `nav-${standarizeId(item.title!)}` === active)?.title || title}
         {/* { console.log(active) } */}
       </div>

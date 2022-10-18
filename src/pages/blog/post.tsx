@@ -101,7 +101,10 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
 
   // Table of contents intersection/visibility manager
   const [contentsVisible, setContentsVisible] = React.useState<boolean>(true);
-  // const blogPostClick = (e) => console.log(e);
+
+  const handleCollapsedTocClicked = () => {
+    if (!contentsVisible) setContentsVisible(true);
+  };
 
   React.useEffect(() => {
     if (window !== undefined) {
@@ -254,7 +257,13 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
           <MDXProvider components={components}>
             <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 z-[2]'>
-              <TableOfContents tableOfContents={mdx.tableOfContents} active={activeSection} title={mdx.frontmatter.title} expanded={contentsVisible} />
+              <TableOfContents
+                tableOfContents={mdx.tableOfContents}
+                active={activeSection}
+                title={mdx.frontmatter.title}
+                expanded={contentsVisible}
+                onCollapsedTocClicked={handleCollapsedTocClicked}
+              />
             </nav>
             <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
               <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl dark:text-white'>{ mdx.frontmatter.title }</h1>
