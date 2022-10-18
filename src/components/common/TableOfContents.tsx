@@ -108,13 +108,13 @@ const TableOfContents = ({
 }: TableOfContentsProps) => {
   // Table of contents styling: semi-transparent when it overlaps blog post elements (images or code)
   const contentTableClassExpanded = classNames(
-    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white dark:bg-even-darker border-stone-300 rounded-xl mr-2 transition-opacity duration-700',
-    { 'opacity-100': expanded, 'opacity-[0]': !expanded },
+    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white dark:bg-even-darker border-stone-300 rounded-xl mr-2 transition-opacity duration-500',
+    { 'visible opacity-100': expanded, 'invisible opacity-0': !expanded },
   );
 
   const contentTableClassCollapsed = classNames(
-    'flex flex-nowrap items-center absolute overflow-hidden z-20 w-full hover:cursor-pointer',
-    { visible: !expanded, invisible: expanded },
+    'flex flex-nowrap items-center absolute overflow-hidden z-20 w-full hover:cursor-pointer transition-opacity duration-500',
+    { 'visible opacity-100': !expanded, 'invisible opacity-0': expanded },
   );
 
   const expandedToc = (
@@ -135,12 +135,12 @@ const TableOfContents = ({
 
   const collapsedToc = (
     <div className={contentTableClassCollapsed}>
-      <div className='rounded-full border border-slate-300 w-10 h-10 text-center -mr-5 z-[100] bg-white shadow'>
+      <div className='rounded-full border border-slate-300 w-10 h-10 text-center -mr-5 z-[100] bg-white dark:bg-even-darker shadow'>
         <Link to={useLocale()} className='hover:underline'>
           <BsHouseFill size={20} className='inline text-slate-500 dark:text-slate-300 align-bottom mt-2' />
         </Link>
       </div>
-      <div className='w-full pl-8 py-4 border rounded-xl bg-white font-medium shadow' onClick={onCollapsedTocClicked}>
+      <div className='w-full pl-8 py-4 border rounded-xl bg-white dark:bg-even-darker dark:text-white font-medium shadow' onClick={onCollapsedTocClicked}>
         { unpackItems(tableOfContents).find((item) => `nav-${standarizeId(item.title!)}` === active)?.title || title}
         {/* { console.log(active) } */}
       </div>
