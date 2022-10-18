@@ -3,20 +3,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import * as React from 'react';
-import { graphql, Link, PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import {
   GatsbyImage, getImage, ImageDataLike,
 } from 'gatsby-plugin-image';
-import { BsClockFill, BsHouseFill } from 'react-icons/bs';
-import classNames from 'classnames/dedupe';
+import { BsClockFill } from 'react-icons/bs';
 import { t } from 'i18next';
 import SyntaxHighlighter from '../../components/addons/SyntaxHighlighter';
 import PostImage from '../../components/common/PostImage';
 import TableOfContents, { TableContentsType } from '../../components/common/TableOfContents';
 import { Header3, Header4 } from '../../components/common/PostHeaders';
-import useLocale from '../../components/hooks/useLocale';
 import { getColorContrast } from '../../components/utils/helpers';
 import SEO from '../../components/common/SEO';
 import Blockquote from '../../components/common/Blockquote';
@@ -184,12 +182,6 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
     }
   }, []);
 
-  // Table of contents styling: semi-transparent when it overlaps blog post elements (images or code)
-  const contentTableClass = classNames(
-    'absolute overflow-hidden p-4 border max-w-[395px] w-full shadow-sm bg-white dark:bg-even-darker border-stone-300 rounded-xl mr-2 hover:opacity-100 transition-opacity duration-700',
-    { 'opacity-100': contentsVisible, 'opacity-[.05]': !contentsVisible },
-  );
-
   const image = getImage(mdx.frontmatter.hero_image);
 
   const inlineHeroMarkerStyle = {
@@ -261,16 +253,8 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         {/* begining of blog post main part  */}
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
           <MDXProvider components={components}>
-            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 border border-red-600'>
-              <div id="table-of-contents" className={contentTableClass}>
-                <div className='mb-3 -mt-1 text-sm font-roboto text-right text-slate-500 dark:text-slate-300'>
-                  <Link to={useLocale()} className='hover:underline'>
-                    <BsHouseFill size={16} className='inline mr-1 align-text-bottom' />
-                    {t('post.home_page')}
-                  </Link>
-                </div>
-                <TableOfContents tableOfContents={mdx.tableOfContents} active={activeSection} />
-              </div>
+            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 z-[2]'>
+              <TableOfContents tableOfContents={mdx.tableOfContents} active={activeSection} title={mdx.frontmatter.title} expanded={contentsVisible} />
             </nav>
             <header className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 mt-7'>
               <h1 className='col-start-1 col-span-3 md:col-start-2 md:col-span-2 font-bold text-3xl dark:text-white'>{ mdx.frontmatter.title }</h1>
