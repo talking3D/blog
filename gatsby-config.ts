@@ -39,6 +39,7 @@ const config: GatsbyConfig = {
               // wrapperStyle: 'position: absolute; border: solid 2px blue;'
             },
           },
+          `gatsby-remark-lottie`,
         ],
       },
     },
