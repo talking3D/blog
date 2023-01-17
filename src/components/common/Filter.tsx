@@ -163,7 +163,7 @@ const Filter = () => {
   return (
     <div
       id="filter-modal"
-      className="fixed hidden left-0 top-0 w-full h-full bg-neutral-800/0 dark:bg-zinc-300/0! transition-colors ease-in-out duration-500"
+      className="fixed hidden left-0 top-0 w-full h-full bg-neutral-800/0 dark:bg-zinc-300/0! transition-colors ease-in-out duration-500 z-[2]"
       onClick={(e) => handleBlendClick(e)}
     >
       <div

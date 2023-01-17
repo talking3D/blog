@@ -256,7 +256,7 @@ const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
         {/* begining of blog post main part  */}
         <div className='grid relative grid-rows-auto grid-flow-row grid-cols-2 md:grid-cols-3 gap-4 w-full'>
           <MDXProvider components={components}>
-            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 z-[2]'>
+            <nav id='nav-table-of-contents' className='hidden sticky top-4 md:inline-grid md:col-start-1 md:col-span-1 z-[1]'>
               <TableOfContents
                 tableOfContents={mdx.tableOfContents}
                 active={activeSection}
