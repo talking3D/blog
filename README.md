@@ -9,7 +9,7 @@
 </p>
 <div style="margin:0px auto; text-align: center;">
   <h1 style="margin-bottom: 0px;">Data Driven Discussion</h1>
-  <h2 style="margin-top: 0px;">Generally speaking, a technically oriented blog...</h2>
+  <h2 style="margin-top: 0px;">Generally speaking, a technically oriented <a href="http://talking3d.com">blog...</a></h2>
   <div style="padding: 15px 0px; margin: 15px auto; max-width: fit-content;">
     <p>“If you can’t explain it simply, you don’t understand it well enough.”</p>
     <p style="text-align: end;"><i>Albert Einstein</i></p>
