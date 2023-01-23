@@ -30,7 +30,6 @@ const config: GatsbyConfig = {
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
         gatsbyRemarkPlugins: [
-          `gatsby-remark-lottie`,
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -40,6 +39,7 @@ const config: GatsbyConfig = {
               // wrapperStyle: 'position: absolute; border: solid 2px blue;'
             },
           },
+          `gatsby-remark-lottie`,
         ],
       },
     },
