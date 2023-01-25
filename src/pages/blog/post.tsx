@@ -53,7 +53,11 @@ type DataProps = {
 
 const BlogPost = ({ data: { mdx } }: PageProps<DataProps>) => {
   const wrapNode = (node: Element) => {
-    if (node.firstElementChild?.classList.contains('gatsby-resp-image-wrapper') && node.parentElement?.tagName !== 'FIGURE') {
+    if (
+      (node.firstElementChild?.classList.contains('gatsby-resp-image-wrapper')
+      && node.parentElement?.tagName !== 'FIGURE')
+      || node.firstElementChild?.classList.contains('lottie')
+    ) {
       const figureWrapper = document.createElement('figure');
       figureWrapper.className = 'from-inline-image';
       const divImageWraper = document.createElement('div');
